@@ -1,0 +1,1 @@
+require('./components/pages/iot/realtime-monitor/RealtimeManager');

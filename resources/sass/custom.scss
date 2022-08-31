@@ -1,0 +1,35 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+a {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: auto;
+}
+
+.vertical-middle {
+  vertical-align: middle !important;
+}
+
+.container {
+  min-height: 60vh;
+}
+
+.btn.btn-danger + .btn.btn-secondary {
+  margin-left: 0.5rem;
+}
+
+.section-title {
+  font-size: 30px;
+  font-weight: bold;
+  font-family: Arial;
+}
+
+.float-right {
+  float: right !important;
+}

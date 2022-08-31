@@ -1,0 +1,67 @@
+{
+  "name": "iot_saas_project",
+  "version": "1.0.0",
+  "description": "<p align=\"center\"><a href=\"https://devdojo.com/wave\" target=\"_blank\"><img src=\"https://cdn.devdojo.com/assets/img/github-wave-logo.svg\" width=\"240\"></a></p>",
+  "main": "webpack.mix.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "npm run development",
+    "development": "mix",
+    "watch": "mix watch",
+    "watch-poll": "mix watch -- --watch-options-poll=1000",
+    "hot": "mix watch --hot",
+    "prod": "npm run production",
+    "production": "mix --production"
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-jsx": "^7.18.6",
+    "@babel/preset-react": "^7.13.13",
+    "@popperjs/core": "^2.10.2",
+    "@themesberg/react-bootstrap": "^1.4.1",
+    "axios": "^0.21",
+    "bootstrap": "^5.2.0",
+    "laravel-mix": "^6.0.6",
+    "lodash": "^4.17.19",
+    "postcss": "^8.1.14",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.2",
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-regular-svg-icons": "^6.1.2",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@trendmicro/react-buttons": "^1.3.1",
+    "@trendmicro/react-dropdown": "^1.4.0",
+    "@wojtekmaj/react-daterange-picker": "^3.4.0",
+    "jquery": "^3.6.1",
+    "moment": "^2.29.4",
+    "mqtt": "^4.3.7",
+    "popper.js": "^1.16.1",
+    "primeicons": "^5.0.0",
+    "primereact": "^8.4.0",
+    "rc-time-picker": "^3.7.3",
+    "react-apexcharts": "^1.4.0",
+    "react-modal": "^3.15.1",
+    "react-router-dom": "^6.3.0",
+    "react-select": "^5.2.1"
+  },
+  "keywords": [
+    "iot",
+    "saas"
+  ],
+  "author": "do p",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  }
+}

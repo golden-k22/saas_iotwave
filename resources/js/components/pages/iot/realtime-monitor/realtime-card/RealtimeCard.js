@@ -1,0 +1,103 @@
+import React from "react";
+import {Card, CardHeader, CardBody, CardFooter} from "react-simple-card";
+import "./card_style.css";
+import tempIcon from "../../../../assets/img/icons/temperature.png";
+import Image from "@themesberg/react-bootstrap/lib/esm/Image";
+import {convertUTCToLocalString} from "../../DateParser";
+
+const RealtimeCard = (props) => {
+        // const history = useHistory();
+
+        function handleClick(id, sn) {
+            props.viewHistoryCallback(id, sn);
+            // history.push("/admin/devices/history/" + id);
+        }
+
+        const {wlt, wht, lt, ht, wlh, whh, lh, hh, lv, oft} = props.alarm !== undefined ? props.alarm :
+            {
+                wlt: null,
+                wht: null,
+                lt: null,
+                ht: null,
+                wlh: null,
+                whh: null,
+                lh: null,
+                hh: null,
+                lv: null,
+                oft: null
+            };
+
+        function isWarning() {
+            let warning = false;
+            if ((wlt !== null && props.message.temperature < wlt)
+                || (wht !== null && props.message.temperature > wht)
+                || (wlh !== null && props.message.humidity < wlh)
+                || (whh !== null && props.message.humidity > whh)) {
+                warning = true;
+            }
+            return warning;
+        }
+
+        function isDangerous() {
+            let dangerous = false;
+            if ((lt !== null && props.message.temperature < lt)
+                || (ht !== null && props.message.temperature > ht)
+                || (lh !== null && props.message.humidity < lh)
+                || (hh !== null && props.message.humidity > hh)
+                || (lv !== null && props.message.voltage < lv)) {
+                dangerous = true;
+            }
+            return dangerous;
+        }
+
+        return (
+            <Card style={{width: '290px', boxShadow: '0 2px 3px 1px #ccc', margin: '10px'}}
+                  className="realtime-card-container"
+                  bgColor={(props.message.voltage === "--" ? '#aaaaaa' : isDangerous() ? '#c91112' : isWarning() ? '#ffb848' : '#28b779')}
+            >
+                <CardHeader
+                    className={(props.message.voltage === "--" ? 'card-header-passive' : isDangerous() ? 'card-header-accident' : isWarning() ? 'card-header-warning' : 'card-header-normal')}>
+                    <div
+                        className="col-md-6 col-xs-6 col-lg-6 col-xl-6 card-text-color card-header-bold">{props.message.name}</div>
+                    <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 props-title card-text-color ">
+                        <span className="card-header-bold">{props.message.signal}</span><span>DB</span>
+                    </div>
+                    <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 props-title card-text-color">
+                        <span className="card-header-bold">{props.message.voltage}</span><span>V</span>
+                    </div>
+                </CardHeader>
+                <CardBody>
+                    <div className="col-md-5 col-xs-5 col-lg-5 col-xl-5  sensor-icon">
+                        <Image src={tempIcon}/>
+                    </div>
+                    <div className="col-md-7 col-xs-7 col-lg-7 col-xl-7">
+                        <div className="card-content-height-wrapper">
+                            <div
+                                className="col-md-9 col-xs-9 col-lg-9 col-xl-9 sensor-props card-text-color card-header-bold">{props.message.temperature}</div>
+                            <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 sensor-unit card-text-color">ºC</div>
+                        </div>
+                        <div className="card-content-height-wrapper">
+                            <div
+                                className="col-md-9 col-xs-9 col-lg-9 col-xl-9 sensor-props card-text-color card-header-bold">{
+                                props.message.humidity != 255 ? props.message.humidity : "--"}
+                            </div>
+                            <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 sensor-unit card-text-color">%</div>
+                        </div>
+
+                        <div
+                            className="time-props card-text-color">{props.message.time == "--/--/-- --:--" ? "--/--/--  --:--" : convertUTCToLocalString(props.message.time)}
+                        </div>
+                    </div>
+                </CardBody>
+                <CardFooter>
+                    <div onClick={() => handleClick(props.message.device_id, props.message.device_sn)}
+                         className=" col-md-12 col-xs-12 col-lg-12 col-xl-12 history-link">VIEW HISTORY
+                    </div>
+                </CardFooter>
+            </Card>
+        )
+    }
+;
+export default RealtimeCard;
+
+

@@ -1,0 +1,21 @@
+.rc-time-picker-panel-inner{
+    height: 110px;
+}
+.rc-time-picker-panel {
+    z-index: 9999;
+}
+.rc-time-picker-input {
+    border: 1px solid #585858;
+    padding: 4px 0px;
+    text-align: center;
+}
+.rc-time-picker-panel-select {
+    height: 75px;
+    width:74px;
+}
+.rc-time-picker {
+    margin-top: 5px;
+}
+.rc-time-picker-panel-narrow {
+    max-width: 150px;
+}

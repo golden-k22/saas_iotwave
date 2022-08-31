@@ -1,0 +1,1 @@
+require('./components/pages/iot/alarm-setting/AlarmSettingRouter');

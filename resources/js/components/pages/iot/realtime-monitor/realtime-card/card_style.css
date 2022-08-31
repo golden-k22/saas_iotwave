@@ -1,0 +1,79 @@
+
+.realtime-card-container:hover {
+    box-shadow: 0 2px 3px 2px #424246 !important;
+}
+
+.card-header-passive {
+    background-color: #5d5d5d;
+}
+
+.card-header-normal {
+    background-color: #1c8357;
+}
+
+.card-header-warning {
+    background-color: #db9629;
+}
+
+.card-header-accident {
+    background-color: #b31315;
+}
+.props-title {
+    text-align: end;
+}
+
+.sensor-icon {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.sensor-props {
+    font-size: 32px;
+    text-align: end;
+    padding-right: 0px;
+}
+
+.sensor-unit {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.time-props {
+    text-align: end;
+}
+
+.card__body {
+    padding: 15px;
+    padding-bottom: 5px;
+}
+
+.card__footer {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-top: none;
+    margin-top: 0;
+}
+
+.history-link {
+    text-align: center;
+    cursor: pointer;
+    color: #e4e4e4;
+}
+
+.history-link:hover {
+    color: white;
+    font-weight: bold;
+}
+
+.card-text-color {
+    color: #ffffff;
+}
+
+.card-header-bold {
+    font-weight: bold;
+}
+
+.card-content-height-wrapper {
+    height: 50px;
+}

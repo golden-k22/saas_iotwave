@@ -1,0 +1,58 @@
+#alarm-badge {
+  position: absolute;
+  font-size: 22px;
+  right: 100px;
+  top: 14px;
+}
+
+.dropdown---caret---3CkEt {
+  display: none !important;
+}
+
+.dropdown---dropdown-menu---1fkH0 {
+  left: -200px !important;
+  width: 300px !important;
+}
+
+.dropdown---dropdown-menu---1fkH0 > .dropdown---menu-item-wrapper---3uAM0 > .dropdown---menu-item---1LjoL {
+  white-space: normal !important;
+}
+
+.list-group-item {
+  border: none !important;
+  border-bottom: 1px solid #a09b9b !important;
+  border-radius: 0px !important;
+}
+
+.alarm-count-badge {
+  background: red !important;
+  margin: -0px 0px 0px -8px !important;
+}
+
+.alarm-count-badge:hover {
+  color: white !important;
+}
+
+.text-end {
+  float: right;
+}
+
+.avatar_col {
+  width: 60px;
+  margin-left: -15px;
+  margin-top: 10px;
+}
+
+.sender_col {
+  text-align: end;
+}
+
+.bell-shake {
+  animation: bellshake .5s cubic-bezier(.36, .07, .19, .97) both;
+  backface-visibility: hidden;
+  transform-origin: top right;
+}
+.svg-inline--fa.fa-bell{
+  width: 20px;
+  height: 20px;
+}

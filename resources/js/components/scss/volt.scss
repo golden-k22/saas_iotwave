@@ -1,0 +1,129 @@
+// =========================================================
+// * Volt React Dashboard
+// =========================================================
+
+// Bootstrap mixins and functions
+@import "../../../../node_modules/bootstrap/scss/mixins";
+@import "../../../../node_modules/bootstrap/scss/functions";
+
+// Change variables here
+@import "volt/variables";
+// write your custom styles here!
+@import "volt/components/preloader";
+//@import "volt/components/buttons";
+@import "alarm-badge-style";
+
+.dashboard-container{
+    padding: 100px;
+    padding-top: 70px;
+    padding-right: 50px;
+}
+.app-container{
+    background-color:#eceeee;
+}
+
+.react-component-container{
+    margin-left: 10px;
+    margin-right: 10px;
+    align-content: center;
+}
+
+#chart{
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    // margin-left: 10px;
+    // margin-right: 10px;
+    align-content: center;
+    border-radius: 0.5em;
+    border:1px solid #dddddd;
+    background-color: #ffffff;
+    box-shadow: 0 2px 3px 1px #ccc;
+}
+.weighing-duration-dashboard{
+    margin-left: -15px;
+}
+.operator-performance-dashboard{
+    margin-right: -15px;
+}
+.landing-title{
+    margin-top: 15%;
+}
+.side-list{
+    max-width: 300px;
+}
+.content{
+    margin-left: 300px;
+}
+.line-chart{
+    background-color: rgb(173, 241, 241);
+    border-radius: 10px;
+    // padding: 30px;
+}
+.line-chart-header{
+    margin-top: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.line-chart-header > h4{
+    color: #5c5c5c;
+    text-align: left;
+}
+
+.chart-container{
+    width: 85%;
+    margin-left: 7%;
+    margin-top: 50px;
+}
+.setting-form{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.section-container{
+    padding-bottom: 2em;
+    border-bottom: 1px solid #d4d4d4;
+}
+.top-section{
+    margin-top: 30px;
+    padding-bottom: 2em;
+}
+.section-title{    
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Arial;
+}
+
+.preloader{
+    //justify-content: center;
+    width: 50px;
+    left: 55%;
+}
+.list_row{
+    margin-left: 10px;
+}
+.list_row_outstanding{
+    margin-left: 20px;
+}
+.row>[class*=col-] {
+    margin-bottom: 3px;
+}
+
+.list-container {
+    min-height: 100px;
+    border-radius: 0.5em;
+    padding-top: 1px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    border:1px solid #dddddd;
+    background-color: #ffffff;
+    box-shadow: 0 2px 3px 1px #ccc;
+}
+.current-progress-wrapper{
+    margin-left: 15px;
+    margin-right: 0px;
+}
+.display-flex{
+    display: flex;
+}

@@ -1,0 +1,126 @@
+.facility-type-title {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.key-input-title {
+  text-align: right;
+  margin-top: 5px;
+  font-size: 18px;
+}
+
+.key-input-value {
+  min-height: 38px;
+  border: #cecccc 1px solid;
+}
+
+.key-input-value:hover {
+  border: #507cc7 2px solid;
+  border-radius: 5px;
+}
+
+.key-input-value:focus {
+  border: #507cc7 2px solid;
+  border-radius: 5px;
+}
+
+.search-btn {
+  width: 90px;
+  margin-top: 0px;
+  min-height: 37px;
+  float: right;
+  margin-right: 15px;
+}
+
+.make-read-btn {
+  margin-top: 0px;
+  min-height: 37px;
+  float: right;
+  margin-right: 15px;
+}
+
+.action-btn {
+  height: 25px;
+  font-size: 11px;
+  margin: 0px 5px;
+  padding: 3px 8px;
+}
+
+.fw-normal {
+  vertical-align: sub;
+  color: #526069;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.total-count {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.bold-font {
+  font-weight: bold !important;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open {
+  overflow: hidden;
+}
+
+.Modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: papayawhip;
+}
+
+.ReactModal__Overlay, .ReactModal__Overlay--after-open {
+  z-index: 9999;
+  background-color: rgb(47 47 47 / 75%) !important;
+}
+
+.mb-row {
+  margin-bottom: 10px;
+}
+
+.sm-text {
+  font-size: 16px;
+}
+
+.grey-border {
+  border: #747888 1px solid;
+  border-radius: 5px;
+}
+
+.modal-title {
+  margin: 20px 0px 50px 10px;
+}
+
+.detail-row {
+  margin-top: 10px;
+}
+
+.event-type-title {
+  font-size: 16px;
+}
+
+.event-type-value {
+  min-height: 10px;
+  height: 27px;
+  margin-top: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.day-padding {
+  padding-left: 11px;
+}
