@@ -1,6 +1,6 @@
 <div x-data="{ open: false }" class="flex h-full md:flex-1">
     <div class="flex-1 hidden h-full space-x-8 md:flex">
-        <a href="{{ route('wave.dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none border-b-2 border-transparent @if(Request::is('dashboard')){{ 'border-b-2 border-indigo-500 text-gray-900 focus:border-indigo-700' }}@else{{ 'text-gray-500 hover:border-gray-300 hover:text-gray-700 focus:text-gray-700 focus:border-gray-300' }}@endif">Dashboard</a>
+        <a href="@if(Auth::user() && Auth::user()->hasRole('admin')){{ route('wave.dashboard') }}@elseif(Auth::user()){{ route('tenancy.dashboard', Auth::user()->username) }}@else{{ route('wave.dashboard') }}@endif" class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none border-b-2 border-transparent @if(Request::is('dashboard')){{ 'border-b-2 border-indigo-500 text-gray-900 focus:border-indigo-700' }}@else{{ 'text-gray-500 hover:border-gray-300 hover:text-gray-700 focus:text-gray-700 focus:border-gray-300' }}@endif">Dashboard</a>
         <div x-data="{ dropdown: false }" @mouseenter="dropdown = true" @mouseleave="dropdown=false" @click.away="dropdown=false" class="relative inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-500 transition duration-150 ease-in-out border-b-2 border-transparent cursor-pointer hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300">
             <span>Resources</span>
             <svg class="w-5 h-5 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -69,42 +69,38 @@
             </div>
 
             <div
-                x-show="open"
-                x-transition:enter="duration-100 ease-out scale-95"
-                x-transition:enter-start="opacity-50 scale-95"
-                x-transition:enter-end="opacity-100 scale-100"
-                x-transition:leave="transition duration-50 ease-in scale-100"
-                x-transition:leave-start="opacity-100 scale-100"
-                x-transition:leave-end="opacity-0 scale-95"
-                class="absolute top-0 right-0 w-56 mt-20 origin-top-right transform rounded-xl" x-cloak>
+                    x-show="open"
+                    x-transition:enter="duration-100 ease-out scale-95"
+                    x-transition:enter-start="opacity-50 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition duration-50 ease-in scale-100"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-95"
+                    class="absolute top-0 right-0 w-56 mt-20 origin-top-right transform rounded-xl" x-cloak>
 
                 <div class="bg-white border border-gray-100 shadow-md rounded-xl" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <a href="{{ route('wave.profile', auth()->user()->username) }}" class="block px-4 py-3 text-gray-700 hover:text-gray-800">
+                    <a href="@if(auth()->user()->hasRole('admin')){{ route('wave.profile', auth()->user()->username) }}@else{{ route('tenancy.profile', ['username'=>auth()->user()->username, 'tenant'=>auth()->user()->username]) }}@endif" class="block px-4 py-3 text-gray-700 hover:text-gray-800">
 
-                        <span class="block text-sm font-medium leading-tight truncate">
-                            {{ auth()->user()->name }}
-                        </span>
+                    <span class="block text-sm font-medium leading-tight truncate">
+                        {{ auth()->user()->name }}
+                    </span>
                         <span class="text-xs leading-5 text-gray-600">
-                            View Profile
-                        </span>
+                        View Profile
+                    </span>
                     </a>
                     @impersonating
-                            <a href="{{ route('impersonate.leave') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 text-blue-900 border-t border-gray-100 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:bg-blue-200">Leave impersonation</a>
+                    <a href="{{ route('impersonate.leave') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 text-blue-900 border-t border-gray-100 bg-blue-50 hover:bg-blue-100 focus:outline-none focus:bg-blue-200">Leave impersonation</a>
                     @endImpersonating
                     <div class="border-t border-gray-100"></div>
                     <div class="py-1">
-
-                        <div class="block px-4 py-1">
-                            <span class="inline-block px-2 my-1 -ml-1 text-xs font-medium leading-5 text-gray-600 bg-gray-200 rounded">{{ auth()->user()->role->display_name }}</span>
-                        </div>
                         @trial
-                            <a href="{{ route('wave.settings', 'plans') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Upgrade My Account</a>
+                        <a href="{{ route('wave.settings', 'plans') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Upgrade My Account</a>
                         @endtrial
                         @if( !auth()->guest() && auth()->user()->can('browse_admin') )
                             <a href="{{ route('voyager.dashboard') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"><i class="fa fa-bolt"></i> Admin</a>
                         @endif
-                        <a href="{{ route('wave.profile', auth()->user()->username) }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">My Profile</a>
-                        <a href="{{ route('wave.settings') }}" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Settings</a>
+                        <a href="@if(auth()->user()->hasRole('admin')){{ route('wave.profile', auth()->user()->username) }}@else{{ route('tenancy.profile', ['username'=>auth()->user()->username, 'tenant'=>auth()->user()->username]) }}@endif" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">My Profile</a>
+                        <a href="@if(auth()->user()->hasRole('admin')){{ route('wave.settings') }}@else{{ route('tenancy.settings', auth()->user()->username) }}@endif" class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Settings</a>
 
                     </div>
                     <div class="border-t border-gray-100"></div>

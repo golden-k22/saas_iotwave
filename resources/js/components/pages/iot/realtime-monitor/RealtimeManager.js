@@ -7,8 +7,8 @@ import {RestDataSource} from "../../../../service/RestDataSource";
 import ReactDOM from "react-dom";
 import "../../../scss/volt/components/monthPickerStyle.css";
 import '../../../scss/management-table-style.scss';
+import '../../../scss/volt.scss';
 import {ReportListTable} from "../report-management/ReportListTable";
-import GatewayManager from "../gateway-management/GatewayManager";
 
 class RealtimeManager extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ class RealtimeManager extends Component {
 
     render() {
         return (
-            <div className="dashboard-container">
+            <div className="w-100">
 
                 {this.state.viewHistory ?
                     <>
@@ -46,9 +46,9 @@ class RealtimeManager extends Component {
                                          setReportGenerated={this.setReportGenerated}/>
                     </> :
                     <Row className="section-container">
-                        <Row className='top-section'>
+                        <div className='top-section'>
                             <span className="section-title">Realtime Monitoring</span>
-                        </Row>
+                        </div>
                         <Row>
                             {this.state.messages.map((message, index) =>
                                 <Col key={index} xs={12} md={6} lg={4} xl={3} className="mb-4">
