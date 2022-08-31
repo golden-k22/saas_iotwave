@@ -2,9 +2,11 @@
     "/js/app.js": "/js/app.js",
     "/js/notification.js": "/js/notification.js",
     "/js/alarmRecordDashboard.js": "/js/alarmRecordDashboard.js",
+    "/js/alarmSettingDashboard.js": "/js/alarmSettingDashboard.js",
     "/js/gatewayDashboard.js": "/js/gatewayDashboard.js",
     "/js/deviceDashboard.js": "/js/deviceDashboard.js",
     "/js/groupDashboard.js": "/js/groupDashboard.js",
+    "/js/realtimeDashboard.js": "/js/realtimeDashboard.js",
     "/js/reportDashboard.js": "/js/reportDashboard.js",
     "/css/custom.css": "/css/custom.css",
     "/css/bootstrap.css": "/css/bootstrap.css"
