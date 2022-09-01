@@ -146,7 +146,7 @@ function AddEditModal(props) {
                                 <Col xs={8} md={8} lg={8} xl={8}>
                                     <label className="facility-type-title event-type-title">{LOW_WARNING}</label>
                                 </Col>
-                                <Col xs={3} md={3} lg={3} xl={3}>
+                                <Col xs={4} md={4} lg={4} xl={4} className={"d-flex"}>
                                     <FormControl defaultValue={alarmSetting.low_warning}
                                                  name="alarmName"
                                                  type="number"
@@ -156,8 +156,6 @@ function AddEditModal(props) {
                                                      ...alarmSetting,
                                                      low_warning: e.target.value
                                                  })}/>
-                                </Col>
-                                <Col>
                                     <label className="facility-type-title">{UNIT}</label>
                                 </Col>
                             </Row> : null
@@ -168,7 +166,7 @@ function AddEditModal(props) {
                                 <Col xs={8} md={8} lg={8} xl={8}>
                                     <label className="facility-type-title event-type-title">{HIGH_WARNING}</label>
                                 </Col>
-                                <Col xs={3} md={3} lg={3} xl={3}>
+                                <Col xs={4} md={4} lg={4} xl={4} className={"d-flex"}>
                                     <FormControl defaultValue={alarmSetting.high_warning}
                                                  name="alarmName"
                                                  type="number"
@@ -178,8 +176,6 @@ function AddEditModal(props) {
                                                      ...alarmSetting,
                                                      high_warning: e.target.value
                                                  })}/>
-                                </Col>
-                                <Col>
                                     <label className="facility-type-title">{UNIT}</label>
                                 </Col>
                             </Row> : null
@@ -189,7 +185,7 @@ function AddEditModal(props) {
                                 <Col xs={8} md={8} lg={8} xl={8}>
                                     <label className="facility-type-title event-type-title">{LOW_THRESHOLD}</label>
                                 </Col>
-                                <Col xs={3} md={3} lg={3} xl={3}>
+                                <Col xs={4} md={4} lg={4} xl={4} className={"d-flex"}>
                                     <FormControl defaultValue={alarmSetting.low_threshold}
                                                  name="alarmName"
                                                  type="number"
@@ -199,8 +195,6 @@ function AddEditModal(props) {
                                                      ...alarmSetting,
                                                      low_threshold: e.target.value
                                                  })}/>
-                                </Col>
-                                <Col>
                                     <label className="facility-type-title">{UNIT}</label>
                                 </Col>
                             </Row> : null
@@ -210,7 +204,7 @@ function AddEditModal(props) {
                                 <Col xs={8} md={8} lg={8} xl={8}>
                                     <label className="facility-type-title event-type-title">{HIGH_THRESHOLD}</label>
                                 </Col>
-                                <Col xs={3} md={3} lg={3} xl={3}>
+                                <Col xs={4} md={4} lg={4} xl={4} className={"d-flex"}>
                                     <FormControl defaultValue={alarmSetting.high_threshold}
                                                  name="alarmName"
                                                  type="number"
@@ -220,8 +214,6 @@ function AddEditModal(props) {
                                                      ...alarmSetting,
                                                      high_threshold: e.target.value
                                                  })}/>
-                                </Col>
-                                <Col>
                                     <label className="facility-type-title">{UNIT}</label>
                                 </Col>
                             </Row> : null
@@ -231,7 +223,7 @@ function AddEditModal(props) {
                                 <Col xs={8} md={8} lg={8} xl={8}>
                                     <label className="facility-type-title event-type-title">{OFFLINE_TIME}</label>
                                 </Col>
-                                <Col xs={3} md={3} lg={3} xl={3}>
+                                <Col xs={4} md={4} lg={4} xl={4} className={"d-flex"}>
                                     <FormControl defaultValue={alarmSetting.offline_time}
                                                  name="alarmName"
                                                  type="number"
@@ -241,8 +233,6 @@ function AddEditModal(props) {
                                                      ...alarmSetting,
                                                      offline_time: e.target.value
                                                  })}/>
-                                </Col>
-                                <Col>
                                     <label className="facility-type-title">{UNIT}</label>
                                 </Col>
                             </Row> : null
@@ -258,6 +248,7 @@ function AddEditModal(props) {
                     </Col>
                     <Col xs={6} md={6} lg={6} xl={6}>
                         <DateRangePicker
+                            className={"w-100"}
                             calendarAriaLabel="Toggle calendar"
                             clearAriaLabel="Clear value"
                             rangeDivider="~"
@@ -284,6 +275,7 @@ function AddEditModal(props) {
                             </Col>
                             <Col>
                                 <TimePicker
+                                    className={"w-100"}
                                     showSecond={false}
                                     defaultValue={moment(alarmSetting.time_from, format)}
                                     onChange={changeTimeFrom}
@@ -299,6 +291,7 @@ function AddEditModal(props) {
                             </Col>
                             <Col>
                                 <TimePicker
+                                    className={"w-100"}
                                     showSecond={false}
                                     defaultValue={moment(alarmSetting.time_to, format)}
                                     onChange={changeTimeTo}
@@ -341,7 +334,7 @@ function AddEditModal(props) {
                         <Button
                             onClick={() => updateAlarm()}
                             className={"btn-success search-btn"}>{props.isEdit ? <FontAwesomeIcon icon={faEdit}/> :
-                            <FontAwesomeIcon icon={faPlus}/>}{props.isEdit ? " Edit" : " Add"}</Button>
+                            <FontAwesomeIcon icon={faPlus}/>}{props.isEdit ? " Save" : " Add"}</Button>
                     </Col>
                     <Col xs={1} md={1} lg={1} xl={1}/>
                 </Row>

@@ -13,7 +13,6 @@ import ReactDOM from "react-dom";
 import {RestDataSource} from "../../../../service/RestDataSource";
 import '../../../scss/management-table-style.scss';
 import '../../../scss/volt.scss';
-import GroupManager from "../group-management/GroupManager";
 
 const customStyles = {
     content: {
@@ -240,7 +239,7 @@ const GatewayManager = (props) => {
                     <Select
                         className="facility-type-value w-50"
                         defaultValue={selectedOption}
-                        onChange={setSelectedOption}    
+                        onChange={setSelectedOption}
                         options={typeOptions}
                     />
                 </Col>

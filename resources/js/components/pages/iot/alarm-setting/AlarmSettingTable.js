@@ -1,7 +1,7 @@
 import React from "react";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faAngleDoubleLeft, faAngleDoubleRight, faEdit, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
-import { Card, Button, Table, Pagination, Col, Row,} from '@themesberg/react-bootstrap';
+import {Card, Button, Table, Pagination, Col, Row,} from '@themesberg/react-bootstrap';
 import {
     convertUTCToLocalString,
     convertUTCToLocalHourString,
@@ -45,25 +45,40 @@ export const AlarmSettingTable = (props) => {
         );
     }
 
-    const TableRow = (props) => {
-        const {id, name, device_sn, low_warning, high_warning, low_threshold, high_threshold, date_from, date_to, time_from, time_to, repeat, created_at, offline_time} = props;
-        const LOW_WARNING = props.type === 0 ? "WLT" : props.type === 1 ? "WLH" : "Low Warning";
-        const HIGH_WARNING = props.type === 0 ? "WHT" : props.type === 1 ? "WHH" : "High Warning";
-        const LOW_THRESHOLD = props.type === 0 ? "LT" : props.type === 1 ? "LH" : props.type === 2 ? "LV" : "Low Threshold";
-        const HIGH_THRESHOLD = props.type === 0 ? "HT" : props.type === 1 ? "HH" : "High Threshold";
-        const OFFLINE_TIME = props.type === 3 ? "Offline Time" : "";
-        const UNIT = props.type === 0 ? "ºC" : props.type === 1 ? "%" : props.type === 2 ? "V" : props.type === 3 ? "min" : "";
-        const matchDevice = props.deviceOptions.filter(item => item.value == device_sn)[0];
-        const dateFrom=makeStartDateTimeFromUTCDate(date_from);
-        const dateTo=makeEndDateTimeFromUTCDate(date_to);
+    const TableRow = (properties) => {
+        const {
+            id,
+            name,
+            device_sn,
+            low_warning,
+            high_warning,
+            low_threshold,
+            high_threshold,
+            date_from,
+            date_to,
+            time_from,
+            time_to,
+            repeat,
+            created_at,
+            offline_time
+        } = properties;
+        const LOW_WARNING = properties.type === 0 ? "WLT" : properties.type === 1 ? "WLH" : "Low Warning";
+        const HIGH_WARNING = properties.type === 0 ? "WHT" : properties.type === 1 ? "WHH" : "High Warning";
+        const LOW_THRESHOLD = properties.type === 0 ? "LT" : properties.type === 1 ? "LH" : properties.type === 2 ? "LV" : "Low Threshold";
+        const HIGH_THRESHOLD = properties.type === 0 ? "HT" : properties.type === 1 ? "HH" : "High Threshold";
+        const OFFLINE_TIME = properties.type === 3 ? "Offline Time" : "";
+        const UNIT = properties.type === 0 ? "ºC" : properties.type === 1 ? "%" : properties.type === 2 ? "V" : properties.type === 3 ? "min" : "";
+        const matchDevice = properties.deviceOptions.filter(item => item.value == device_sn)[0];
+        const dateFrom = makeStartDateTimeFromUTCDate(date_from);
+        const dateTo = makeEndDateTimeFromUTCDate(date_to);
         const createTime = convertUTCToLocalString(created_at);
-        const timeFrom=convertUTCToLocalHourString(time_from);
-        const timeTo=convertUTCToLocalHourString(time_to);
+        const timeFrom = convertUTCToLocalHourString(time_from);
+        const timeTo = convertUTCToLocalHourString(time_to);
         return (
             <tr>
-                <td className="col-1 col-xl-1 text-center">
+                <td className="col-1 text-center">
                     <span className="fw-normal">
-                        {props.index + 1}
+                        {properties.index + 1}
                     </span>
                 </td>
                 <td className="col-2 text-center">
@@ -78,27 +93,27 @@ export const AlarmSettingTable = (props) => {
                 </td>
 
                 <td className="col-2 text-center">
-                    {props.type === 0 || props.type === 1 ?
+                    {properties.type === 0 || properties.type === 1 ?
                         <div>
                             <span className="fw-normal">{LOW_WARNING}: {low_warning} {UNIT}</span>
                         </div> : null
                     }
-                    {props.type === 0 || props.type === 1 ?
+                    {properties.type === 0 || properties.type === 1 ?
                         <div>
                             <span className="fw-normal">{HIGH_WARNING}: {high_warning} {UNIT}</span>
                         </div> : null
                     }
-                    {props.type === 0 || props.type === 1 || props.type === 2 ?
+                    {properties.type === 0 || properties.type === 1 || properties.type === 2 ?
                         <div>
                             <span className="fw-normal">{LOW_THRESHOLD}: {low_threshold} {UNIT}</span>
                         </div> : null
                     }
-                    {props.type === 0 || props.type === 1 ?
+                    {properties.type === 0 || properties.type === 1 ?
                         <div>
                             <span className="fw-normal">{HIGH_THRESHOLD}: {high_threshold} {UNIT}</span>
                         </div> : null
                     }
-                    {props.type === 3 ?
+                    {properties.type === 3 ?
                         <div>
                             <span className="fw-normal">{OFFLINE_TIME}: {offline_time} {UNIT}</span>
                         </div> : null
@@ -117,16 +132,16 @@ export const AlarmSettingTable = (props) => {
                     {createTime}
                   </span>
                 </td>
-                <td className="col-2 col-xl-1 text-center">
+                {props.admin ? (<td className="col-2 text-center">
                     <span className="icon-dark">
-                        <Button className={"btn-primary action-btn"}
-                                onClick={() => props.onEditClick(true, props)}><FontAwesomeIcon
+                        <Button className={"btn-primary btn-sm me-2"}
+                                onClick={() => properties.onEditClick(true, properties)}><FontAwesomeIcon
                             icon={faEdit} className="me-2"/> Edit</Button>
-                        <Button className={"btn-danger action-btn"}
-                                onClick={() => props.onRemoveClick(props)}><FontAwesomeIcon
+                        <Button className={"btn-danger btn-sm"}
+                                onClick={() => properties.onRemoveClick(properties)}><FontAwesomeIcon
                             icon={faTrashAlt} className="me-2"/> Remove</Button>
                     </span>
-                </td>
+                </td>) : ""}
             </tr>
         );
     };
@@ -144,7 +159,7 @@ export const AlarmSettingTable = (props) => {
                         <th className="border-bottom text-center bold-font">Event</th>
                         <th className="border-bottom text-center bold-font">Effective Time</th>
                         <th className="border-bottom text-center bold-font">Create Time</th>
-                        <th className="border-bottom text-center bold-font">Action</th>
+                        {props.admin? <th className="border-bottom text-center bold-font">Action</th> : ""}
                     </tr>
                     </thead>
                     <tbody>
@@ -157,30 +172,20 @@ export const AlarmSettingTable = (props) => {
                     </tbody>
                 </Table>
                 <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-                    <Row className="search-bar">
-
-                        <Col xs={12} md={4} lg={3} xl={2} className="total-count">
-                            <small className="fw-bold">
-                                Showing <b>{retrievedRecordNo}</b> out of <b>{totalTransactions}</b> entries
-                            </small>
-                        </Col>
-                        <Col xs={0} md={4} lg={6} xl={8}>
-                        </Col>
-                        <Col xs={12} md={4} lg={3} xl={2} className="text-center">
-
-                            <Pagination size={size} className="mt-3">
-                                <Pagination.Prev disabled={disablePrev} onClick={onPrevItem}>
-                                    {withIcons ? <FontAwesomeIcon icon={faAngleDoubleLeft}/> : "Previous"}
-                                </Pagination.Prev>
-                                {items}
-                                <Pagination.Next onClick={() => onNextItem(totalPages)}>
-                                    {withIcons ? <FontAwesomeIcon icon={faAngleDoubleRight}/> : "Next"}
-                                </Pagination.Next>
-                            </Pagination>
-                        </Col>
-                    </Row>
-
-
+                    <div className="search-bar w-100 d-flex justify-content-between align-items-center">
+                        <small className="fw-bold">
+                            Showing <b>{retrievedRecordNo}</b> out of <b>{totalTransactions}</b> entries
+                        </small>
+                        <Pagination size={size} className="mt-3">
+                            <Pagination.Prev disabled={disablePrev} onClick={onPrevItem}>
+                                {withIcons ? <FontAwesomeIcon icon={faAngleDoubleLeft}/> : "Previous"}
+                            </Pagination.Prev>
+                            {items}
+                            <Pagination.Next onClick={() => onNextItem(totalPages)}>
+                                {withIcons ? <FontAwesomeIcon icon={faAngleDoubleRight}/> : "Next"}
+                            </Pagination.Next>
+                        </Pagination>
+                    </div>
                 </Card.Footer>
             </Card.Body>
         </Card>

@@ -102,7 +102,7 @@
                 <div class="border border-gray-100 shadow-md rounded-xl">
                     <div class="overflow-hidden shadow-xs rounded-xl">
                         <div class="relative z-20 grid gap-6 bg-white sm:p-8 sm:gap-8">
-                            <a href="{{ url('docs') }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out hover:border-blue-500 hover:border-l-2 rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.alarm.setting', ['tenant'=>tenant('id'), 'section'=>'temperature']) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out hover:border-blue-500 hover:border-l-2 rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Temperature
                                 </p>
@@ -110,7 +110,7 @@
                                     Configure your temperature alarms.
                                 </p>
                             </a>
-                            <a href="https://devdojo.com/course/wave" target="_blank" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.alarm.setting', ['tenant'=>tenant('id'), 'section'=>'humidity']) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Humidity
                                 </p>
@@ -118,7 +118,7 @@
                                     Configure your humidity alarms.
                                 </p>
                             </a>
-                            <a href="{{ route('wave.blog') }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.alarm.setting', ['tenant'=>tenant('id'), 'section'=>'voltage']) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Voltage
                                 </p>
@@ -126,7 +126,7 @@
                                     Configure your voltage alarms.
                                 </p>
                             </a>
-                            <a href="{{ route('wave.blog') }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.alarm.setting', ['tenant'=>tenant('id'), 'section'=>'security']) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Security
                                 </p>

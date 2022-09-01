@@ -55,4 +55,6 @@ Route::group([
     // sensors
     Route::get('sensors/real-time', 'Tenancy\SensorsController@realTime')->name('sensors.real');
     Route::get('sensors/report', 'Tenancy\SensorsController@report')->name('sensors.report');
+    // alarms
+    Route::get('alarm/settings/{section?}', 'Tenancy\AlarmController@settings')->name('alarm.setting');
 });

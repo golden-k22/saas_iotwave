@@ -9,6 +9,7 @@ import {AlarmSettingTable} from "./AlarmSettingTable";
 import AddEditModal from "./modal/AddEditModal";
 import RemoveModal from "./modal/RemoveModal";
 import {convertHoursToUTCString, convertTotalLocalTimeToUTCString} from "../DateParser";
+import '../../../scss/volt.scss';
 
 
 const customStyles = {
@@ -47,7 +48,7 @@ const AlarmSettingManager = (props) => {
 
 
     useEffect(() => {
-        props.dataSource.GetRequest("/iot-service/v1/devices",
+        props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices",
             data => {
                 let newOption = [{value: null, label: "No Select"}];
                 data.map(device => {
@@ -59,10 +60,10 @@ const AlarmSettingManager = (props) => {
                 });
                 setDeviceOptions(newOption);
             });
-        props.dataSource.GetRequest("/iot-service/v1/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize,
+        props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize,
             data => {
                 setAlarmList(data);
-                props.dataSource.GetRequest("/iot-service/v1/alarms/counts?alarm_type=" + ALARM_TYPE,
+                props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/counts?alarm_type=" + ALARM_TYPE,
                     count => {
                         setTotalAlarms(count.count);
                         setLoaded(true);
@@ -79,21 +80,20 @@ const AlarmSettingManager = (props) => {
 
     function searchDevice() {
         if (selectedOption == null) {
-            props.dataSource.GetRequest("/iot-service/v1/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_sn=" + searchKey,
+            props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_sn=" + searchKey,
                 data => {
                     setAlarmList(data);
                     setLoaded(true);
                 });
-        }
-        else {
+        } else {
             if (selectedOption.value == null) {
-                props.dataSource.GetRequest("/iot-service/v1/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_sn=" + searchKey,
+                props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_sn=" + searchKey,
                     data => {
                         setAlarmList(data);
                         setLoaded(true);
                     });
             } else {
-                props.dataSource.GetRequest("/iot-service/v1/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&device_sn=" + searchKey,
+                props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&device_sn=" + searchKey,
                     data => {
                         setAlarmList(data);
                         setLoaded(true);
@@ -103,7 +103,7 @@ const AlarmSettingManager = (props) => {
     }
 
     function onPagenationChange(page_number) {
-        props.dataSource.GetRequest("/iot-service/v1/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + page_number + "&page_size=" + pageSize,
+        props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms?alarm_type=" + ALARM_TYPE + "&page_number=" + page_number + "&page_size=" + pageSize,
             data => {
                 setAlarmList(data);
                 setLoaded(true);
@@ -161,12 +161,12 @@ const AlarmSettingManager = (props) => {
             effectiveTimeFrom: timeFrom,
             effectiveTimeTo: timeTo,
         };
-        props.dataSource.PostRequest("/iot-service/v1/alarms",
+        props.dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms",
             data => {
                 let updatedList = [...alarmList];
                 updatedList.push(data);
                 setAlarmList(updatedList);
-                props.dataSource.GetRequest("/iot-service/v1/alarms/counts?alarm_type=" + ALARM_TYPE,
+                props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/counts?alarm_type=" + ALARM_TYPE,
                     count => {
                         setTotalAlarms(count.count);
                     });
@@ -195,7 +195,7 @@ const AlarmSettingManager = (props) => {
             effectiveTimeFrom: timeFrom,
             effectiveTimeTo: timeTo,
         };
-        props.dataSource.PostRequest("/iot-service/v1/alarms/" + id,
+        props.dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms/" + id,
             data => {
                 let updatedList = [];
                 alarmList.map(alarm => {
@@ -212,7 +212,7 @@ const AlarmSettingManager = (props) => {
 
     function deleteAlarm(id) {
         setRemoveModalIsOpen(false);
-        props.dataSource.DeleteRequest("/iot-service/v1/alarms/" + id,
+        props.dataSource.DeleteRequest("/iot-service/v1/" + props.tenant + "/alarms/" + id,
             data => {
                 let updatedList = [];
                 alarmList.map(device => {
@@ -221,7 +221,7 @@ const AlarmSettingManager = (props) => {
                     }
                 });
                 setAlarmList(updatedList);
-                props.dataSource.GetRequest("/iot-service/v1/alarms/counts?alarm_type=" + ALARM_TYPE,
+                props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/counts?alarm_type=" + ALARM_TYPE,
                     count => {
                         setTotalAlarms(count.count);
                     });
@@ -239,48 +239,43 @@ const AlarmSettingManager = (props) => {
             <Row className='top-section '>
                 <span className="section-title mb-row">{subject} Alarm Settings</span>
             </Row>
-            <Row className="search-bar">
-                <Col xs={8} md={6} lg={4} xl={4}>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"}>Device Name
-                    </div>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6"}>
-                        <Select
-                            className="facility-type-value"
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={deviceOptions}
-                        />
-                    </div>
-
+            <Row className="mb-3">
+                <Col md={5} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2"}>
+                            Device Name
+                        </span>
+                    <Select
+                        className="facility-type-value w-50"
+                        defaultValue={selectedOption}
+                        onChange={setSelectedOption}
+                        options={deviceOptions}
+                    />
                 </Col>
-                <Col xs={8} md={4} lg={4} xl={4}>
-                    <div className={"col-xs-4 col-md-4 col-lg-4 col-xl-4 key-input-title"}>SN/IMEI</div>
-                    <div className={"col-xs-8 col-md-8 col-lg-8 col-xl-8"}>
-                        <FormControl value={searchKey} type="text" placeholder="SN/IMEI"
-                                     className="key-input-value" onChange={searchkeyChanged}/>
-                    </div>
-                </Col>
-                <Col xs={8} md={2} lg={2} xl={2}>
-                    <Button className={"btn-primary search-btn"}
+                <Col md={4} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2"}>SN/IMEI</span>
+                    <FormControl value={searchKey} type="text" placeholder="SN/IMEI"
+                                 className="key-input-value me-2" onChange={searchkeyChanged}/>
+                    <Button className={"btn-primary d-flex align-items-center"}
                             onClick={() => searchDevice()}><FontAwesomeIcon
-                        icon={faSearch}/> Search</Button>
+                        icon={faSearch} className={"me-1"}/> Search</Button>
                 </Col>
-
-                <Col xs={8} md={12} lg={1} xl={1}>
-                    <Button className={"btn-success search-btn"}
-                            onClick={() => openModal(false)}><FontAwesomeIcon
-                        icon={faPlus}/> Add</Button>
+                <Col md={3}>
+                    <div className={"w-100 text-right"}>
+                        {props.admin ? <Button className={"btn-success d-flex align-items-center float-right"}
+                                               onClick={() => openModal(false)}><FontAwesomeIcon
+                            icon={faPlus} className={"me-1"}/> Add</Button> : ""}
+                    </div>
                 </Col>
             </Row>
-            <Row>
+            <div className={"w-100"}>
                 {!isLoaded ?
                     <div className='preloader-container'><Preloader show={true}/></div> :
-                    <AlarmSettingTable alarmList={alarmList} deviceOptions={deviceOptions}
+                    <AlarmSettingTable admin={props.admin} alarmList={alarmList} deviceOptions={deviceOptions}
                                        onEditClick={openModal} onRemoveClick={openRemoveModal}
                                        onPagenationCallback={onPagenationChange}
                                        pageSize={pageSize} totalTransactions={totalAlarms} type={ALARM_TYPE}/>
                 }
-            </Row>
+            </div>
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
