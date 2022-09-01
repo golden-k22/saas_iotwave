@@ -125,13 +125,12 @@ class HistoryChart extends React.Component {
         }
     }
 
-
     refreshComponent(requestData) {
         let fromDate = requestData.dateRange[0].getFullYear() + "-" + ("0"+(requestData.dateRange[0].getMonth() + 1)).substr(-2) + "-" + ("0"+requestData.dateRange[0].getDate()).substr(-2);
         let toDate = requestData.dateRange[1].getFullYear() + "-" + ("0"+(requestData.dateRange[1].getMonth() + 1)).substr(-2) + "-" + ("0"+requestData.dateRange[1].getDate()).substr(-2);
         let dateFrom=convertLocalTimeToUTCString(fromDate,"00:00:00");
         let dateTo=convertLocalTimeToUTCString(toDate, "23:59:59");
-        this.props.dataSource.GetRequest("/iot-service/v1/history/" + this.props.device.id + "?from=" + dateFrom + "&to=" + dateTo,
+        this.props.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/history/" + this.props.device.id + "?from=" + dateFrom + "&to=" + dateTo,
             data => {
                 let series = [];
                 let voltData = [];
@@ -175,8 +174,6 @@ class HistoryChart extends React.Component {
 
             });
     }
-
-
 }
 
 

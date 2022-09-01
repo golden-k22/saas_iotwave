@@ -240,7 +240,7 @@ const GatewayManager = (props) => {
                     <Select
                         className="facility-type-value w-50"
                         defaultValue={selectedOption}
-                        onChange={setSelectedOption}
+                        onChange={setSelectedOption}    
                         options={typeOptions}
                     />
                 </Col>

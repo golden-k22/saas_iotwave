@@ -73,7 +73,7 @@
                                     Monitor your sensors in real time.
                                 </p>
                             </a>
-                            <a href="https://devdojo.com/course/wave" target="_blank" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.sensors.report', tenant('id')) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Reports
                                 </p>

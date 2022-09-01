@@ -37,7 +37,9 @@ class RealtimeManager extends Component {
 
                 {this.state.viewHistory ?
                     <>
-                        <HistoryDashboard title={`History of Device ${this.state.selectedDevice.sn}`}
+                        <HistoryDashboard
+                            tenant = {this.props.tenant}
+                                        title={`History of Device ${this.state.selectedDevice.sn}`}
                                           device={this.state.selectedDevice} dataSource={this.dataSource}
                                           setReportGenerated={this.setReportGenerated}
                                           backCallback={this.backToCardView}/>
@@ -52,7 +54,8 @@ class RealtimeManager extends Component {
                         <Row>
                             {this.state.messages.map((message, index) =>
                                 <Col key={index} xs={12} md={6} lg={4} xl={3} className="mb-4">
-                                    <RealtimeCard message={message}
+                                    <RealtimeCard
+                                        message={message}
                                                   alarm={this.state.alarms[index]}
                                                   viewHistoryCallback={this.viewHistoryBtnClicked}/>
                                 </Col>

@@ -13,4 +13,12 @@ class SensorsController extends Controller
     public function realTime(){
         return View('tenancy.sensors.real');
     }
+
+    /**
+     * Show report view
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function report(){
+        return View('tenancy.sensors.report');
+    }
 }

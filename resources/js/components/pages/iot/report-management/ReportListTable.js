@@ -12,7 +12,7 @@ export const ReportListTable = (props) => {
     const [loaded, setLoaded] = useState(false);
     useEffect(() => {
         if (props.reportGenerated === true) {
-            props.dataSource.GetRequest("/iot-service/v1/reports/" + props.device.id,
+            props.dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/reports/" + props.device.id,
                 data => {
                     setReportList(data);
                     setLoaded(true);
@@ -22,7 +22,7 @@ export const ReportListTable = (props) => {
     }, [props.reportGenerated]);
 
     function onDownloadClick(report) {
-        props.dataSource.DownloadFile("/iot-service/v1/reports/download/" + report.id,
+        props.dataSource.DownloadFile("/iot-service/v1/" + props.tenant + "/reports/download/" + report.id,
             pdffile => {
                 const filename = report.url.split("/").pop();
                 const url = window.URL.createObjectURL(new Blob([pdffile]));
@@ -37,7 +37,7 @@ export const ReportListTable = (props) => {
     }
 
     function onRemoveClick(reportId) {
-        props.dataSource.DeleteRequest("/iot-service/v1/reports/" + reportId,
+        props.dataSource.DeleteRequest("/iot-service/v1/" + props.tenant + "/reports/" + reportId,
             data => {
                 let updatedList = [];
                 reportList.map(report => {
@@ -57,8 +57,8 @@ export const ReportListTable = (props) => {
         const to=convertUTCToLocalString(props.to);
         const created_at=convertUTCToLocalString(props.created_at);
         return (
-            <tr>
-                <td className="col-1 col-xl-1 text-center">
+            <tr className={"vertical-middle"}>
+                <td className="col-1 text-center">
                     <span className="fw-normal">
                         {props.index + 1}
                     </span>
@@ -83,14 +83,14 @@ export const ReportListTable = (props) => {
                     {created_at}
                   </span>
                 </td>
-                <td className="col-2 col-xl-1 text-center">
+                <td className="col-2 text-center">
                     <span className="icon-dark">
-                        <Button className={"btn-success action-btn"}
+                        <Button className={"btn-success btn-sm me-2"}
                                 onClick={() => props.onDownloadClick(props)}><FontAwesomeIcon
                             icon={faFileDownload} className="me-2"/> Download</Button>
-                        <Button className={"btn-danger action-btn"}
+                        <Button className={"btn-danger btn-sm"}
                                 onClick={() => props.onRemoveClick(id)}><FontAwesomeIcon
-                            icon={faTrashAlt} className="me-2"/> Remove</Button>
+                            icon={faTrashAlt} className=""/> Remove</Button>
                     </span>
                 </td>
             </tr>
@@ -104,7 +104,7 @@ export const ReportListTable = (props) => {
                 <Card
                     border="light" className="table-wrapper shadow-sm">
                     <Card.Body className="pt-0">
-                        <Table hover className="user-table align-items-center">
+                        <Table hover className="user-table align-items-center table-responsive">
                             <thead>
                             <tr>
                                 <th className="border-bottom text-center bold-font">#</th>

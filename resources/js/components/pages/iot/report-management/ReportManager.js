@@ -4,13 +4,14 @@ import {Col, Row, Button, FormControl} from '@themesberg/react-bootstrap';
 import Select from 'react-select';
 import Preloader from "../../../components/Preloader";
 import {ReportTable} from "./ReportTable";
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {RestDataSource} from "../../../../service/RestDataSource";
 import ReactDOM from "react-dom";
 import HistoryDashboard from "../history/HistoryDashboard";
 import '../../../scss/management-table-style.scss';
 import "../../../scss/volt/components/monthPickerStyle.css";
 import {ReportListTable} from "./ReportListTable";
+import DeviceManager from "../device-management/DeviceManager";
 
 const ReportManager = (props) => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -29,7 +30,7 @@ const ReportManager = (props) => {
     const [reportGenerated, setReportGenerated]=useState(true);
     const dataSource = new RestDataSource(process.env.MIX_IOT_APP_URL, (err) => console.log("Server connection failed."));
     useEffect(() => {
-        dataSource.GetRequest("/iot-service/v1/groups",
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/groups",
             groups => {
                 let newOption = [{value: null, label: "No Select"}];
                 groups.map(group => {
@@ -53,10 +54,10 @@ const ReportManager = (props) => {
                 })
                 setTypeOptions(newOption);
             });
-        dataSource.GetRequest("/iot-service/v1/devices?page_number=" + pageNumber + "&page_size=" + pageSize,
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize,
             data => {
                 setDeviceList(data);
-                dataSource.GetRequest("/iot-service/v1/devices/counts",
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices/counts",
                     count => {
                         setTotalDevices(count.count);
                         setLoaded(true);
@@ -73,7 +74,7 @@ const ReportManager = (props) => {
 
     function searchDevice() {
         if (selectedOption == null) {
-            dataSource.GetRequest("/iot-service/v1/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
+            dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
                 data => {
                     setDeviceList(data);
                     setLoaded(true);
@@ -81,13 +82,13 @@ const ReportManager = (props) => {
         }
         else {
             if (selectedOption.value == null) {
-                dataSource.GetRequest("/iot-service/v1/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
                     data => {
                         setDeviceList(data);
                         setLoaded(true);
                     });
             } else {
-                dataSource.GetRequest("/iot-service/v1/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey,
                     data => {
                         setDeviceList(data);
                         setLoaded(true);
@@ -98,7 +99,7 @@ const ReportManager = (props) => {
     }
 
     function onPagenationChange(page_number) {
-        dataSource.GetRequest("/iot-service/v1/devices?page_number=" + page_number + "&page_size=" + pageSize,
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + page_number + "&page_size=" + pageSize,
             data => {
                 setDeviceList(data);
                 setLoaded(true);
@@ -119,48 +120,39 @@ const ReportManager = (props) => {
         <>
             {
                 viewHistory ?
-                    <div className="dashboard-container">
-                        <HistoryDashboard title={`Generate Report of Device ${selectedDevice.sn}`}
+                    <div className="w-100">
+                        <HistoryDashboard tenant={props.tenant} title={`Generate Report of Device ${selectedDevice.sn}`}
                                           device={selectedDevice} dataSource={dataSource} setReportGenerated={setReportGenerated}
                                           backCallback={backToReportTable}/>
-                        <ReportListTable dataSource={dataSource} device={selectedDevice} reportGenerated={reportGenerated} setReportGenerated={setReportGenerated}/>
+                        <ReportListTable tenant={props.tenant} dataSource={dataSource} device={selectedDevice} reportGenerated={reportGenerated} setReportGenerated={setReportGenerated}/>
                     </div> :
                     <div className="device-manage-container">
                         <Row className='top-section '>
                             <span className="section-title mb-row">Report</span>
                         </Row>
-                        <Row className="search-bar">
-                            <Col xs={8} md={6} lg={4} xl={4}>
-                                <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"}>Type of
-                                    facility
-                                </div>
-                                <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6"}>
-                                    <Select
-                                        className="facility-type-value"
-                                        defaultValue={selectedOption}
-                                        onChange={setSelectedOption}
-                                        options={typeOptions}
-                                    />
-                                </div>
+                        <Row className="mb-3">
+                            <Col md={5} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2"}>
+                            Type of facility
+                        </span>
+                                <Select
+                                    className="facility-type-value w-50"
+                                    defaultValue={selectedOption}
+                                    onChange={setSelectedOption}
+                                    options={typeOptions}
+                                />
+                            </Col>
+                            <Col md={4} className={"d-flex align-items-center"}>
+                                <span className={"h6 me-2"}>Key</span>
+                                <FormControl value={searchKey} type="text" placeholder="IMEI"
+                                             className="key-input-value me-2" onChange={searchkeyChanged}/>
 
                             </Col>
-                            <Col xs={8} md={4} lg={4} xl={4}>
-                                <div className={"col-xs-4 col-md-4 col-lg-4 col-xl-4 key-input-title"}>Key</div>
-                                <div className={"col-xs-8 col-md-8 col-lg-8 col-xl-8"}>
-                                    <FormControl value={searchKey} type="text" placeholder="Name/IMEI/SN"
-                                                 className="key-input-value" onChange={searchkeyChanged}/>
-                                </div>
-                            </Col>
-                            <Col xs={8} md={2} lg={2} xl={2}>
-
-                            </Col>
-
-                            <Col xs={8} md={1} lg={1} xl={1}>
-                                <Button className={"btn-primary search-btn"}
+                            <Col md={3} className="p-0">
+                                <Button className={"btn-primary d-flex align-items-center float-right"}
                                         onClick={() => searchDevice()}><FontAwesomeIcon
-                                    icon={faSearch}/> Search</Button>
+                                    icon={faSearch} className={"me-1"}/> Search</Button>
                             </Col>
-
                         </Row>
                         <Row>
                             {!isLoaded ?
@@ -181,5 +173,11 @@ const ReportManager = (props) => {
 
 export default ReportManager;
 if (document.getElementById('report-dashboard')) {
-    ReactDOM.render(<ReportManager/>, document.getElementById('report-dashboard'));
+    let admin = false;
+    let tenant = document.documentURI.split("/")[3];
+    let user = document.getElementById("report-dashboard").getAttribute("data-user");
+    if(user === tenant){
+        admin = true;
+    }
+    ReactDOM.render(<ReportManager tenant={tenant} admin={admin}/>, document.getElementById('report-dashboard'));
 }

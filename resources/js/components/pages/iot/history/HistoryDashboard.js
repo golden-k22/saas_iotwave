@@ -1,5 +1,5 @@
 import React from "react";
-import {Col, Row, Button} from '@themesberg/react-bootstrap';
+import {Button} from '@themesberg/react-bootstrap';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
 import HistoryChart from "./HistoryChart";
 import {Toast} from "primereact/toast";
@@ -43,11 +43,11 @@ class HistoryDashboard extends React.Component {
         let toDate = this.state.dateRange[1].getFullYear() + "-" + ("0"+(this.state.dateRange[1].getMonth() + 1)).substr(-2) + "-" + ("0"+this.state.dateRange[1].getDate()).substr(-2);
         let dateFrom=convertLocalTimeToUTCString(fromDate,"00:00:00");
         let dateTo=convertLocalTimeToUTCString(toDate, "23:59:59");
-        this.props.dataSource.PostRequest("/iot-service/v1/reports/" + this.props.device.id + "?from=" + dateFrom + "&to=" + dateTo,
+        this.props.dataSource.PostRequest("/iot-service/v1/" + this.props.tenant + "/reports/" + this.props.device.id + "?from=" + dateFrom + "&to=" + dateTo,
             data => {
                 this.showToast("Report Generated ! ");
                 this.props.setReportGenerated(true);
-                this.props.dataSource.DownloadFile("/iot-service/v1/reports/download/" + data.id,
+                this.props.dataSource.DownloadFile("/iot-service/v1/" + this.props.tenant + "/reports/download/" + data.id,
                     pdffile => {
                         const filename = data.url.split("/").pop();
                         const url = window.URL.createObjectURL(new Blob([pdffile]));
@@ -70,59 +70,51 @@ class HistoryDashboard extends React.Component {
 
     render() {
         return (
-
-            <Row className="section-container">
+            <div className="section-container">
                 <Toast ref={this.toastRef} position="bottom-right"/>
-                <Row className="top-section">
+                <div className="top-section">
                     <span className="section-title">{this.props.title}</span>
-                </Row>
-                <Row className='top-section'>
-                        <span className='date-picker-group'>
-                            <span>
-                                <Button variant="primary" className="mb-2 me-2 date-picker-button"
-                                        onClick={() => this.setState({dateRange: [this.getDateFrom(1), new Date()]})}>
-                                    Last 1 Month
-                                        </Button>
-                            </span>
-                            <span>
-                                <Button variant="primary" className="mb-2 me-2 date-picker-button"
-                                        onClick={() => this.setState({dateRange: [this.getDateFrom(3), new Date()]})}>
-                                    Last 3 Months
-                                        </Button>
-                            </span>
-                            <span>
-                                <DateRangePicker
-                                    calendarAriaLabel="Toggle calendar"
-                                    clearAriaLabel="Clear value"
-                                    rangeDivider="~"
-                                    dayAriaLabel="Day"
-                                    monthAriaLabel="Month"
-                                    nativeInputAriaLabel="Date"
-                                    clearIcon={null}
-                                    onChange={(value) => this.setDateRange(value)}
-                                    value={this.state.dateRange}
-                                    yearAriaLabel="Year"
-                                />
-                            </span>
-                            <span>
-                                <Button variant="danger" className="mb-2 me-2 back-button"
-                                        onClick={() => this.generateReport()}>
-                                    GenerateReport
-                                        </Button>
-                            </span>
-                            <span>
-                                <Button variant="warning" className="mb-2 me-2 back-button"
-                                        onClick={() => this.props.backCallback()}>
-                                    Back
-                                        </Button>
-                            </span>
-                        </span>
-                </Row>
-                <Col xs={12} xl={8} className="mb-4">
-                    <HistoryChart height={this.state.height} dateRange={this.state.dateRange}
+                </div>
+                <div className='w-100 d-flex align-items-center justify-content-between mb-4'>
+                    <div className="d-flex">
+                        <Button variant="primary" className="me-2 date-picker-button"
+                                onClick={() => this.setState({dateRange: [this.getDateFrom(1), new Date()]})}>
+                            Last 1 Month
+                        </Button>
+                        <Button variant="primary" className="me-2 date-picker-button"
+                                onClick={() => this.setState({dateRange: [this.getDateFrom(3), new Date()]})}>
+                            Last 3 Months
+                        </Button>
+                        <DateRangePicker
+                            className="m-0"
+                            calendarAriaLabel="Toggle calendar"
+                            clearAriaLabel="Clear value"
+                            rangeDivider="~"
+                            dayAriaLabel="Day"
+                            monthAriaLabel="Month"
+                            nativeInputAriaLabel="Date"
+                            clearIcon={null}
+                            onChange={(value) => this.setDateRange(value)}
+                            value={this.state.dateRange}
+                            yearAriaLabel="Year"
+                        />
+                    </div>
+                    <div className="d-flex">
+                        <Button variant="danger" className="me-2"
+                                onClick={() => this.generateReport()}>
+                            GenerateReport
+                        </Button>
+                        <Button variant="outline-dark" className="  "
+                                onClick={() => this.props.backCallback()}>
+                            Back
+                        </Button>
+                    </div>
+                </div>
+                <div className="mb-4">
+                    <HistoryChart tenant={this.props.tenant} height={this.state.height} dateRange={this.state.dateRange}
                                   dataSource={this.dataSource} device={this.props.device}/>
-                </Col>
-            </Row>
+                </div>
+            </div>
         );
     }
 
