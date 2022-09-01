@@ -89,7 +89,7 @@ class RealtimeManager extends Component {
     }
 
     componentDidMount() {
-        this.dataSource.GetRequest("/iot-service/v1/status/latest",
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
             data => {
                 this.setState({messages: data});
                 this.subscribeDevices();
@@ -100,7 +100,7 @@ class RealtimeManager extends Component {
     setAlarms() {
         let alarmList = [];
         this.state.messages.map(msg => {
-            this.dataSource.GetRequest("/iot-service/v1/alarms?device_sn=" + msg.device_sn,
+            this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms?device_sn=" + msg.device_sn,
                 data => {
                     let alarm_temp = {
                         wlt: null,
@@ -138,7 +138,7 @@ class RealtimeManager extends Component {
     }
 
     getLatestStatus(){
-        this.dataSource.GetRequest("/iot-service/v1/status/latest",
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
             data => {
                 this.setState({messages: data});
             });
