@@ -20657,7 +20657,7 @@ var GatewayTable = function GatewayTable(props) {
     })[0];
     var createTime = (0,_DateParser__WEBPACK_IMPORTED_MODULE_2__.convertUTCToLocalString)(created_at);
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-1 col-xl-1 text-center"
+      className: "col-1 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "fw-normal"
     }, props.index + 1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
@@ -20673,11 +20673,11 @@ var GatewayTable = function GatewayTable(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "fw-normal"
     }, matchType === undefined ? "Not Available" : matchType.label)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-2 text-center"
+      className: "col-1 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "fw-normal text-".concat(statusVariant)
     }, createTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-2 col-xl-1 text-center"
+      className: "col-3 col-xl-1 text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "icon-dark"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -21589,7 +21589,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".facility-type-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-value {\n  min-height: 38px;\n  border: #cecccc 1px solid;\n}\n\n.key-input-value:hover {\n  border: #507cc7 2px solid;\n  border-radius: 5px;\n}\n\n.key-input-value:focus {\n  border: #507cc7 2px solid;\n  border-radius: 5px;\n}\n\n.search-btn {\n  width: 90px;\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.make-read-btn {\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.action-btn {\n  height: 25px;\n  font-size: 11px;\n  margin: 0px 5px;\n  padding: 3px 8px;\n}\n\n.fw-normal {\n  vertical-align: sub;\n  color: #526069;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.align-right {\n  text-align: right;\n}\n\n.total-count {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.bold-font {\n  font-weight: bold !important;\n}\n\n.ReactModal__Body--open,\n.ReactModal__Html--open {\n  overflow: hidden;\n}\n\n.Modal {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  right: 40px;\n  bottom: 40px;\n  background-color: papayawhip;\n}\n\n.ReactModal__Overlay, .ReactModal__Overlay--after-open {\n  z-index: 9999;\n  background-color: rgba(47, 47, 47, 0.75) !important;\n}\n\n.mb-row {\n  margin-bottom: 10px;\n}\n\n.sm-text {\n  font-size: 16px;\n}\n\n.grey-border {\n  border: #747888 1px solid;\n  border-radius: 5px;\n}\n\n.modal-title {\n  margin: 20px 0px 50px 10px;\n}\n\n.detail-row {\n  margin-top: 10px;\n}\n\n.event-type-title {\n  font-size: 16px;\n}\n\n.event-type-value {\n  min-height: 10px;\n  height: 27px;\n  margin-top: 5px;\n  padding: 5px 10px;\n  font-size: 16px;\n}\n\n.day-padding {\n  padding-left: 11px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".facility-type-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-value {\n  min-height: 38px;\n  border: #cecccc 1px solid;\n}\n\n.search-btn {\n  width: 90px;\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.make-read-btn {\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.action-btn {\n  height: 25px;\n  font-size: 11px;\n  margin: 0px 5px;\n  padding: 3px 8px;\n}\n\n.fw-normal {\n  vertical-align: sub;\n  color: #526069;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.align-right {\n  text-align: right;\n}\n\n.total-count {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.bold-font {\n  font-weight: bold !important;\n}\n\n.ReactModal__Body--open,\n.ReactModal__Html--open {\n  overflow: hidden;\n}\n\n.Modal {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  right: 40px;\n  bottom: 40px;\n  background-color: papayawhip;\n}\n\n.ReactModal__Overlay, .ReactModal__Overlay--after-open {\n  z-index: 9999;\n  background-color: rgba(47, 47, 47, 0.75) !important;\n}\n\n.mb-row {\n  margin-bottom: 10px;\n}\n\n.sm-text {\n  font-size: 16px;\n}\n\n.grey-border {\n  border: #747888 1px solid;\n  border-radius: 5px;\n}\n\n.modal-title {\n  margin: 20px 0px 50px 10px;\n}\n\n.detail-row {\n  margin-top: 10px;\n}\n\n.event-type-title {\n  font-size: 16px;\n}\n\n.event-type-value {\n  min-height: 10px;\n  height: 27px;\n  margin-top: 5px;\n  padding: 5px 10px;\n  font-size: 16px;\n}\n\n.day-padding {\n  padding-left: 11px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

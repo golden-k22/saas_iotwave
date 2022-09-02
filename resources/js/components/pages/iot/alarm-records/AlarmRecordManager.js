@@ -4,11 +4,12 @@ import {Col, Row, Button, FormControl} from '@themesberg/react-bootstrap';
 import Select from 'react-select';
 import Preloader from "../../../components/Preloader";
 import {AlarmRecordTable} from "./AlarmRecordTable";
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
+import {faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 import {faEye} from "@fortawesome/free-regular-svg-icons";
 import {RestDataSource} from "../../../../service/RestDataSource";
 import ReactDOM from "react-dom";
 import '../../../scss/management-table-style.scss';
+import '../../../scss/volt.scss';
 
 const AlarmRecordManager = (props) => {
     const [pageNumber, setPageNumber] = useState(1);
@@ -31,7 +32,7 @@ const AlarmRecordManager = (props) => {
             {value: 2, label: "Voltage Alarm"},
             {value: 3, label: "Security Alarm"}];
     useEffect(() => {
-        dataSource.GetRequest("/iot-service/v1/devices",
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices",
             data => {
                 let newOption = [{value: null, label: "All"}];
                 data.map(device => {
@@ -43,10 +44,10 @@ const AlarmRecordManager = (props) => {
                 });
                 setDeviceOptions(newOption);
             });
-        dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
             data => {
                 setAlarmRecordList(data);
-                dataSource.GetRequest("/iot-service/v1/alarms/records/counts",
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts",
                     count => {
                         setTotalAlarms(count.count);
                         setLoaded(true);
@@ -65,13 +66,13 @@ const AlarmRecordManager = (props) => {
     function searchDevice() {
         if (selectedOption != null && selectedOption.value!=null) {
             if (selectedAlarmType != null && selectedAlarmType.value!=null) {
-                dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&alarm_type=" + selectedAlarmType.value,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&alarm_type=" + selectedAlarmType.value,
                     data => {
                         setAlarmRecordList(data);
                         setLoaded(true);
                     });
             } else {
-                dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value,
                     data => {
                         setAlarmRecordList(data);
                         setLoaded(true);
@@ -79,16 +80,16 @@ const AlarmRecordManager = (props) => {
             }
         } else {
             if (selectedAlarmType != null && selectedAlarmType.value!=null) {
-                dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&alarm_type=" + selectedAlarmType.value,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&alarm_type=" + selectedAlarmType.value,
                     data => {
                         setAlarmRecordList(data);
                         setLoaded(true);
                     });
             }else {
-                dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
                     data => {
                         setAlarmRecordList(data);
-                        dataSource.GetRequest("/iot-service/v1/alarms/records/counts",
+                        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts",
                             count => {
                                 setTotalAlarms(count.count);
                                 setLoaded(true);
@@ -124,7 +125,7 @@ const AlarmRecordManager = (props) => {
 
     function makeRecordAsRead(recId) {
         if (recId !== 0) {
-            dataSource.PostRequest("/iot-service/v1/alarms/records/" + recId,
+            dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms/records/" + recId,
                 data => {
                     setAlarmRecordList(alarmRecordList.map(record => {
                         if (record.id !== data.id) return record;
@@ -134,12 +135,12 @@ const AlarmRecordManager = (props) => {
                 }, {status: 0});
         } else {
             setLoaded(false);
-            dataSource.PostRequest("/iot-service/v1/alarms/records/" + recId,
+            dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms/records/" + recId,
                 data => {
-                    dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
+                    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize,
                         data => {
                             setAlarmRecordList(data);
-                            dataSource.GetRequest("/iot-service/v1/alarms/records/counts",
+                            dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts",
                                 count => {
                                     setTotalAlarms(count.count);
                                     setLoaded(true);
@@ -151,14 +152,14 @@ const AlarmRecordManager = (props) => {
     }
 
     function getCountOfNotifications() {
-        dataSource.GetRequest("/iot-service/v1/alarms/records/counts?is_read=1",
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts?is_read=1",
             data => {
                 document.getElementsByClassName("alarm-count-badge")[0].innerHTML = data.count;
             });
     }
 
     function onPagenationChange(page_number) {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + page_number + "&page_size=" + pageSize,
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + page_number + "&page_size=" + pageSize,
             data => {
                 setAlarmRecordList(data);
                 setLoaded(true);
@@ -173,60 +174,46 @@ const AlarmRecordManager = (props) => {
             <Row className='top-section '>
                 <span className="section-title mb-row">Alarm Records</span>
             </Row>
-            <Row className="search-bar">
-                <Col xs={8} md={6} lg={4} xl={4}>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"}>Device Name
-                    </div>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6"}>
-                        <Select
-                            className="facility-type-value"
-                            defaultValue={selectedOption}
-                            onChange={setSelectedOption}
-                            options={deviceOptions}
-                        />
-                    </div>
+            <Row className="mb-3">
+                <Col md={5} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2"}>
+                            Device Name
+                    </span>
+                    <Select
+                        className="facility-type-value w-50"
+                        defaultValue={selectedOption}
+                        onChange={setSelectedOption}
+                        options={deviceOptions}
+                    />
                 </Col>
-                {/*<Col xs={8} md={4} lg={3} xl={4}>*/}
-                {/*<div className={"col-xs-4 col-md-4 col-lg-4 col-xl-4 key-input-title"}>SN/IMEI</div>*/}
-                {/*<div className={"col-xs-8 col-md-8 col-lg-8 col-xl-8"}>*/}
-                {/*<FormControl value={searchKey} type="text" placeholder="SN/IMEI"*/}
-                {/*className="key-input-value" onChange={searchkeyChanged}/>*/}
-                {/*</div>*/}
-                {/*</Col>*/}
-                <Col xs={8} md={6} lg={4} xl={4}>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"}>Alarm Type
-                    </div>
-                    <div className={"col-xs-6 col-md-6 col-lg-6 col-xl-6"}>
-                        <Select
-                            className="facility-type-value"
-                            defaultValue={selectedAlarmType}
-                            onChange={setSelectedAlarmType}
-                            options={alarmTypeOptions}
-                        />
-                    </div>
-                </Col>
-                <Col xs={8} md={1} lg={1} xl={0}>
-                </Col>
-
-                <Col xs={8} md={12} lg={1} xl={1}>
-                    <Button className={"btn-primary search-btn"}
+                <Col md={4} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2"}>Alarm Type</span>
+                    <Select
+                        className="facility-type-value w-50 me-2"
+                        defaultValue={selectedAlarmType}
+                        onChange={setSelectedAlarmType}
+                        options={alarmTypeOptions}
+                    />
+                    <Button className={"btn-primary d-flex align-items-center"}
                             onClick={() => searchDevice()}><FontAwesomeIcon
-                        icon={faSearch}/> Search</Button>
+                        icon={faSearch} className={"me-1"}/> Search</Button>
                 </Col>
-                <Col xs={8} md={12} lg={2} xl={2}>
-                    <Button className={"btn-danger make-read-btn"}
-                            onClick={() => makeRecordAsRead(0)}><FontAwesomeIcon
-                        icon={faEye}/> Make all as Read</Button>
+                <Col md={3}>
+                    <div className={"w-100 text-right"}>
+                        {props.admin? <Button className={"btn-danger d-flex align-items-center float-right"}
+                                              onClick={() => makeRecordAsRead(0)}><FontAwesomeIcon
+                            icon={faEye} className={"me-1"}/>Make all as Read</Button> : ""}
+                    </div>
                 </Col>
             </Row>
-            <Row>
+            <div className={"w-100"}>
                 {!isLoaded ?
                     <div className='preloader-container'><Preloader show={true}/></div> :
-                    <AlarmRecordTable alarmRecordList={alarmRecordList} deviceOptions={deviceOptions}
+                    <AlarmRecordTable admin={props.admin} alarmRecordList={alarmRecordList} deviceOptions={deviceOptions}
                                       onCheckRecordCallback={makeRecordAsRead} onPagenationCallback={onPagenationChange}
                                       pageSize={pageSize} totalTransactions={totalAlarms}/>
                 }
-            </Row>
+            </div>
         </div>
     );
 };
@@ -234,5 +221,11 @@ export default AlarmRecordManager;
 
 
 if (document.getElementById('alarm-record-dashboard')) {
-    ReactDOM.render(<AlarmRecordManager/>, document.getElementById('alarm-record-dashboard'));
+    let admin = false;
+    let tenant = document.documentURI.split("/")[3];
+    let user = document.getElementById("alarm-record-dashboard").getAttribute("data-user");
+    if(user === tenant){
+        admin = true;
+    }
+    ReactDOM.render(<AlarmRecordManager tenant={tenant} admin={admin}/>, document.getElementById('alarm-record-dashboard'));
 }

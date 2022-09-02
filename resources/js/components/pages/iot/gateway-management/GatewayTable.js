@@ -53,7 +53,7 @@ export const GatewayTable = (props) => {
         let createTime = convertUTCToLocalString(created_at);
         return (
             <tr>
-                <td className="col-1 col-xl-1 text-center">
+                <td className="col-1 text-center">
                     <span className="fw-normal">
                         {props.index + 1}
                     </span>
@@ -73,12 +73,12 @@ export const GatewayTable = (props) => {
                       {matchType === undefined ? "Not Available" : matchType.label}
                   </span>
                 </td>
-                <td className="col-2 text-center">
+                <td className="col-1 text-center">
                   <span className={`fw-normal text-${statusVariant}`}>
                     {createTime}
                   </span>
                 </td>
-                <td className="col-2 col-xl-1 text-center">
+                <td className="col-3 col-xl-1 text-center">
                     <span className="icon-dark">
                         <Button className={"btn-success action-btn"}
                                 onClick={() => props.onDetailClick(props)}><FontAwesomeIcon

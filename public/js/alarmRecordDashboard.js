@@ -21427,17 +21427,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
 /* harmony import */ var _components_Preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../components/Preloader */ "./resources/js/components/components/Preloader.js");
 /* harmony import */ var _AlarmRecordTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AlarmRecordTable */ "./resources/js/components/pages/iot/alarm-records/AlarmRecordTable.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @fortawesome/free-regular-svg-icons */ "./node_modules/@fortawesome/free-regular-svg-icons/index.es.js");
 /* harmony import */ var _service_RestDataSource__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../service/RestDataSource */ "./resources/js/service/RestDataSource.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _scss_management_table_style_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../scss/management-table-style.scss */ "./resources/js/components/scss/management-table-style.scss");
+/* harmony import */ var _scss_volt_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../scss/volt.scss */ "./resources/js/components/scss/volt.scss");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -21449,6 +21450,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -21528,7 +21530,7 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
     label: "Security Alarm"
   }];
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dataSource.GetRequest("/iot-service/v1/devices", function (data) {
+    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices", function (data) {
       var newOption = [{
         value: null,
         label: "All"
@@ -21541,9 +21543,9 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
       });
       setDeviceOptions(newOption);
     });
-    dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
+    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
       setAlarmRecordList(data);
-      dataSource.GetRequest("/iot-service/v1/alarms/records/counts", function (count) {
+      dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts", function (count) {
         setTotalAlarms(count.count);
         setLoaded(true);
       });
@@ -21561,26 +21563,26 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
   function searchDevice() {
     if (selectedOption != null && selectedOption.value != null) {
       if (selectedAlarmType != null && selectedAlarmType.value != null) {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&alarm_type=" + selectedAlarmType.value, function (data) {
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value + "&alarm_type=" + selectedAlarmType.value, function (data) {
           setAlarmRecordList(data);
           setLoaded(true);
         });
       } else {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value, function (data) {
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&device_name=" + selectedOption.value, function (data) {
           setAlarmRecordList(data);
           setLoaded(true);
         });
       }
     } else {
       if (selectedAlarmType != null && selectedAlarmType.value != null) {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&alarm_type=" + selectedAlarmType.value, function (data) {
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + pageNumber + "&page_size=" + pageSize + "&alarm_type=" + selectedAlarmType.value, function (data) {
           setAlarmRecordList(data);
           setLoaded(true);
         });
       } else {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
           setAlarmRecordList(data);
-          dataSource.GetRequest("/iot-service/v1/alarms/records/counts", function (count) {
+          dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts", function (count) {
             setTotalAlarms(count.count);
             setLoaded(true);
           });
@@ -21614,7 +21616,7 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
 
   function makeRecordAsRead(recId) {
     if (recId !== 0) {
-      dataSource.PostRequest("/iot-service/v1/alarms/records/" + recId, function (data) {
+      dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms/records/" + recId, function (data) {
         setAlarmRecordList(alarmRecordList.map(function (record) {
           if (record.id !== data.id) return record;
           return data;
@@ -21625,10 +21627,10 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
       });
     } else {
       setLoaded(false);
-      dataSource.PostRequest("/iot-service/v1/alarms/records/" + recId, function (data) {
-        dataSource.GetRequest("/iot-service/v1/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
+      dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/alarms/records/" + recId, function (data) {
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?&page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
           setAlarmRecordList(data);
-          dataSource.GetRequest("/iot-service/v1/alarms/records/counts", function (count) {
+          dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts", function (count) {
             setTotalAlarms(count.count);
             setLoaded(true);
           });
@@ -21641,13 +21643,13 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
   }
 
   function getCountOfNotifications() {
-    dataSource.GetRequest("/iot-service/v1/alarms/records/counts?is_read=1", function (data) {
+    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records/counts?is_read=1", function (data) {
       document.getElementsByClassName("alarm-count-badge")[0].innerHTML = data.count;
     });
   }
 
   function onPagenationChange(page_number) {
-    dataSource.GetRequest("/iot-service/v1/alarms/records?page_number=" + page_number + "&page_size=" + pageSize, function (data) {
+    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/alarms/records?page_number=" + page_number + "&page_size=" + pageSize, function (data) {
       setAlarmRecordList(data);
       setLoaded(true);
     });
@@ -21657,74 +21659,60 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "device-manage-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
     className: "top-section "
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "section-title mb-row"
-  }, "Alarm Records")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    className: "search-bar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    xs: 8,
-    md: 6,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"
-  }, "Device Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col-xs-6 col-md-6 col-lg-6 col-xl-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: "facility-type-value",
+  }, "Alarm Records")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    className: "mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    md: 5,
+    className: "d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "h6 me-2"
+  }, "Device Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "facility-type-value w-50",
     defaultValue: selectedOption,
     onChange: setSelectedOption,
     options: deviceOptions
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    xs: 8,
-    md: 6,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col-xs-6 col-md-6 col-lg-6 col-xl-6 facility-type-title"
-  }, "Alarm Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "col-xs-6 col-md-6 col-lg-6 col-xl-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    className: "facility-type-value",
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    md: 4,
+    className: "d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+    className: "h6 me-2"
+  }, "Alarm Type"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    className: "facility-type-value w-50 me-2",
     defaultValue: selectedAlarmType,
     onChange: setSelectedAlarmType,
     options: alarmTypeOptions
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    xs: 8,
-    md: 1,
-    lg: 1,
-    xl: 0
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    xs: 8,
-    md: 12,
-    lg: 1,
-    xl: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "btn-primary search-btn",
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "btn-primary d-flex align-items-center",
     onClick: function onClick() {
       return searchDevice();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__.faSearch
-  }), " Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    xs: 8,
-    md: 12,
-    lg: 2,
-    xl: 2
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-    className: "btn-danger make-read-btn",
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faSearch,
+    className: "me-1"
+  }), " Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    md: 3
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "w-100 text-right"
+  }, props.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    className: "btn-danger d-flex align-items-center float-right",
     onClick: function onClick() {
       return makeRecordAsRead(0);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_12__.faEye
-  }), " Make all as Read"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], null, !isLoaded ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    icon: _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_13__.faEye,
+    className: "me-1"
+  }), "Make all as Read") : ""))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "w-100"
+  }, !isLoaded ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "preloader-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Preloader__WEBPACK_IMPORTED_MODULE_2__["default"], {
     show: true
   })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_AlarmRecordTable__WEBPACK_IMPORTED_MODULE_3__.AlarmRecordTable, {
+    admin: props.admin,
     alarmRecordList: alarmRecordList,
     deviceOptions: deviceOptions,
     onCheckRecordCallback: makeRecordAsRead,
@@ -21737,7 +21725,18 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AlarmRecordManager);
 
 if (document.getElementById('alarm-record-dashboard')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_5__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(AlarmRecordManager, null), document.getElementById('alarm-record-dashboard'));
+  var admin = false;
+  var tenant = document.documentURI.split("/")[3];
+  var user = document.getElementById("alarm-record-dashboard").getAttribute("data-user");
+
+  if (user === tenant) {
+    admin = true;
+  }
+
+  react_dom__WEBPACK_IMPORTED_MODULE_5__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(AlarmRecordManager, {
+    tenant: tenant,
+    admin: admin
+  }), document.getElementById('alarm-record-dashboard'));
 }
 
 /***/ }),
@@ -21760,8 +21759,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
 /* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Card.js");
 /* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Table.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
 /* harmony import */ var _DateParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../DateParser */ "./resources/js/components/pages/iot/DateParser.js");
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
@@ -21875,12 +21872,12 @@ var AlarmRecordTable = function AlarmRecordTable(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
       className: "fw-normal"
     }, status === 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "btn-danger action-btn",
+      className: "btn-danger btn-sm",
       onClick: function onClick() {
         return props.onCheckRecordCallback(id);
       }
     }, "Make as read") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "btn-success action-btn",
+      className: "btn-success btn-sm",
       onClick: function onClick() {
         return props.onCheckRecordCallback(id);
       },
@@ -21921,28 +21918,11 @@ var AlarmRecordTable = function AlarmRecordTable(props) {
     }));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Footer, {
     className: "px-3 border-0 d-lg-flex align-items-center justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    className: "search-bar"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    xs: 12,
-    md: 4,
-    lg: 3,
-    xl: 2,
-    className: "total-count"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "search-bar w-100 d-flex justify-content-between align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", {
     className: "fw-bold"
-  }, "Showing ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, retrievedRecordNo), " out of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, totalTransactions), " entries")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    xs: 0,
-    md: 4,
-    lg: 6,
-    xl: 8
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    xs: 12,
-    md: 4,
-    lg: 3,
-    xl: 2,
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, "Showing ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, retrievedRecordNo), " out of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, totalTransactions), " entries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     size: size,
     className: "mt-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Prev, {
@@ -21956,7 +21936,7 @@ var AlarmRecordTable = function AlarmRecordTable(props) {
     }
   }, withIcons ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
     icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faAngleDoubleRight
-  }) : "Next")))))));
+  }) : "Next"))))));
 };
 
 /***/ }),
@@ -22307,7 +22287,31 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".facility-type-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-value {\n  min-height: 38px;\n  border: #cecccc 1px solid;\n}\n\n.key-input-value:hover {\n  border: #507cc7 2px solid;\n  border-radius: 5px;\n}\n\n.key-input-value:focus {\n  border: #507cc7 2px solid;\n  border-radius: 5px;\n}\n\n.search-btn {\n  width: 90px;\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.make-read-btn {\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.action-btn {\n  height: 25px;\n  font-size: 11px;\n  margin: 0px 5px;\n  padding: 3px 8px;\n}\n\n.fw-normal {\n  vertical-align: sub;\n  color: #526069;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.align-right {\n  text-align: right;\n}\n\n.total-count {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.bold-font {\n  font-weight: bold !important;\n}\n\n.ReactModal__Body--open,\n.ReactModal__Html--open {\n  overflow: hidden;\n}\n\n.Modal {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  right: 40px;\n  bottom: 40px;\n  background-color: papayawhip;\n}\n\n.ReactModal__Overlay, .ReactModal__Overlay--after-open {\n  z-index: 9999;\n  background-color: rgba(47, 47, 47, 0.75) !important;\n}\n\n.mb-row {\n  margin-bottom: 10px;\n}\n\n.sm-text {\n  font-size: 16px;\n}\n\n.grey-border {\n  border: #747888 1px solid;\n  border-radius: 5px;\n}\n\n.modal-title {\n  margin: 20px 0px 50px 10px;\n}\n\n.detail-row {\n  margin-top: 10px;\n}\n\n.event-type-title {\n  font-size: 16px;\n}\n\n.event-type-value {\n  min-height: 10px;\n  height: 27px;\n  margin-top: 5px;\n  padding: 5px 10px;\n  font-size: 16px;\n}\n\n.day-padding {\n  padding-left: 11px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".facility-type-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-title {\n  text-align: right;\n  margin-top: 5px;\n  font-size: 18px;\n}\n\n.key-input-value {\n  min-height: 38px;\n  border: #cecccc 1px solid;\n}\n\n.search-btn {\n  width: 90px;\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.make-read-btn {\n  margin-top: 0px;\n  min-height: 37px;\n  float: right;\n  margin-right: 15px;\n}\n\n.action-btn {\n  height: 25px;\n  font-size: 11px;\n  margin: 0px 5px;\n  padding: 3px 8px;\n}\n\n.fw-normal {\n  vertical-align: sub;\n  color: #526069;\n}\n\n.text-center {\n  text-align: center;\n}\n\n.align-right {\n  text-align: right;\n}\n\n.total-count {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.bold-font {\n  font-weight: bold !important;\n}\n\n.ReactModal__Body--open,\n.ReactModal__Html--open {\n  overflow: hidden;\n}\n\n.Modal {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  right: 40px;\n  bottom: 40px;\n  background-color: papayawhip;\n}\n\n.ReactModal__Overlay, .ReactModal__Overlay--after-open {\n  z-index: 9999;\n  background-color: rgba(47, 47, 47, 0.75) !important;\n}\n\n.mb-row {\n  margin-bottom: 10px;\n}\n\n.sm-text {\n  font-size: 16px;\n}\n\n.grey-border {\n  border: #747888 1px solid;\n  border-radius: 5px;\n}\n\n.modal-title {\n  margin: 20px 0px 50px 10px;\n}\n\n.detail-row {\n  margin-top: 10px;\n}\n\n.event-type-title {\n  font-size: 16px;\n}\n\n.event-type-value {\n  min-height: 10px;\n  height: 27px;\n  margin-top: 5px;\n  padding: 5px 10px;\n  font-size: 16px;\n}\n\n.day-padding {\n  padding-left: 11px;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/js/components/scss/volt.scss":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/js/components/scss/volt.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".preloader {\n  display: flex;\n  align-items: center;\n  height: 100vh;\n  left: 0;\n  position: fixed;\n  top: 0;\n  width: 100%;\n  z-index: 9999;\n  transition: height 0.3s;\n}\n@media (prefers-reduced-motion: reduce) {\n  .preloader {\n    transition: none;\n  }\n}\n.preloader .loader-element {\n  transition: spin 0.3s linear infinite;\n  -webkit-animation: spin 3s linear infinite;\n  animation: spin 3s linear infinite;\n}\n@media (prefers-reduced-motion: reduce) {\n  .preloader .loader-element {\n    transition: none;\n  }\n}\n.preloader.show {\n  height: 0;\n}\n.preloader.show .loader-element {\n  display: none !important;\n}\n@-webkit-keyframes spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n  }\n}\n@keyframes spin {\n  100% {\n    transform: rotate(360deg);\n  }\n}\n#alarm-badge {\n  position: absolute;\n  font-size: 22px;\n  right: 100px;\n  top: 14px;\n}\n\n.dropdown---caret---3CkEt {\n  display: none !important;\n}\n\n.dropdown---dropdown-menu---1fkH0 {\n  left: -200px !important;\n  width: 300px !important;\n}\n\n.dropdown---dropdown-menu---1fkH0 > .dropdown---menu-item-wrapper---3uAM0 > .dropdown---menu-item---1LjoL {\n  white-space: normal !important;\n}\n\n.list-group-item {\n  border: none !important;\n  border-bottom: 1px solid #a09b9b !important;\n  border-radius: 0px !important;\n}\n\n.alarm-count-badge {\n  background: red !important;\n  margin: 0px 0px 0px -8px !important;\n}\n\n.alarm-count-badge:hover {\n  color: white !important;\n}\n\n.text-end {\n  float: right;\n}\n\n.avatar_col {\n  width: 60px;\n  margin-left: -15px;\n  margin-top: 10px;\n}\n\n.sender_col {\n  text-align: end;\n}\n\n.bell-shake {\n  -webkit-animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n          animation: bellshake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden;\n  transform-origin: top right;\n}\n\n.svg-inline--fa.fa-bell {\n  width: 20px;\n  height: 20px;\n}\n\n.dashboard-container {\n  padding: 100px;\n  padding-top: 70px;\n  padding-right: 50px;\n}\n\n.app-container {\n  background-color: #eceeee;\n}\n\n.react-component-container {\n  align-content: center;\n}\n\n#chart {\n  padding-left: 10px;\n  padding-right: 10px;\n  padding-top: 20px;\n  align-content: center;\n  border-radius: 0.5em;\n  border: 1px solid #dddddd;\n  background-color: #ffffff;\n  box-shadow: 0 2px 3px 1px #ccc;\n}\n\n.weighing-duration-dashboard {\n  margin-left: -15px;\n}\n\n.operator-performance-dashboard {\n  margin-right: -15px;\n}\n\n.landing-title {\n  margin-top: 15%;\n}\n\n.side-list {\n  max-width: 300px;\n}\n\n.content {\n  margin-left: 300px;\n}\n\n.line-chart {\n  background-color: rgb(173, 241, 241);\n  border-radius: 10px;\n}\n\n.line-chart-header {\n  margin-top: 15px;\n  margin-bottom: 20px;\n  text-align: center;\n}\n\n.line-chart-header > h4 {\n  color: #5c5c5c;\n  text-align: left;\n}\n\n.chart-container {\n  width: 85%;\n  margin-left: 7%;\n  margin-top: 50px;\n}\n\n.setting-form {\n  margin-top: 30px;\n  margin-bottom: 30px;\n}\n\n.section-container {\n  padding-bottom: 2em;\n  border-bottom: 1px solid #d4d4d4;\n}\n\n.top-section {\n  margin-top: 30px;\n  padding-bottom: 2em;\n}\n\n.section-title {\n  font-size: 30px;\n  font-weight: bold;\n  font-family: Arial;\n}\n\n.preloader {\n  width: 50px;\n  left: 55%;\n}\n\n.list_row {\n  margin-left: 10px;\n}\n\n.list_row_outstanding {\n  margin-left: 20px;\n}\n\n.row > [class*=col-] {\n  margin-bottom: 3px;\n}\n\n.list-container {\n  min-height: 100px;\n  border-radius: 0.5em;\n  padding-top: 1px;\n  padding-bottom: 20px;\n  padding-left: 20px;\n  margin-bottom: 20px;\n  border: 1px solid #dddddd;\n  background-color: #ffffff;\n  box-shadow: 0 2px 3px 1px #ccc;\n}\n\n.current-progress-wrapper {\n  margin-left: 15px;\n  margin-right: 0px;\n}\n\n.display-flex {\n  display: flex;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -58292,6 +58296,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_management_table_style_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./resources/js/components/scss/volt.scss":
+/*!************************************************!*\
+  !*** ./resources/js/components/scss/volt.scss ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_volt_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!../../../../node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./volt.scss */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[8].oneOf[1].use[3]!./resources/js/components/scss/volt.scss");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_volt_scss__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_2_node_modules_sass_loader_dist_cjs_js_ruleSet_1_rules_8_oneOf_1_use_3_volt_scss__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

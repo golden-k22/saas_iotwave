@@ -17,4 +17,13 @@ class AlarmController extends Controller
         }
         return view('tenancy.alarm.settings', compact('section'));
     }
+
+
+    /**
+     * Show alarm records
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function record(){
+        return view('tenancy.alarm.record');
+    }
 }

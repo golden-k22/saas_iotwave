@@ -134,7 +134,7 @@
                                     Configure your security alarms.
                                 </p>
                             </a>
-                            <a href="{{ route('wave.blog') }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
+                            <a href="{{ route('tenancy.alarm.record', ['tenant'=>tenant('id')]) }}" class="block px-3 py-3 -m-3 space-y-1 transition duration-150 ease-in-out rounded-xl hover:bg-gray-100">
                                 <p class="text-base font-medium leading-6 text-gray-900">
                                     Records
                                 </p>

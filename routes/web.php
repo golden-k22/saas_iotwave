@@ -57,4 +57,5 @@ Route::group([
     Route::get('sensors/report', 'Tenancy\SensorsController@report')->name('sensors.report');
     // alarms
     Route::get('alarm/settings/{section?}', 'Tenancy\AlarmController@settings')->name('alarm.setting');
+    Route::get('alarm/record', 'Tenancy\AlarmController@record')->name('alarm.record');
 });
