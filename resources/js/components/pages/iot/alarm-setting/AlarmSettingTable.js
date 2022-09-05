@@ -136,10 +136,10 @@ export const AlarmSettingTable = (props) => {
                     <span className="icon-dark">
                         <Button className={"btn-primary btn-sm me-2"}
                                 onClick={() => properties.onEditClick(true, properties)}><FontAwesomeIcon
-                            icon={faEdit} className="me-2"/> Edit</Button>
+                            icon={faEdit} className="me-1"/>Edit</Button>
                         <Button className={"btn-danger btn-sm"}
                                 onClick={() => properties.onRemoveClick(properties)}><FontAwesomeIcon
-                            icon={faTrashAlt} className="me-2"/> Remove</Button>
+                            icon={faTrashAlt} className="me-1"/>Remove</Button>
                     </span>
                 </td>) : ""}
             </tr>

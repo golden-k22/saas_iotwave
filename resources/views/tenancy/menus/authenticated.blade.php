@@ -161,7 +161,7 @@
             </div>
         @endif
 
-        @include('theme::partials.notifications')
+        @include('tenancy.partials.notifications')
 
         <!-- Profile dropdown -->
         <div @click.away="open = false" class="relative flex items-center h-full ml-3" x-data="{ open: false }">

@@ -2,13 +2,10 @@ import React, {Component} from "react";
 import mqtt from "mqtt"
 import ReactDOM from "react-dom";
 import '../components/scss/volt.scss'
-import Dropdown, {DropdownToggle, DropdownMenu, MenuItem,} from '@trendmicro/react-dropdown';
-// Be sure to include styles at some point, probably during your bootstraping
+import Dropdown, {DropdownMenu, DropdownToggle, MenuItem,} from '@trendmicro/react-dropdown';
 import '@trendmicro/react-buttons/dist/react-buttons.css';
 import '@trendmicro/react-dropdown/dist/react-dropdown.css';
 import {Badge} from '@themesberg/react-bootstrap';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBell} from "@fortawesome/free-regular-svg-icons";
 import {RestDataSource} from "../service/RestDataSource";
 import Notification from "./Notification";
 
@@ -43,12 +40,17 @@ class MqttClient extends Component {
             <>
                 <Toast ref={this.toastRef} position="bottom-right"/>
                 <Dropdown
-                    onSelect={(eventKey) => {
-                        this.readNotification(eventKey)
+                    autoOpen
+                    onSelect={(key, event) => {
+                        event.preventDefault()
+                        this.readNotification()
                     }}
                 >
                     <DropdownToggle btnStyle="link" btnSize="lg">
-                        <FontAwesomeIcon icon={faBell} className="bell-shake"/>
+                        <svg className="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                        </svg>
                     </DropdownToggle>
                     {!this.state.isLoaded || this.state.cntOfNotifications === 0 ? null :
                         <Badge bg="danger" className="me-1 alarm-count-badge">{this.state.cntOfNotifications}</Badge>}
@@ -57,8 +59,6 @@ class MqttClient extends Component {
                             <MenuItem
                                 eventKey={n.id}
                                 key={`notification-${n.id}`}
-                                onSelect={(eventKey) => {
-                                }}
                             >
                                 <Notification key={`notification-${n.id}`} {...n} />
                             </MenuItem>
@@ -124,7 +124,7 @@ class MqttClient extends Component {
         this.client.on('connect', function () {
             console.log('connected successfully!');
             that.getCountOfNotifications();
-            that.client.subscribe("user_01/", function (err) {
+            that.client.subscribe(that.props.tenant + "/", function (err) {
                 if (err) {
                     console.log('cannot subscribe...');
                 }
@@ -151,7 +151,7 @@ class MqttClient extends Component {
     }
 
     getCountOfNotifications() {
-        this.dataSource.GetRequest("/iot-service/v1/alarms/records/counts?is_read=1",
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms/records/counts?is_read=1",
             data => {
                 this.myBadger.value = data.count;
                 this.changeTitle(data.count);
@@ -162,9 +162,9 @@ class MqttClient extends Component {
     }
 
     getLastNotifications(limitNo) {
-        this.dataSource.GetRequest("/iot-service/v1/alarms/records?limit=" + limitNo,
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms/records?limit=" + limitNo,
             data => {
-                if (data.length > 0 && this.state.notifications.length > 0 && (data[0].created_at != this.state.notifications[0].created_at)) {
+                if (data.length > 0 && this.state.notifications.length > 0 && (data[0].created_at !== this.state.notifications[0].created_at)) {
                     if (data[0].alarm_item <= 1) {
                         this.playAudio(this.urgentAudio);
                     } else if (data[0].alarm_item > 1) {
@@ -193,31 +193,22 @@ class MqttClient extends Component {
     }
 
     changeTitle(count) {
-        if (count != 0) {
-            let newTitle = '(' + count + ') ' + this.title;
-            document.title = newTitle;
+        if (count !== 0) {
+            document.title = '(' + count + ') ' + this.title;
         }else {
             document.title = this.title;
         }
     }
 
 
-    readNotification(eventId) {
-        window.location.href = '/admin/alarms/records';
+    readNotification() {
+        window.location.href = '/' + this.props.tenant + '/alarm/record';
     }
-
-
 }
 
 export default MqttClient;
 
-let appContainer = document.querySelector('.app-container');
-let navBar = appContainer.querySelector('nav.navbar.navbar-top .container-fluid .navbar-header');
-let badge = document.createElement("span");
-badge.setAttribute('id', 'alarm-badge');
-navBar.appendChild(badge);
-
-if (document.getElementById('alarm-badge')) {
-    ReactDOM.render(<MqttClient/>, document.getElementById('alarm-badge'));
-    document.getElementById('alarm-badge').click();
+if (document.getElementById('notification-list')) {
+    let tenant = document.documentURI.split("/")[3];
+    ReactDOM.render(<MqttClient tenant={tenant}/>, document.getElementById('notification-list'));
 }
