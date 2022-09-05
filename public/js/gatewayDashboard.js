@@ -20247,7 +20247,7 @@ var GatewayManager = function GatewayManager(props) {
       totalDevices = _useState20[0],
       setTotalDevices = _useState20[1];
 
-  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_9__.RestDataSource("http://10.99.4.30:8082", function (err) {
+  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_9__.RestDataSource("https://saas.iotim.tpitservice.com", function (err) {
     return console.log("Server connection failed.");
   });
 

@@ -18344,7 +18344,7 @@ var GroupManager = function GroupManager(props) {
       setTotalGroups = _useState14[1];
 
   var toastRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_10__.RestDataSource("http://10.99.4.30:8082", function (err) {
+  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_10__.RestDataSource("https://saas.iotim.tpitservice.com", function (err) {
     return console.log("Server connection failed.");
   });
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
