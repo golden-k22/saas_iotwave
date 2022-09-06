@@ -51,7 +51,7 @@ const RealtimeCard = (props) => {
         }
 
         return (
-            <Card style={{width: '290px', boxShadow: '0 2px 3px 1px #ccc'}}
+            <Card style={{width: '280px' ,boxShadow: '0 2px 3px 1px #ccc'}}
                   className="realtime-card-container"
                   bgColor={(props.message.voltage === "--" ? '#aaaaaa' : isDangerous() ? '#c91112' : isWarning() ? '#ffb848' : '#28b779')}
             >
@@ -72,21 +72,21 @@ const RealtimeCard = (props) => {
                 </CardHeader>
                 <CardBody>
                     <div className={"row"}>
-                        <div className="col-md-5 col-xs-5 col-lg-5 col-xl-5  sensor-icon">
+                        <div className="col-5  sensor-icon">
                             <Image src={tempIcon}/>
                         </div>
-                        <div className="col-md-7 col-xs-7 col-lg-7 col-xl-7">
+                        <div className="col-7">
                             <div className="card-content-height-wrapper w-100 d-flex">
                                 <div
-                                    className="col-md-9 col-xs-9 col-lg-9 col-xl-9 sensor-props card-text-color card-header-bold me-1">{props.message.temperature}</div>
-                                <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 sensor-unit card-text-color">ºC</div>
+                                    className="col-9 sensor-props card-text-color card-header-bold me-1">{props.message.temperature}</div>
+                                <div className="col-3 sensor-unit card-text-color">ºC</div>
                             </div>
                             <div className="card-content-height-wrapper w-100 d-flex">
                                 <div
-                                    className="col-md-9 col-xs-9 col-lg-9 col-xl-9 sensor-props card-text-color card-header-bold me-2">{
+                                    className="col-9 sensor-props card-text-color card-header-bold me-2">{
                                     props.message.humidity != 255 ? props.message.humidity : "--"}
                                 </div>
-                                <div className="col-md-3 col-xs-3 col-lg-3 col-xl-3 sensor-unit card-text-color">%</div>
+                                <div className="col-3 sensor-unit card-text-color">%</div>
                             </div>
                             <div
                                 className="time-props card-text-color w-100 pe-2">{props.message.time == "--/--/-- --:--" ? "--/--/--  --:--" : convertUTCToLocalString(props.message.time)}

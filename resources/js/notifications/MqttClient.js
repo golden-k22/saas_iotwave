@@ -124,7 +124,7 @@ class MqttClient extends Component {
         this.client.on('connect', function () {
             console.log('connected successfully!');
             that.getCountOfNotifications();
-            that.client.subscribe(that.props.tenant + "/", function (err) {
+            that.client.subscribe('saasiot/' + that.props.tenant + "/", function (err) {
                 if (err) {
                     console.log('cannot subscribe...');
                 }

@@ -5695,7 +5695,7 @@ var MqttClient = /*#__PURE__*/function (_Component) {
       console.log("readed.");
     });
 
-    _this.dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_7__.RestDataSource("https://saas.iotim.tpitservice.com", function (err) {
+    _this.dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_7__.RestDataSource("http://10.99.4.30:8082", function (err) {
       return console.log("Server connection failed.");
     });
     _this.state = {
@@ -5705,8 +5705,8 @@ var MqttClient = /*#__PURE__*/function (_Component) {
     };
     _this.client = null;
     _this.toastRef = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-    _this.urgentAudio = new Audio("https://iotwave.tpitservice.com" + '/sounds/urgent-alert-bells-echo-in-7.mp3');
-    _this.warningAudio = new Audio("https://iotwave.tpitservice.com" + '/sounds/warning-notification-4-bells.mp3');
+    _this.urgentAudio = new Audio("http://127.0.0.1:8000" + '/sounds/urgent-alert-bells-echo-in-7.mp3');
+    _this.warningAudio = new Audio("http://127.0.0.1:8000" + '/sounds/warning-notification-4-bells.mp3');
     _this.title = document.title;
     var myBadgerOptions = {};
     _this.myBadger = new _Badger__WEBPACK_IMPORTED_MODULE_13__["default"](myBadgerOptions);
@@ -5809,7 +5809,7 @@ var MqttClient = /*#__PURE__*/function (_Component) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
-                host = "wss://saas.mqtt.tpitservice.com:8083";
+                host = "ws://10.99.4.30:8081";
                 options = {
                   keepalive: 0,
                   clientId: clientId,
@@ -5830,7 +5830,7 @@ var MqttClient = /*#__PURE__*/function (_Component) {
                 this.client.on('connect', function () {
                   console.log('connected successfully!');
                   that.getCountOfNotifications();
-                  that.client.subscribe(that.props.tenant + "/", function (err) {
+                  that.client.subscribe('saasiot/' + that.props.tenant + "/", function (err) {
                     if (err) {
                       console.log('cannot subscribe...');
                     }

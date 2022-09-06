@@ -53,7 +53,7 @@ class RealtimeManager extends Component {
                         </div>
                         <Row>
                             {this.state.messages.map((message, index) =>
-                                <Col key={index} xs={12} md={6} lg={4} xl={3} className="mb-4">
+                                <Col key={index} xs={12} sm={12} md={6} lg={4} className="mb-4">
                                     <RealtimeCard
                                         message={message}
                                                   alarm={this.state.alarms[index]}
@@ -170,7 +170,7 @@ class RealtimeManager extends Component {
             console.log('connected successfully!');
             that.getLatestStatus();
             that.state.messages.map((msg) => {
-                that.client.subscribe("sensors/" + msg.device_sn, function (err) {
+                that.client.subscribe("saasiot/sensors/" + msg.device_sn, function (err) {
                     if (err) {
                         console.log('cannot subscribe...');
                     }
