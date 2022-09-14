@@ -18,6 +18,10 @@ class CreatePlansTable extends Migration {
 			$table->string('name');
 			$table->text('description', 65535)->nullable();
 			$table->string('features');
+			$table->unsignedInteger('gateway')->default(0);
+            $table->unsignedInteger('sensor')->default(0);
+            $table->unsignedInteger('email')->default(0);
+            $table->unsignedInteger('sms')->default(0);
 			$table->string('plan_id')->default('');
 			$table->bigInteger('role_id')->unsigned()->index('plans_role_id_foreign');
 			$table->boolean('default')->default(0);

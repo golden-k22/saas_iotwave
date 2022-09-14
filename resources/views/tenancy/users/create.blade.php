@@ -55,10 +55,34 @@
                 </div>
 
                 <div class="mt-4">
+                    <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">Phone Number</label>
+                    <div class="mt-1 rounded-md shadow-sm">
+                        <input id="phone" type="text" name="phone" placeholder="Phone number"  required class="w-full form-input">
+                    </div>
+                </div>
+
+                <div class="mt-4">
                     <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Username</label>
                     <div class="mt-1 rounded-md shadow-sm">
                         <input id="username" type="text" name="username" placeholder="Username"  required class="w-full form-input">
                     </div>
+                </div>
+
+                <div class="mt-4">
+                   <div class="row">
+                       <div class="col-sm-6">
+                           <div class="form-check form-switch">
+                               <input class="form-check-input" type="checkbox" role="switch" id="mail"  name="mailable" />
+                               <label class="form-check-label font-medium leading-5 text-gray-700" for="mail" >Send Email Notification</label>
+                           </div>
+                       </div>
+                       <div class="col-sm-6">
+                           <div class="form-check form-switch">
+                               <input class="form-check-input" type="checkbox" role="switch" id="sms" name="messagable" />
+                               <label class="form-check-label font-medium leading-5 text-gray-700" for="sms">Send SMS Notification</label>
+                           </div>
+                       </div>
+                   </div>
                 </div>
 
                 <div class="flex justify-end w-full">

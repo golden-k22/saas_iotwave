@@ -1219,8 +1219,70 @@ class DataRowsTableSeeder extends Seeder
                 'details' => NULL,
                 'order' => 9,
             ),
+            75 =>
+                array (
+                    'id' => 77,
+                    'data_type_id' => 8,
+                    'field' => 'gateway',
+                    'type' => 'number',
+                    'display_name' => 'Gateways',
+                    'required' => 0,
+                    'browse' => 1,
+                    'read' => 1,
+                    'edit' => 1,
+                    'add' => 1,
+                    'delete' => 1,
+                    'details' => NULL,
+                    'order' => 13,
+                ),
+            76 =>
+                array (
+                    'id' => 78,
+                    'data_type_id' => 8,
+                    'field' => 'sensor',
+                    'type' => 'number',
+                    'display_name' => 'Sensors',
+                    'required' => 0,
+                    'browse' => 1,
+                    'read' => 1,
+                    'edit' => 1,
+                    'add' => 1,
+                    'delete' => 1,
+                    'details' => NULL,
+                    'order' => 14,
+                ),
+            77 =>
+                array (
+                    'id' => 79,
+                    'data_type_id' => 8,
+                    'field' => 'email',
+                    'type' => 'number',
+                    'display_name' => 'Emails',
+                    'required' => 0,
+                    'browse' => 1,
+                    'read' => 1,
+                    'edit' => 1,
+                    'add' => 1,
+                    'delete' => 1,
+                    'details' => NULL,
+                    'order' => 15,
+                ),
+            78 =>
+                array (
+                    'id' => 80,
+                    'data_type_id' => 8,
+                    'field' => 'sms',
+                    'type' => 'number',
+                    'display_name' => 'SMS',
+                    'required' => 0,
+                    'browse' => 1,
+                    'read' => 1,
+                    'edit' => 1,
+                    'add' => 1,
+                    'delete' => 1,
+                    'details' => NULL,
+                    'order' => 16,
+                ),
         ));
-        
-        
     }
 }

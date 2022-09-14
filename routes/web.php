@@ -23,6 +23,7 @@ Route::group(['prefix' => 'admin'], function () {
 
     // customized route to store tenant users
     Route::post('users', ['uses' => 'Voyager\WaveUserController@store', 'as' => 'voyager.users.store']);
+    Route::delete('users/{id}', ['uses' => 'Voyager\WaveUserController@destroy', 'as' => 'voyager.users.destroy']);
 });
 
 // Include Wave Routes

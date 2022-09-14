@@ -49,6 +49,15 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->name = $request->name;
         $user->username = $request->username;
+        $user->phone = $request->phone;
+
+        if($request->mailable == 'on'){
+            $user->mailable = true;
+        }
+        if($request->messagable == 'on'){
+            $user->messagable = true;
+        }
+
         $user->password = bcrypt(config('app.default_password'));
         $user->tenant()->associate(Tenant::find(\tenant('id')));
 
@@ -94,8 +103,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+            'email' => 'required'
         ]);
 
         $user->update($request->all());

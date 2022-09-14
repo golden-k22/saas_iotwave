@@ -24,7 +24,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Avatar</th>
-            <th>Created At</th>
+            <th>Send Mail</th>
+            <th>Send SMS</th>
             <th>Action</th>
         </tr>
         <?php $i = 0 ?>
@@ -34,9 +35,22 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->email }}</td>
                 <td>
-                    <img id="preview" src="{{ Voyager::image($product->avatar) . '?' . time() }}" class="w-12 h-12 rounded-full ">
+                    <img id="preview" src="{{ Voyager::image($product->avatar) . '?' . time() }}" class="w-12 h-12 rounded-full "  alt="{{$product->name}}"/>
                 </td>
-                <td>{{ $product->created_at }}</td>
+                <td class="text-center">
+                    <div class="ps-0 form-check form-switch">
+                        <label>
+                            <input class="h4 mb-0 form-check-input" type="checkbox" role="switch" {{$product->mailable? 'checked' : ''}}  disabled />
+                        </label>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div class="ps-0 form-check form-switch">
+                        <label>
+                            <input class="h4 mb-0 form-check-input" type="checkbox" role="switch" {{$product->messagable? 'checked' : ''}} disabled />
+                        </label>
+                    </div>
+                </td>
                 <td>
                     <form action="{{ route('tenancy.users.destroy',['tenant'=>tenant('id'), 'user'=>$product->id]) }}" method="POST">
 

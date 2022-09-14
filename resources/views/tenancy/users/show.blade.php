@@ -25,14 +25,36 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group mt-3">
-                <strong>Email:</strong>
+                <strong>Email Address:</strong>
                 {{ $user->email }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group mt-3">
+                <strong>Phone Number:</strong>
+                {{ $user->phone }}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group mt-3">
                 <strong>Username:</strong>
                 {{ $user->username }}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group mt-3">
+                <div class="form-check form-switch">
+                    <label class="form-check-label font-medium leading-5 text-gray-700" for="mail">Send Email Notification</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="mail" {{$user->mailable? 'checked': ''}}  name="mailable" disabled/>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group mt-3">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="sms" {{$user->messagable? 'checked': ''}} name="messagable" disabled/>
+                    <label class="form-check-label font-medium leading-5 text-gray-700" for="sms">Send SMS Notification</label>
+                </div>
             </div>
         </div>
     </div>
