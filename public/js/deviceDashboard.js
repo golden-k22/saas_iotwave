@@ -20129,12 +20129,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _DeviceTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeviceTable */ "./resources/js/components/pages/iot/device-management/DeviceTable.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/FormControl.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/FormControl.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
+/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
 /* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/Preloader */ "./resources/js/components/components/Preloader.js");
@@ -20145,7 +20145,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _scss_management_table_style_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../scss/management-table-style.scss */ "./resources/js/components/scss/management-table-style.scss");
 /* harmony import */ var _scss_volt_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../scss/volt.scss */ "./resources/js/components/scss/volt.scss");
-/* harmony import */ var _gateway_management_GatewayManager__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../gateway-management/GatewayManager */ "./resources/js/components/pages/iot/gateway-management/GatewayManager.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -20165,7 +20164,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -20471,52 +20469,52 @@ var DeviceManager = function DeviceManager(props) {
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "device-manage-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "top-section"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "section-title mb-row"
-  }, "Device Management")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+  }, "Device Management")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     className: "mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     md: 5,
     className: "d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "h6 me-2"
-  }, "Type of facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_15__["default"], {
+  }, "Type of facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_14__["default"], {
     className: "facility-type-value w-50",
     defaultValue: selectedOption,
     onChange: setSelectedOption,
     options: typeOptions
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     md: 4,
     className: "d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
     className: "h6 me-2"
-  }, "Key"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
+  }, "Key"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
     value: searchKey,
     type: "text",
     placeholder: "IMEI",
     className: "key-input-value me-2",
     onChange: searchkeyChanged
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: "btn-primary d-flex align-items-center",
     onClick: function onClick() {
       return searchDevice();
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faSearch,
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faSearch,
     className: "me-1"
-  }), " Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+  }), " Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
     md: 3
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "w-100 text-right"
-  }, props.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_17__["default"], {
+  }, props.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
     className: "btn-success d-flex align-items-center float-right",
     onClick: function onClick() {
       return openModal(false);
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_18__.faPlus,
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faPlus,
     className: "me-1"
   }), " Add") : ""))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "w-100"
@@ -20567,8 +20565,10 @@ var DeviceManager = function DeviceManager(props) {
     style: customStyles,
     contentLabel: "Remove Modal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-    className: "modal-title"
-  }, "Do you want to delete this device ?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_RemoveModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    className: "mb-4"
+  }, "Remove Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "mb-3"
+  }, "This is irreversible. We will destroy your device and all associated data. All device data will be scrubbed and irretrievable."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_RemoveModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
     onClose: closeRemoveModal,
     onSubmit: deleteDevice,
     selectedDevice: selectedDevice
@@ -21477,74 +21477,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-
-
-
-
-
-function RemoveModal(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "mb-row w-100 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    onClick: function onClick() {
-      return props.onSubmit(props.selectedDevice.id);
-    },
-    className: "btn-danger"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faTrashAlt
-  }), " Remove"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    onClick: function onClick() {
-      return props.onClose();
-    },
-    className: "btn-secondary"
-  }, "Cancel"))));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RemoveModal);
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/iot/gateway-management/GatewayManager.js":
-/*!********************************************************************************!*\
-  !*** ./resources/js/components/pages/iot/gateway-management/GatewayManager.js ***!
-  \********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _GatewayTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./GatewayTable */ "./resources/js/components/pages/iot/gateway-management/GatewayTable.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/FormControl.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
-/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/Preloader */ "./resources/js/components/components/Preloader.js");
-/* harmony import */ var _modal_AddEditModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modal/AddEditModal */ "./resources/js/components/pages/iot/gateway-management/modal/AddEditModal.js");
-/* harmony import */ var _modal_RemoveModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modal/RemoveModal */ "./resources/js/components/pages/iot/gateway-management/modal/RemoveModal.js");
-/* harmony import */ var _modal_DetailModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modal/DetailModal */ "./resources/js/components/pages/iot/gateway-management/modal/DetailModal.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _service_RestDataSource__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../../service/RestDataSource */ "./resources/js/service/RestDataSource.js");
-/* harmony import */ var _scss_management_table_style_scss__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../scss/management-table-style.scss */ "./resources/js/components/scss/management-table-style.scss");
-/* harmony import */ var _scss_volt_scss__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../../scss/volt.scss */ "./resources/js/components/scss/volt.scss");
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-modal */ "./node_modules/react-modal/lib/index.js");
+/* harmony import */ var react_modal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_modal__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -21556,16 +21493,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -21584,1051 +21511,83 @@ var customStyles = {
   }
 };
 
-if (document.getElementById('gateway-dashboard')) {
-  react_modal__WEBPACK_IMPORTED_MODULE_3___default().setAppElement('#gateway-dashboard');
-}
-
-var GatewayManager = function GatewayManager(props) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1),
-      _useState2 = _slicedToArray(_useState, 2),
-      pageNumber = _useState2[0],
-      setPageNumber = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(15),
-      _useState4 = _slicedToArray(_useState3, 2),
-      pageSize = _useState4[0],
-      setPageSize = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      typeOptions = _useState6[0],
-      setTypeOptions = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState8 = _slicedToArray(_useState7, 2),
-      selectedOption = _useState8[0],
-      setSelectedOption = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(""),
-      _useState10 = _slicedToArray(_useState9, 2),
-      searchKey = _useState10[0],
-      setSearchKey = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState12 = _slicedToArray(_useState11, 2),
-      isLoaded = _useState12[0],
-      setLoaded = _useState12[1];
-
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
-      _useState14 = _slicedToArray(_useState13, 2),
-      deviceList = _useState14[0],
-      setDeviceList = _useState14[1];
-
-  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState16 = _slicedToArray(_useState15, 2),
-      isEdit = _useState16[0],
-      setIsEdit = _useState16[1];
-
-  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      _useState18 = _slicedToArray(_useState17, 2),
-      selectedDevice = _useState18[0],
-      setSelectedDevice = _useState18[1];
-
-  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
-      _useState20 = _slicedToArray(_useState19, 2),
-      totalDevices = _useState20[0],
-      setTotalDevices = _useState20[1];
-
-  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_9__.RestDataSource("https://saas.iotim.tpitservice.com", function (err) {
-    return console.log("Server connection failed.");
-  });
-
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState22 = _slicedToArray(_useState21, 2),
-      duplicated = _useState22[0],
-      setDuplicated = _useState22[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    dataSource.GetRequest("/iot-service/v1/gateways/types", function (types) {
-      var newOption = [{
-        value: null,
-        label: "No Select"
-      }];
-      types.map(function (type) {
-        newOption.push({
-          value: type.id,
-          label: type.name
-        });
-      });
-      setTypeOptions(newOption);
-    });
-    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize, function (data) {
-      setDeviceList(data);
-      dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways/counts", function (count) {
-        setTotalDevices(count.count);
-        setLoaded(true);
-      });
-    });
-  }, []);
-
-  function searchkeyChanged(event) {
-    var text = event.target.value;
-
-    if (text !== null) {
-      setSearchKey(event.target.value);
-    }
-  }
-
-  function searchDevice() {
-    if (selectedOption == null) {
-      dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey, function (data) {
-        setDeviceList(data);
-        setLoaded(true);
-      });
-    } else {
-      if (selectedOption.value == null) {
-        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey, function (data) {
-          setDeviceList(data);
-          setLoaded(true);
-        });
-      } else {
-        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey, function (data) {
-          setDeviceList(data);
-          setLoaded(true);
-        });
-      }
-    }
-  }
-
-  function onPagenationChange(page_number) {
-    dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + page_number + "&page_size=" + pageSize, function (data) {
-      setDeviceList(data);
-      setLoaded(true);
-    });
-  }
-  /**
-   * Modal settings.
-   * **/
-
-
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      modalIsOpen = _React$useState2[0],
-      setIsOpen = _React$useState2[1];
-
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
-      _React$useState4 = _slicedToArray(_React$useState3, 2),
-      removeModalIsOpen = _React$useState4[0],
-      setRemoveModalIsOpen = _React$useState4[1];
-
-  var _React$useState5 = react__WEBPACK_IMPORTED_MODULE_0__.useState(false),
-      _React$useState6 = _slicedToArray(_React$useState5, 2),
-      detailModalIsOpen = _React$useState6[0],
-      setDetailModalIsOpen = _React$useState6[1];
-  /** Add/Edit Modal **/
-
-
-  function openModal(isEdit, device) {
-    setIsEdit(isEdit);
-    setSelectedDevice(device);
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setDuplicated(false);
-    setIsOpen(false);
-  }
-  /** Remove Modal  **/
-
-
-  function openRemoveModal(device) {
-    setSelectedDevice(device);
-    setRemoveModalIsOpen(true);
-  }
-
-  function closeRemoveModal() {
-    setRemoveModalIsOpen(false);
-  }
-  /** Detail Modal  **/
-
-
-  function openDetailModal(device) {
-    setSelectedDevice(device);
-    setDetailModalIsOpen(true);
-  }
-
-  function closeDetailModal() {
-    setDetailModalIsOpen(false);
-  }
-
-  function addDevice(id, deviceName, imei, selectedFacility, remark) {
-    var request_data = {
-      name: deviceName,
-      imei: imei,
-      typeOfFacility: selectedFacility.value,
-      remark: remark
-    };
-    dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/gateways", function (data) {
-      var updatedList = _toConsumableArray(deviceList);
-
-      var isExist = updatedList.filter(function (gateway) {
-        return gateway.imei == data.imei;
-      });
-
-      if (isExist.length == 0) {
-        setIsOpen(false);
-        updatedList.push(data);
-        setDeviceList(updatedList);
-        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways/counts", function (count) {
-          setTotalDevices(count.count);
-        });
-      } else {
-        setDuplicated(true);
-      }
-    }, request_data);
-  }
-
-  function editDevice(id, deviceName, imei, selectedFacility, remark) {
-    setIsOpen(false);
-    var request_data = {
-      name: deviceName,
-      imei: imei,
-      typeOfFacility: selectedFacility.value,
-      remark: remark
-    };
-    dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/gateways/" + id, function (data) {
-      var updatedList = [];
-      deviceList.map(function (device) {
-        if (device.id === id) {
-          updatedList.push(data);
-        } else {
-          updatedList.push(device);
-        }
-      });
-      setDeviceList(updatedList);
-    }, request_data);
-  }
-
-  function deleteDevice(id) {
-    setRemoveModalIsOpen(false);
-    dataSource.DeleteRequest("/iot-service/v1/" + props.tenant + "/gateways/" + id, function (data) {
-      var updatedList = [];
-      deviceList.map(function (device) {
-        if (device.id !== id) {
-          updatedList.push(device);
-        }
-      });
-      setDeviceList(updatedList);
-      dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways/counts", function (count) {
-        setTotalDevices(count.count);
-      });
-    });
-  }
-  /******************************************************/
-
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "device-manage-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    className: "top-section"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "section-title mb-row"
-  }, "Gateway Management")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
-    className: "mb-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    md: 5,
-    className: "d-flex align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "h6 me-2"
-  }, "Type of facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_14__["default"], {
-    className: "facility-type-value w-50",
-    defaultValue: selectedOption,
-    onChange: setSelectedOption,
-    options: typeOptions
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    md: 4,
-    className: "d-flex align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    className: "h6 me-2"
-  }, "Key"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_15__["default"], {
-    value: searchKey,
-    type: "text",
-    placeholder: "IMEI",
-    className: "key-input-value me-2",
-    onChange: searchkeyChanged
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
-    className: "btn-primary d-flex align-items-center",
-    onClick: function onClick() {
-      return searchDevice();
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faSearch,
-    className: "me-1"
-  }), " Search")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
-    md: 3
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "w-100 text-right"
-  }, props.admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_16__["default"], {
-    className: "btn-success d-flex align-items-center float-right",
-    onClick: function onClick() {
-      return openModal(false);
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_17__.faPlus,
-    className: "me-1"
-  }), " Add") : ""))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, !isLoaded ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "preloader-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Preloader__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    show: true
-  })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_GatewayTable__WEBPACK_IMPORTED_MODULE_1__.GatewayTable, {
-    admin: props.admin,
-    deviceList: deviceList,
-    typeOptions: typeOptions,
-    onEditClick: openModal,
-    onDetailClick: openDetailModal,
-    onRemoveClick: openRemoveModal,
-    onPagenationCallback: onPagenationChange,
-    pageSize: pageSize,
-    totalTransactions: totalDevices
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_modal__WEBPACK_IMPORTED_MODULE_3___default()), {
-    isOpen: detailModalIsOpen,
-    onRequestClose: closeDetailModal,
-    style: customStyles,
-    contentLabel: "Detail Modal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-    className: "modal-title"
-  }, "Detail View"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_DetailModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    onClose: closeDetailModal,
-    selectedDevice: selectedDevice,
-    typeOptions: typeOptions
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_modal__WEBPACK_IMPORTED_MODULE_3___default()), {
-    isOpen: modalIsOpen,
-    onRequestClose: closeModal,
-    style: customStyles,
-    contentLabel: "Add Edit Modal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-    className: "modal-title"
-  }, isEdit ? "Edit Gateway" : "Add Gateway"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_AddEditModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    onClose: closeModal,
-    onSubmit: !isEdit ? addDevice : editDevice,
-    typeOptions: typeOptions,
-    isEdit: isEdit,
-    selectedDevice: selectedDevice,
-    duplicated: duplicated
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_modal__WEBPACK_IMPORTED_MODULE_3___default()), {
-    isOpen: removeModalIsOpen,
-    onRequestClose: closeRemoveModal,
-    style: customStyles,
-    contentLabel: "Remove Modal"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
-    className: "modal-title"
-  }, "Do you want to delete this gateway ?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_modal_RemoveModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    onClose: closeRemoveModal,
-    onSubmit: deleteDevice,
-    selectedDevice: selectedDevice
-  })));
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (GatewayManager);
-
-if (document.getElementById('gateway-dashboard')) {
-  var admin = false;
-  var tenant = document.documentURI.split("/")[3];
-  var user = document.getElementById("gateway-dashboard").getAttribute("data-user");
-
-  if (user === tenant) {
-    admin = true;
-  }
-
-  react_dom__WEBPACK_IMPORTED_MODULE_8__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(GatewayManager, {
-    tenant: tenant,
-    admin: admin
-  }), document.getElementById('gateway-dashboard'));
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/iot/gateway-management/GatewayTable.js":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/pages/iot/gateway-management/GatewayTable.js ***!
-  \******************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "GatewayTable": () => (/* binding */ GatewayTable)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Pagination.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Card.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Table.js");
-/* harmony import */ var _DateParser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../DateParser */ "./resources/js/components/pages/iot/DateParser.js");
-function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-var GatewayTable = function GatewayTable(props) {
-  var totalTransactions = props.totalTransactions;
-  var totalPages = totalTransactions === 0 ? 1 : Math.ceil(totalTransactions / props.pageSize);
-  var transactions = props.deviceList;
-
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0__.useState(1),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      activeItem = _React$useState2[0],
-      setActiveItem = _React$useState2[1];
-
-  var retrievedRecordNo = (activeItem - 1) * props.pageSize + transactions.length; // const { totalPages = 5, size = "md", withIcons = false, disablePrev = false } = props;
-
-  var size = "sm",
-      withIcons = true,
-      disablePrev = false;
-
-  var onPrevItem = function onPrevItem() {
-    var prevActiveItem = activeItem === 1 ? activeItem : activeItem - 1;
-    props.onPagenationCallback(prevActiveItem);
-    setActiveItem(prevActiveItem);
-  };
-
-  var onNextItem = function onNextItem(totalPages) {
-    var nextActiveItem = activeItem === totalPages ? activeItem : activeItem + 1;
-    props.onPagenationCallback(nextActiveItem);
-    setActiveItem(nextActiveItem);
-  };
-
-  var items = [];
-  var startNumber = activeItem === 1 || totalPages === 2 ? 1 : activeItem < totalPages ? activeItem - 1 : activeItem - 2;
-  var endNumber = totalPages === 1 || totalPages === 2 ? totalPages : activeItem === totalPages ? activeItem : activeItem === 1 ? activeItem + 2 : activeItem + 1;
-
-  var _loop = function _loop(number) {
-    var isItemActive = activeItem === number;
-
-    var handlePaginationChange = function handlePaginationChange() {
-      props.onPagenationCallback(number);
-      setActiveItem(number);
-    };
-
-    items.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Item, {
-      active: isItemActive,
-      key: number,
-      onClick: handlePaginationChange
-    }, number));
-  };
-
-  for (var number = startNumber; number <= endNumber; number++) {
-    _loop(number);
-  }
-
-  var TableRow = function TableRow(props) {
-    var name = props.name,
-        imei = props.imei,
-        type = props.type,
-        created_at = props.created_at,
-        admin = props.admin;
-    var statusVariant = status === "Paid" ? "success" : status === "Due" ? "warning" : status === "Canceled" ? "danger" : "primary";
-    var matchType = props.typeOptions.filter(function (item) {
-      return item.value == type;
-    })[0];
-    var createTime = (0,_DateParser__WEBPACK_IMPORTED_MODULE_2__.convertUTCToLocalString)(created_at);
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-1 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "fw-normal"
-    }, props.index + 1)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-2 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "fw-normal"
-    }, name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-1 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "fw-normal"
-    }, imei)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-1 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "fw-normal"
-    }, matchType === undefined ? "Not Available" : matchType.label)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-1 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "fw-normal text-".concat(statusVariant)
-    }, createTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("td", {
-      className: "col-3 col-xl-1 text-center"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-      className: "icon-dark"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "btn-success action-btn",
-      onClick: function onClick() {
-        return props.onDetailClick(props);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faEye
-    }), " View Details"), admin ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "btn-primary action-btn",
-      onClick: function onClick() {
-        return props.onEditClick(true, props);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faEdit
-    }), " Edit"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      className: "btn-danger action-btn",
-      onClick: function onClick() {
-        return props.onRemoveClick(props);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-      icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faTrashAlt
-    }), " Remove")) : "")));
-  };
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    border: "light",
-    className: "table-wrapper table-responsive shadow-sm"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Body, {
-    className: "pt-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-    hover: true,
-    className: "user-table align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font"
-  }, "#"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font"
-  }, "Device Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font"
-  }, "IMEI/SN"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font"
-  }, "Type of facility"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font"
-  }, "Create Time"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("th", {
-    className: "border-bottom text-center bold-font col-2"
-  }, "Action"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("tbody", null, transactions.map(function (t, index) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(TableRow, _extends({
-      key: "transaction-".concat(t.id)
-    }, t, {
-      index: index,
-      typeOptions: props.typeOptions,
-      onDetailClick: props.onDetailClick,
-      onEditClick: props.onEditClick,
-      onRemoveClick: props.onRemoveClick,
-      admin: props.admin
-    }));
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Footer, {
-    className: "w-100 px-3 border-0"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "search-bar w-100 d-flex justify-content-between align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("small", {
-    className: "fw-bold"
-  }, "Showing ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, retrievedRecordNo), " out of ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, totalTransactions), " entries"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    size: size,
-    className: "mt-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Prev, {
-    disabled: disablePrev,
-    onClick: onPrevItem
-  }, withIcons ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faAngleDoubleLeft
-  }) : "Previous"), items, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Next, {
-    onClick: function onClick() {
-      return onNextItem(totalPages);
-    }
-  }, withIcons ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_5__.faAngleDoubleRight
-  }) : "Next"))))));
-};
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/iot/gateway-management/modal/AddEditModal.js":
-/*!************************************************************************************!*\
-  !*** ./resources/js/components/pages/iot/gateway-management/modal/AddEditModal.js ***!
-  \************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/FormControl.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var react_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-select */ "./node_modules/react-select/dist/react-select.esm.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-function AddEditModal(props) {
-  var matchType = props.isEdit ? props.typeOptions.filter(function (item) {
-    return item.value == props.selectedDevice.type;
-  })[0] : undefined;
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!props.isEdit ? null : {
-    value: props.selectedDevice.type,
-    label: matchType === undefined ? "Not Available" : matchType.label
-  }),
-      _useState2 = _slicedToArray(_useState, 2),
-      selectedFacility = _useState2[0],
-      setSelectedFacility = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!props.isEdit ? "" : props.selectedDevice.name),
-      _useState4 = _slicedToArray(_useState3, 2),
-      deviceName = _useState4[0],
-      setDeviceName = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!props.isEdit ? "" : props.selectedDevice.imei),
-      _useState6 = _slicedToArray(_useState5, 2),
-      imei = _useState6[0],
-      setImei = _useState6[1];
-
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(!props.isEdit ? "" : props.selectedDevice.remark),
-      _useState8 = _slicedToArray(_useState7, 2),
-      remark = _useState8[0],
-      setRemark = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState10 = _slicedToArray(_useState9, 2),
-      isError = _useState10[0],
-      setError = _useState10[1];
-
-  function updateDevice() {
-    if (selectedFacility == null || selectedFacility.value == null) {
-      setError(true);
-    } else if (deviceName === "" || imei === "") {
-      setError(true);
-    } else {
-      props.onSubmit(!props.isEdit ? null : props.selectedDevice.id, deviceName, imei, selectedFacility, remark);
-    }
-  }
-
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Gateway Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    defaultValue: deviceName,
-    name: "deviceName",
-    type: "text",
-    placeholder: "",
-    className: "key-input-value grey-border",
-    onChange: function onChange(e) {
-      return setDeviceName(e.target.value);
-    }
-  }), isError && deviceName === "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    style: {
-      color: "red"
-    }
-  }, "Please input the name of Gateway") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "IMEI")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    defaultValue: imei,
-    type: "text",
-    placeholder: "",
-    className: "key-input-value grey-border",
-    onChange: function onChange(e) {
-      return setImei(e.target.value);
-    },
-    disabled: !props.isEdit ? false : true
-  }), isError && imei === "" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    style: {
-      color: "red"
-    }
-  }, "Please input the IMEI of Gateway") : props.duplicated ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    style: {
-      color: "red"
-    }
-  }, "Exist a gateway with the same IMEI") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Type of facility")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_select__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    className: "facility-type-value grey-border",
-    defaultValue: selectedFacility,
-    onChange: setSelectedFacility,
-    options: props.typeOptions
-  }), isError && (selectedFacility == null || selectedFacility.value == null) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-    style: {
-      color: "red"
-    }
-  }, "Please select the type of facility") : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Remark")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    defaultValue: remark,
-    type: "text",
-    placeholder: "",
-    className: "key-input-value grey-border",
-    onChange: function onChange(e) {
-      return setRemark(e.target.value);
-    }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 9,
-    md: 9,
-    lg: 9,
-    xl: 9
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 2,
-    md: 2,
-    lg: 2,
-    xl: 2,
-    className: "align-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    type: "button",
-    onClick: function onClick() {
-      return updateDevice();
-    },
-    className: "btn-success search-btn"
-  }, props.isEdit ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faEdit
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faPlus
-  }), props.isEdit ? " Save" : " Add")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }))));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (AddEditModal);
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/iot/gateway-management/modal/DetailModal.js":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/pages/iot/gateway-management/modal/DetailModal.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Row.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Col.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var _DateParser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../DateParser */ "./resources/js/components/pages/iot/DateParser.js");
-
-
-
-
-function DetailModal(props) {
-  var matchType = props.typeOptions.filter(function (item) {
-    return item.value == props.selectedDevice.type;
-  })[0];
-  var createTime = (0,_DateParser__WEBPACK_IMPORTED_MODULE_1__.convertUTCToLocalString)(props.selectedDevice.created_at);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Gateway Name")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "detail-row"
-  }, " ", props.selectedDevice.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "IMEI ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "detail-row"
-  }, " ", props.selectedDevice.imei)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Type of facility")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "detail-row"
-  }, " ", matchType === undefined ? "Not Available" : matchType.label)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Created At")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "detail-row"
-  }, " ", createTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 4,
-    md: 4,
-    lg: 4,
-    xl: 4
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "facility-type-title"
-  }, "Remark")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 6,
-    md: 6,
-    lg: 6,
-    xl: 6
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
-    className: "detail-row"
-  }, " ", props.selectedDevice.remark)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: "mb-row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 9,
-    md: 9,
-    lg: 9,
-    xl: 9
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 2,
-    md: 2,
-    lg: 2,
-    xl: 2,
-    className: "align-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-    onClick: props.onClose,
-    className: "btn-secondary search-btn"
-  }, "Close")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-    xs: 1,
-    md: 1,
-    lg: 1,
-    xl: 1
-  }))));
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailModal);
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/iot/gateway-management/modal/RemoveModal.js":
-/*!***********************************************************************************!*\
-  !*** ./resources/js/components/pages/iot/gateway-management/modal/RemoveModal.js ***!
-  \***********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @themesberg/react-bootstrap */ "./node_modules/@themesberg/react-bootstrap/lib/esm/Button.js");
-/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
-/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-
-
-
-
-
 function RemoveModal(props) {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "mb-row w-100 text-right"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      showConfirmModal = _useState2[0],
+      setShowConfirmModal = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      matched = _useState4[0],
+      setMatched = _useState4[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mb-row w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
     onClick: function onClick() {
-      return props.onSubmit(props.selectedDevice.id);
+      return setShowConfirmModal(true);
     },
-    className: "btn-danger btn"
+    className: "btn-danger"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__.faTrashAlt
-  }), " Remove"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    onClick: function onClick() {
-      return props.onClose();
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faTrashAlt
+  }), " Remove")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement((react_modal__WEBPACK_IMPORTED_MODULE_2___default()), {
+    isOpen: showConfirmModal,
+    onRequestClose: function onRequestClose() {
+      return setShowConfirmModal(false);
     },
-    className: "btn-secondary btn"
-  }, "Cancel"))));
+    style: customStyles,
+    contentLabel: "Confirmation Modal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h4", {
+    className: "mb-4"
+  }, "Remove Device"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "mb-3"
+  }, "Are you sure you would like to permanently delete ", props.selectedDevice.name, "?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "mb-3"
+  }, "Deletion of the device will remove records related to that device only. Records must be deleted separately."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "mb-3"
+  }, "Confirm you want to permanently destroy this device by entering its name below."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", {
+    className: "fw-bold text-center py-3 text-center mb-2",
+    style: {
+      backgroundColor: "rgb(206 206 206)"
+    }
+  }, props.selectedDevice.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "w-100 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Enter the name of device",
+    onChange: function onChange(e) {
+      if (e.target.value === props.selectedDevice.name) {
+        setMatched(true);
+      }
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "mb-row w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onClick: function onClick() {
+      setShowConfirmModal(false);
+      props.onClose();
+    },
+    className: "btn-secondary me-2"
+  }, "Cancel"), matched ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    onClick: function onClick() {
+      props.onSubmit(props.selectedDevice.id);
+      setMatched(false);
+    },
+    className: "btn-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faTrashAlt
+  }), " Remove") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_themesberg_react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    disabled: true,
+    onClick: function onClick() {
+      props.onSubmit(props.selectedDevice.id);
+      setMatched(false);
+    },
+    className: "btn-danger"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+    icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__.faTrashAlt
+  }), " Remove"))));
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RemoveModal);

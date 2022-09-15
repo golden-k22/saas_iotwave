@@ -13,7 +13,6 @@ import {RestDataSource} from "../../../../service/RestDataSource";
 import ReactDOM from "react-dom";
 import '../../../scss/management-table-style.scss';
 import '../../../scss/volt.scss';
-import GatewayManager from "../gateway-management/GatewayManager";
 
 const customStyles = {
     content: {
@@ -332,7 +331,8 @@ const DeviceManager = (props) => {
                 style={customStyles}
                 contentLabel="Remove Modal"
             >
-                <h4 className="modal-title">Do you want to delete this device ?</h4>
+                <h4 className="mb-4">Remove Device</h4>
+                <p className="mb-3">This is irreversible. We will destroy your device and all associated data. All device data will be scrubbed and irretrievable.</p>
                 <RemoveModal onClose={closeRemoveModal} onSubmit={deleteDevice}
                              selectedDevice={selectedDevice}></RemoveModal>
             </Modal>
