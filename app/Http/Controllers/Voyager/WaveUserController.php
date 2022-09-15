@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use TCG\Voyager\Events\BreadDataAdded;
 use TCG\Voyager\Events\BreadDataDeleted;
 use TCG\Voyager\Facades\Voyager;
+use Wave\Plan;
 
 class WaveUserController extends VoyagerBaseController
 {
@@ -41,7 +42,22 @@ class WaveUserController extends VoyagerBaseController
             }
 
             // create new tenant
-            Tenant::create(['id' => $request->username]);
+            $tenant = Tenant::create(['id' => $request->username]);
+            // add role
+            $plan = Plan::where('role_id', $request->role_id)->first();
+            $tenant->gateway = 0;
+            $tenant->sensor = 0;
+            $tenant->email_sent = 0;
+            $tenant->email_total = 0;
+            $tenant->sms_sent = 0;
+            $tenant->sms_total = 0;
+            if($plan){
+                $tenant->email_total = $plan->sms;
+                $tenant->sms_total = $plan->email;
+                $tenant->gateway = $plan->gateway;
+                $tenant->sensor = $plan->sensor;
+            }
+            $tenant->save();
 
             return $redirect->with([
                 'message'    => __('voyager::generic.successfully_added_new')." {$dataType->getTranslatedAttribute('display_name_singular')}",

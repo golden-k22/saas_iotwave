@@ -19,3 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Wave::api();
+
+/*
+ * Tenant Routes
+ */
+// Get the max counts of sensors and gateways for the tenant

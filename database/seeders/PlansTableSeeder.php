@@ -72,7 +72,7 @@ class PlansTableSeeder extends Seeder
                 'role_id' => 4,
                 'default' => 0,
                 'price' => '12',
-                'trial_days' => 14,
+                'trial_days' => 0,
                 'created_at' => '2018-07-03 16:30:43',
                 'updated_at' => '2018-08-22 22:26:19',
             ),
