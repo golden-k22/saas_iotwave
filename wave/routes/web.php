@@ -28,7 +28,7 @@ Route::view('pricing', 'theme::pricing')->name('wave.pricing');
 /***** Billing Routes *****/
 Route::post('/billing/webhook', '\Wave\Http\Controllers\WebhookController@handleWebhook');
 Route::post('paddle/webhook', '\Wave\Http\Controllers\SubscriptionController@hook');
-Route::post('checkout', '\Wave\Http\Controllers\SubscriptionController@checkout')->name('checkout');
+Route::post('checkout', '\App\Http\Controllers\Tenancy\SubscriptionController@checkout')->name('checkout');
 
 Route::get('test', '\Wave\Http\Controllers\SubscriptionController@test');
 
@@ -56,13 +56,13 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('notification/read/{id}', '\Wave\Http\Controllers\NotificationController@delete')->name('wave.notification.read');
 
     /********** Checkout/Billing Routes ***********/
-    Route::post('cancel', '\Wave\Http\Controllers\SubscriptionController@cancel')->name('wave.cancel');
+    Route::post('cancel', '\App\Http\Controllers\Tenancy\SubscriptionController@cancel')->name('wave.cancel');
     Route::view('checkout/welcome', 'theme::welcome');
 
-    Route::post('subscribe', '\Wave\Http\Controllers\SubscriptionController@subscribe')->name('wave.subscribe');
+    Route::post('subscribe', '\App\Http\Controllers\Tenancy\SubscriptionController@subscribe')->name('wave.subscribe');
 	Route::view('trial_over', 'theme::trial_over')->name('wave.trial_over');
 	Route::view('cancelled', 'theme::cancelled')->name('wave.cancelled');
-    Route::post('switch-plans', '\Wave\Http\Controllers\SubscriptionController@switchPlans')->name('wave.switch-plans');
+    Route::post('switch-plans', '\App\Http\Controllers\Tenancy\SubscriptionController@switchPlans')->name('wave.switch-plans');
 });
 
 Route::group(['middleware' => 'admin.user'], function(){

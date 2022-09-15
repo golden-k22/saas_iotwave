@@ -21510,7 +21510,7 @@ var AlarmRecordManager = function AlarmRecordManager(props) {
       totalAlarms = _useState18[0],
       setTotalAlarms = _useState18[1];
 
-  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_4__.RestDataSource("http://10.99.4.30:8082", function (err) {
+  var dataSource = new _service_RestDataSource__WEBPACK_IMPORTED_MODULE_4__.RestDataSource("https://saas.iotim.tpitservice.com", function (err) {
     return console.log("Server connection failed.");
   });
   var alarmTypeOptions = [{

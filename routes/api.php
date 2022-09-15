@@ -18,9 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return auth()->user();
 });
 
-Wave::api();
-
 /*
  * Tenant Routes
  */
 // Get the max counts of sensors and gateways for the tenant
+Route::get('/subscription/plan', '\App\Http\Controllers\ApiController@getLimitation');
+// Get list of email addresses and phone numbers to push notifications
+Route::get('/notification/targets', '\App\Http\Controllers\ApiController@getNotificationTargets');
+//Update SMS/Mail notification counts so far for the current plan
+Route::put('/notification', '\App\Http\Controllers\ApiController@updateNoficationSentCount');
+
+Wave::api();

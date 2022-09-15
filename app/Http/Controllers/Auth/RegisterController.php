@@ -13,7 +13,7 @@ class RegisterController extends \Wave\Http\Controllers\Auth\RegisterController
      * Handle a registration request for the application.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function register(Request $request)
     {
@@ -56,7 +56,7 @@ class RegisterController extends \Wave\Http\Controllers\Auth\RegisterController
      * Complete a new user registration after they have purchased
      *
      * @param  Request  $request
-     * @return redirect
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function complete(Request $request){
 

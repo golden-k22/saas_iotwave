@@ -18,12 +18,12 @@ use TCG\Voyager\Models\Role;
 class SubscriptionController extends Controller
 {
 
-    private $paddle_checkout_url;
-    private $paddle_vendors_url;
+    protected $paddle_checkout_url;
+    protected $paddle_vendors_url;
     private $endpoint = 'https://vendors.paddle.com/api';
 
-    private $vendor_id;
-    private $vendor_auth_code;
+    protected $vendor_id;
+    protected $vendor_auth_code;
 
     public function __construct(){
         $this->vendor_auth_code = config('wave.paddle.auth_code');
