@@ -41,6 +41,7 @@ export class RestDataSource {
             // console.log(response.status);
             callback(response.data);
         } catch (err) {
+            callback(err);
             this.handleError("Operation Failed: Network Error");
         }
         // Axios.request({

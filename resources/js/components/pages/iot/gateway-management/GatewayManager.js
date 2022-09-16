@@ -13,6 +13,7 @@ import ReactDOM from "react-dom";
 import {RestDataSource} from "../../../../service/RestDataSource";
 import '../../../scss/management-table-style.scss';
 import '../../../scss/volt.scss';
+import {Toast} from "primereact/toast";
 
 const customStyles = {
     content: {
@@ -45,6 +46,7 @@ const GatewayManager = (props) => {
     const [totalDevices, setTotalDevices] = useState(0);
     const dataSource = new RestDataSource(process.env.MIX_IOT_APP_URL, (err) => console.log("Server connection failed."));
     const [duplicated, setDuplicated] = useState(false);
+    const toastRef = React.createRef();
 
     useEffect(() => {
         dataSource.GetRequest("/iot-service/v1/gateways/types",
@@ -163,6 +165,12 @@ const GatewayManager = (props) => {
         };
         dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/gateways",
             data => {
+                if(data.isAxiosError){
+                    toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                    closeModal()
+                    return;
+                }
+
                 let updatedList = [...deviceList];
                 let isExist = updatedList.filter((gateway) => {
                     return gateway.imei == data.imei;
@@ -228,6 +236,7 @@ const GatewayManager = (props) => {
 
     return (
         <div className="device-manage-container">
+            <Toast ref={toastRef} position="bottom-right"/>
             <Row className='top-section'>
                 <span className="section-title mb-row">Gateway Management</span>
             </Row>

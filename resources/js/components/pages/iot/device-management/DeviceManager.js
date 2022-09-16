@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, createRef} from 'react';
 import {DeviceTable} from "./DeviceTable";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch, faPlus} from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,7 @@ import {RestDataSource} from "../../../../service/RestDataSource";
 import ReactDOM from "react-dom";
 import '../../../scss/management-table-style.scss';
 import '../../../scss/volt.scss';
+import {Toast} from "primereact/toast";
 
 const customStyles = {
     content: {
@@ -34,6 +35,7 @@ if (document.getElementById('device-dashboard')) {
 
 
 const DeviceManager = (props) => {
+    const toastRef = createRef();
     const [pageNumber, setPageNumber] = useState(1);
     const [pageSize, setPageSize] = useState(15);
     const [groupOptions, setGroupOptions] = useState([]);
@@ -47,6 +49,8 @@ const DeviceManager = (props) => {
     const [selectedDevice, setSelectedDevice] = useState(null);
     const [totalDevices, setTotalDevices] = useState(0);
     const dataSource = new RestDataSource(process.env.MIX_IOT_APP_URL, (err) => console.log("Server connection failed."));
+
+
     useEffect(() => {
         dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/groups",
             groups => {
@@ -193,8 +197,6 @@ const DeviceManager = (props) => {
 
 
     function addDevice(id, deviceName, imei, selectedFacility, selectedGroup, devicePassword, dataInterval, remark) {
-
-        setIsOpen(false);
         let request_data = {
             name: deviceName,
             serialNo: imei,
@@ -206,13 +208,22 @@ const DeviceManager = (props) => {
         };
         dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/devices",
             data => {
+                if(data.isAxiosError){
+                    toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                    closeModal()
+                    return;
+                }
+
                 let updatedList = [...deviceList];
                 updatedList.push(data);
                 setDeviceList(updatedList);
+
                 dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices/counts",
                     count => {
                         setTotalDevices(count.count);
                     });
+
+                closeModal()
             }, request_data);
     }
 
@@ -267,6 +278,7 @@ const DeviceManager = (props) => {
 
     return (
         <div className="device-manage-container">
+            <Toast ref={toastRef} position="bottom-right"/>
             <Row className='top-section'>
                 <span className="section-title mb-row">Device Management</span>
             </Row>

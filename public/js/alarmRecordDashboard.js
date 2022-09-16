@@ -22105,15 +22105,16 @@ var RestDataSource = /*#__PURE__*/function () {
                 response = _context5.sent;
                 // console.log(response.status);
                 callback(response.data);
-                _context5.next = 10;
+                _context5.next = 11;
                 break;
 
               case 7:
                 _context5.prev = 7;
                 _context5.t0 = _context5["catch"](0);
+                callback(_context5.t0);
                 this.handleError("Operation Failed: Network Error");
 
-              case 10:
+              case 11:
               case "end":
                 return _context5.stop();
             }

@@ -49,6 +49,8 @@ function RemoveModal(props) {
                            onChange={(e) => {
                                if (e.target.value === props.selectedDevice.name) {
                                    setMatched(true);
+                               } else {
+                                   setMatched(false);
                                }
                            }}/>
                 </div>
