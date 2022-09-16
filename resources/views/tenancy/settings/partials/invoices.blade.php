@@ -2,7 +2,7 @@
 
 	@subscriber
         @php
-            $subscription = new \Wave\Http\Controllers\SubscriptionController;
+            $subscription = new \App\Http\Controllers\Tenancy\SubscriptionController();
             $invoices = $subscription->invoices( auth()->user() );
         @endphp
 

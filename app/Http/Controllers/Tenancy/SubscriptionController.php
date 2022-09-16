@@ -95,6 +95,9 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
                     // update tenant
                     $tenant = Tenant::find($user->username);
+                    if(!$tenant){
+                        $tenant = Tenant::create(['id' => $user->username]);
+                    }
                     // add role
                     $plan = Plan::where('role_id', $user->role_id)->first();
                     $tenant->email_sent = 0;

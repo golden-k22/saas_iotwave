@@ -81,7 +81,11 @@ class RegisterController extends \Wave\Http\Controllers\Auth\RegisterController
         $user->save();
 
         // create tenant
-        $tenant = Tenant::create(['id' => $user->username]);
+        $tenant = Tenant::find($user->username);
+        if(!$tenant){
+            $tenant = Tenant::create(['id' => $user->username]);
+        }
+
         // add role
         $plan = Plan::where('role_id', $user->role_id)->first();
         $tenant->email_sent = 0;
