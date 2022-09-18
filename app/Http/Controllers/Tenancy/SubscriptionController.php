@@ -157,7 +157,9 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                 'vendor_id' => $this->vendor_id,
                 'vendor_auth_code' => $this->vendor_auth_code,
                 'subscription_id' => auth()->user()->subscription->subscription_id,
-                'plan_id' => $request->plan_id
+                'plan_id' => $request->plan_id,
+                'bill_immediately' => true,
+                'prorate' => true
             ]);
 
             // Next, update the user role associated with the updated plan
