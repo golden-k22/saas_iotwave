@@ -13,6 +13,33 @@ use Wave\User;
 
 class SubscriptionController extends \Wave\Http\Controllers\SubscriptionController
 {
+    /**
+     * @param $plan
+     * @param \App\User $user
+     * @param $tenant
+     * @return void
+     */
+    public function addAssociatedRoleToUser($plan, \App\User $user, $tenant)
+    {
+        $user->role_id = $plan->role_id;
+        $user->save();
+
+        // add role
+        $tenant->email_sent = 0;
+        $tenant->email_total = 0;
+        $tenant->sms_sent = 0;
+        $tenant->sms_total = 0;
+        $tenant->gateway = 0;
+        $tenant->sensor = 0;
+        if ($plan) {
+            $tenant->email_total = $plan->sms;
+            $tenant->sms_total = $plan->email;
+            $tenant->gateway = $plan->gateway;
+            $tenant->sensor = $plan->sensor;
+        }
+        $tenant->save();
+    }
+
     private function cancelSubscription($subscription_id){
         $subscription = PaddleSubscription::where('subscription_id', $subscription_id)->first();
         $subscription->status = 'cancelled';
@@ -67,7 +94,7 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
                     $subscriptionData = json_decode($subscriptionUser->body());
                     $subscription = $subscriptionData->response[0];
-
+                    $plan = Plan::where('plan_id', $subscription->plan_id)->first();
                     if(auth()->guest()){
 
                         // create a new user
@@ -81,38 +108,24 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
                         $user = $registration->create($user_data);
 
+                        // create tenant
+                        $tenant = Tenant::create(['id' => $user->username]);
+
+                        // add associated role to user
+                        $this->addAssociatedRoleToUser($plan, $user, $tenant);
+
+                        // log in
                         Auth::login($user);
 
                     } else {
                         $user = auth()->user();
-                    }
 
-                    $plan = Plan::where('plan_id', $subscription->plan_id)->first();
+                        // update tenant
+                        $tenant = Tenant::find($user->username);
 
-                    // add associated role to user
-                    $user->role_id = $plan->role_id;
-                    $user->save();
-
-                    // update tenant
-                    $tenant = Tenant::find($user->username);
-                    if(!$tenant){
-                        $tenant = Tenant::create(['id' => $user->username]);
+                        // add associated role to user
+                        $this->addAssociatedRoleToUser($plan, $user, $tenant);
                     }
-                    // add role
-                    $plan = Plan::where('role_id', $user->role_id)->first();
-                    $tenant->email_sent = 0;
-                    $tenant->email_total = 0;
-                    $tenant->sms_sent = 0;
-                    $tenant->sms_total = 0;
-                    $tenant->gateway = 0;
-                    $tenant->sensor = 0;
-                    if($plan){
-                        $tenant->email_total = $plan->sms;
-                        $tenant->sms_total = $plan->email;
-                        $tenant->gateway = $plan->gateway;
-                        $tenant->sensor = $plan->sensor;
-                    }
-                    $tenant->save();
 
                     $subscription = PaddleSubscription::create([
                         'subscription_id' => $order->subscription_id,
@@ -191,6 +204,25 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
         return back()->with(['message' => 'Sorry, there was an issue updating your plan.', 'message_type' => 'danger']);
 
+
+    }
+
+    public function invoices(User $user){
+
+        $invoices = [];
+
+        if(isset($user->subscription->subscription_id)){
+            $response = Http::post($this->paddle_vendors_url . '/2.0/subscription/payments', [
+                'vendor_id' => $this->vendor_id,
+                'vendor_auth_code' => $this->vendor_auth_code,
+                'subscription_id' => $user->subscription->subscription_id,
+                'is_paid' => 1
+            ]);
+
+            $invoices = json_decode($response->body());
+        }
+
+        return $invoices;
 
     }
 }

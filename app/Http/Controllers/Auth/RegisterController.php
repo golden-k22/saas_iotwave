@@ -77,30 +77,8 @@ class RegisterController extends \Wave\Http\Controllers\Auth\RegisterController
         $user = auth()->user();
         $user->name = $request->name;
         $user->username = $request->username;
-        $user->password = bcrypt(config('default_password'));
+        $user->password = bcrypt(config('app.default_password'));
         $user->save();
-
-        // create tenant
-        $tenant = Tenant::find($user->username);
-        if(!$tenant){
-            $tenant = Tenant::create(['id' => $user->username]);
-        }
-
-        // add role
-        $plan = Plan::where('role_id', $user->role_id)->first();
-        $tenant->email_sent = 0;
-        $tenant->email_total = 0;
-        $tenant->sms_sent = 0;
-        $tenant->sms_total = 0;
-        $tenant->gateway = 0;
-        $tenant->sensor = 0;
-        if($plan){
-            $tenant->email_total = $plan->sms;
-            $tenant->sms_total = $plan->email;
-            $tenant->gateway = $plan->gateway;
-            $tenant->sensor = $plan->sensor;
-        }
-        $tenant->save();
 
         return redirect()->route('tenancy.dashboard', $user->username)->with(['message' => 'Successfully updated your profile information.', 'message_type' => 'success']);
     }
