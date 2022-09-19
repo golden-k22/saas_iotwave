@@ -57,7 +57,7 @@
         @yield('content')
     </main>
 
-
+    @include('theme::partials.toast')
 
     @include('theme::partials.footer')
 
@@ -75,8 +75,6 @@
     </div>
     <!-- End Full Loader -->
 
-
-    @include('theme::partials.toast')
     @if(session('message'))
         <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
     @endif

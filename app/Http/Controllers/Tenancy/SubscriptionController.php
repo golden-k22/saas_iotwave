@@ -85,7 +85,6 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                 $plans = Plan::all();
 
                 if($order->is_subscription && $plans->contains('plan_id', $order->product_id) ){
-
                     $subscriptionUser = Http::post($this->paddle_vendors_url . '/2.0/subscription/users', [
                         'vendor_id' => $this->vendor_id,
                         'vendor_auth_code' => $this->vendor_auth_code,
@@ -96,7 +95,6 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                     $subscription = $subscriptionData->response[0];
                     $plan = Plan::where('plan_id', $subscription->plan_id)->first();
                     if(auth()->guest()){
-
                         // create a new user
                         $registration = new \Wave\Http\Controllers\Auth\RegisterController;
 
@@ -156,6 +154,18 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
             'status' => $status,
             'message' => $message,
             'guest' => $guest
+        ]);
+    }
+
+    public function CheckoutForNotifications(Request $request){
+        //PaddleSubscriptions
+        $response = Http::get($this->paddle_checkout_url . '/1.0/order?checkout_id=' . $request->checkout_id);
+        $status = 0;
+        $message = '';
+
+        return response()->json([
+            'status' => $status,
+            'message' => $message
         ]);
     }
 

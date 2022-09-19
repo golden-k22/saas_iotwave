@@ -57,6 +57,7 @@
         </div>
     </main>
 
+    @include('tenancy.partials.toast')
 
     @include('theme::partials.footer')
 
@@ -70,8 +71,6 @@
     </div>
     <!-- End Full Loader -->
 
-
-    @include('tenancy.partials.toast')
     @if(session('message'))
         <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
     @endif
