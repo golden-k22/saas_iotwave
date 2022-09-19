@@ -157,7 +157,7 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         ]);
     }
 
-    public function CheckoutForNotifications(Request $request){
+    public function alternativeCheckout(Request $request){
         //PaddleSubscriptions
         $response = Http::get($this->paddle_checkout_url . '/1.0/order?checkout_id=' . $request->checkout_id);
         $status = 0;

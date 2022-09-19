@@ -76,7 +76,11 @@
     <!-- End Full Loader -->
 
     @if(session('message'))
-        <script>setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);</script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function(event) {
+                setTimeout(function(){ popToast("{{ session('message_type') }}", "{{ session('message') }}"); }, 10);
+            });
+        </script>
     @endif
     @waveCheckout
 
