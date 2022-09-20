@@ -195,8 +195,8 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
                     // update tenant
                     $tenant = Tenant::find($user->username);
-                    $tenant->email_total = $tenant->email_total + 1000;
-                    $tenant->sms_total = $tenant->email_total + 1000;
+                    $tenant->email_total = $tenant->email_total + 2000;
+                    $tenant->sms_total = $tenant->email_total + 2000;
                     $status = 1;
                 } else {
                     $message = 'Error locating that product id. Please contact us if you think this is incorrect.';

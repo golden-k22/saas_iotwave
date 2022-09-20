@@ -20,3 +20,6 @@ Route::post('/{datatype}', '\Wave\Http\Controllers\API\ApiController@add');
 
 // DELETE
 Route::delete('/{datatype}/{id}', '\Wave\Http\Controllers\API\ApiController@delete');
+
+// Web hook for paddle
+Route::post('/paddle/webhook', '\App\Http\Controllers\Tenancy\SubscriptionController@webhook');

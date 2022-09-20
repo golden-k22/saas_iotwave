@@ -24,7 +24,7 @@ return [
         'vendor' => env('PADDLE_VENDOR_ID', ''),
         'auth_code' => env('PADDLE_VENDOR_AUTH_CODE', ''),
         'env' => env('PADDLE_ENV', 'sandbox'),
-        'alt_product_id' => env('PADDLE_ALT_PRODUCT_ID', '')
+        'sms_product_id' => env('PADDLE_SMS_PRODUCT_ID', '')
     ]
 
 ];

@@ -41,7 +41,7 @@
 
     function checkoutSMS(){
         if(vendor_id){
-            let product = parseInt('{{ config("wave.paddle.alt_product_id") }}');
+            let product = parseInt('{{ config("wave.paddle.sms_product_id") }}');
             Paddle.Checkout.open({
                 product: product,
                 email: '@if(!auth()->guest()){{ auth()->user()->email }}@endif',
