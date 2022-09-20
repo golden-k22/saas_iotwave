@@ -39,6 +39,35 @@
         }
     }
 
+    function checkoutSMS(){
+        if(vendor_id){
+            let product = parseInt('{{ config("wave.paddle.alt_product_id") }}');
+            Paddle.Checkout.open({
+                product: product,
+                email: '@if(!auth()->guest()){{ auth()->user()->email }}@endif',
+                successCallback: "smsCheckoutComplete",
+            });
+        } else {
+            alert('Paddle Vendor ID is not set, please see the docs and learn how to setup billing.');
+        }
+    }
+
+    window.smsCheckoutComplete = function(data) {
+        var checkoutId = data.checkout.id;
+
+        Paddle.Order.details(checkoutId, function(data) {
+            // Order data, downloads, receipts etc... available within 'data' variable.
+            document.getElementById('fullscreenLoaderMessage').innerText = 'Finishing Up Your Order';
+            document.getElementById('fullscreenLoader').classList.remove('hidden');
+            axios.post('/buy-sms', { _token: csrf, checkout_id: data.checkout.checkout_id })
+                .then(function (response) {
+                    if(parseInt(response.data.status) == 1){
+                        popToast('success' ,response.data.message)
+                    }
+                });
+        });
+    }
+
     function waveUpdate(){
         Paddle.Checkout.open({
             override: this.dataset.url,

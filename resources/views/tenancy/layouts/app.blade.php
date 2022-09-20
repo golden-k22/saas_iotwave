@@ -79,8 +79,5 @@
         </script>
     @endif
     @waveCheckout
-
-    {{-- Notifications --}}
-    <script src={{asset('js/notification.js')}}></script>
 </body>
 </html>

@@ -13,6 +13,27 @@ use Wave\User;
 
 class SubscriptionController extends \Wave\Http\Controllers\SubscriptionController
 {
+    public function webhook(Request $request){
+
+        // Which alert/event is this request for?
+        $alert_name = $request->alert_name;
+        $subscription_id = $request->subscription_id;
+        $status = $request->status;
+
+        // Respond appropriately to this request.
+        switch($alert_name) {
+            case 'subscription_payment_failed':
+            case 'subscription_cancelled':
+                $this->cancelSubscription($subscription_id);
+                return response()->json(['status' => 1]);
+            case 'payment_succeeded':
+                // $this->smsCheckout($request);
+                return response()->json(['status' => 1]);
+            default:
+                break;
+        }
+    }
+
     /**
      * @param $plan
      * @param \App\User $user
@@ -157,11 +178,36 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         ]);
     }
 
-    public function alternativeCheckout(Request $request){
-        //PaddleSubscriptions
+    public function smsCheckout(Request $request){
+        //Paddle checkout
         $response = Http::get($this->paddle_checkout_url . '/1.0/order?checkout_id=' . $request->checkout_id);
         $status = 0;
         $message = '';
+
+        if( $response->successful() ){
+            $resBody = json_decode($response->body());
+
+            if(isset($resBody->order)){
+                $order = $resBody->order;
+
+                if(!$order->is_subscription){
+                    $user = auth()->user();
+
+                    // update tenant
+                    $tenant = Tenant::find($user->username);
+                    $tenant->email_total = $tenant->email_total + 1000;
+                    $tenant->sms_total = $tenant->email_total + 1000;
+                    $status = 1;
+                } else {
+                    $message = 'Error locating that product id. Please contact us if you think this is incorrect.';
+                }
+            } else {
+                $message = 'Error locating that order. Please contact us if you think this is incorrect.';
+            }
+
+        } else {
+            $message = $response->serverError();
+        }
 
         return response()->json([
             'status' => $status,

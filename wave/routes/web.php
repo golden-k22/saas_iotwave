@@ -27,7 +27,7 @@ Route::view('pricing', 'theme::pricing')->name('wave.pricing');
 
 /***** Billing Routes *****/
 Route::post('/billing/webhook', '\Wave\Http\Controllers\WebhookController@handleWebhook');
-Route::post('paddle/webhook', '\Wave\Http\Controllers\SubscriptionController@hook');
+Route::post('paddle/webhook', '\App\Http\Controllers\Tenancy\SubscriptionController@webhook');
 Route::post('checkout', '\App\Http\Controllers\Tenancy\SubscriptionController@checkout')->name('checkout');
 
 Route::get('test', '\Wave\Http\Controllers\SubscriptionController@test');
@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::view('trial_over', 'theme::trial_over')->name('wave.trial_over');
 	Route::view('cancelled', 'theme::cancelled')->name('wave.cancelled');
     Route::post('switch-plans', '\App\Http\Controllers\Tenancy\SubscriptionController@switchPlans')->name('wave.switch-plans');
+    Route::post('buy-sms', '\App\Http\Controllers\Tenancy\SubscriptionController@smsCheckout')->name('wave.buy-sms');
 });
 
 Route::group(['middleware' => 'admin.user'], function(){

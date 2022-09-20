@@ -58,7 +58,11 @@
             </div>
         @endif
 
-        @include('theme::partials.notifications')
+        @if( auth()->user()->hasRole('admin') )
+            @include('theme::partials.notifications')
+        @else
+            @include('tenancy.partials.notifications')
+        @endif
 
         <!-- Profile dropdown -->
         <div @click.away="open = false" class="relative flex items-center h-full ml-3" x-data="{ open: false }">
