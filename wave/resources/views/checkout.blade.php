@@ -11,7 +11,7 @@
     let checkoutBtns = document.getElementsByClassName("checkout");
     for( var i=0; i < checkoutBtns.length; i++ ){
         checkoutBtns[i].addEventListener('click', function(){
-            waveCheckout(this.dataset.plan)
+            waveCheckout(this.dataset.plan, 'checkoutComplete')
         }, false);
     }
 
@@ -26,26 +26,13 @@
     }
 
 
-    function waveCheckout(plan_id) {
+    function waveCheckout(plan_id, callback) {
         if(vendor_id){
             let product = parseInt(plan_id);
             Paddle.Checkout.open({
                 product: product,
                 email: '@if(!auth()->guest()){{ auth()->user()->email }}@endif',
-                successCallback: "checkoutComplete",
-            });
-        } else {
-            alert('Paddle Vendor ID is not set, please see the docs and learn how to setup billing.');
-        }
-    }
-
-    function checkoutSMS(){
-        if(vendor_id){
-            let product = parseInt('{{ config("wave.paddle.sms_product_id") }}');
-            Paddle.Checkout.open({
-                product: product,
-                email: '@if(!auth()->guest()){{ auth()->user()->email }}@endif',
-                successCallback: "smsCheckoutComplete",
+                successCallback: callback,
             });
         } else {
             alert('Paddle Vendor ID is not set, please see the docs and learn how to setup billing.');

@@ -92,9 +92,9 @@
                     </div>
                 </div>
                 <div class="col relative mt-3">
-                    <div onclick="checkoutSMS()"
+                    <div onclick="waveCheckout('{{ config("wave.paddle.sms_product_id") }}', 'smsCheckoutComplete')"
                          class="inline-flex items-center justify-center w-full px-4 py-4 text-base font-semibold text-white transition duration-150 ease-in-out bg-gradient-to-r from-wave-600 to-indigo-500 hover:from-wave-500 hover:to-indigo-400 border border-transparent cursor-pointer checkout focus:outline-none disabled:opacity-25">
-                        Get Started
+                        Try It Now!
                     </div>
                 </div>
             </div>
