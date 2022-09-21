@@ -30,7 +30,7 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                 // $this->smsCheckout($request);
                 return response()->json(['status' => 1]);
             default:
-                break;
+                return response()->json(['status' => 1]);
         }
     }
 
@@ -279,6 +279,16 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         }
 
         return $invoices;
+    }
 
+    public function productInvoices($product_id){
+        $response = Http::post($this->paddle_vendors_url . '/2.0/product/'.$product_id.'/transactions', [
+            'vendor_id' => $this->vendor_id,
+            'vendor_auth_code' => $this->vendor_auth_code,
+            'is_paid' => 1
+        ]);
+        $invoices = [];
+        $invoices = json_decode($response->body());
+        return $invoices;
     }
 }
