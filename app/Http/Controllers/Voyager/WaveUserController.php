@@ -96,6 +96,9 @@ class WaveUserController extends VoyagerBaseController
 
         $data = $query->findOrFail($id);
 
+        // old plan
+        $old_plan = Plan::where('role_id', $data->role_id)->first();
+
         // Check permission
         $this->authorize('edit', $data);
 
@@ -116,29 +119,36 @@ class WaveUserController extends VoyagerBaseController
 
         event(new BreadDataUpdated($dataType, $data));
 
+        // Update tenant
+        $tenant = Tenant::find($request->username);
+        // add role
+        $plan = Plan::where('role_id', $request->role_id)->first();
+        $tenant->email_sent = 0;
+        $tenant->sms_sent = 0;
+        $tenant->gateway = 0;
+        $tenant->sensor = 0;
+
+        if($plan){
+            if($old_plan){
+                $tenant->email_total = $tenant->email_total - $old_plan->email + $plan->email;
+                $tenant->sms_total = $tenant->sms_total - $old_plan->sms + $plan->sms;
+            } else {
+                $tenant->email_total = $plan->email;
+                $tenant->sms_total = $plan->sms;
+            }
+            $tenant->gateway = $plan->gateway;
+            $tenant->sensor = $plan->sensor;
+        }else {
+            $tenant->email_total = 0;
+            $tenant->sms_total = 0;
+        }
+        $tenant->save();
+
         if (auth()->user()->can('browse', app($dataType->model_name))) {
             $redirect = redirect()->route("voyager.{$dataType->slug}.index");
         } else {
             $redirect = redirect()->back();
         }
-
-        // create new tenant
-        $tenant = Tenant::find($request->username);
-        // add role
-        $plan = Plan::where('role_id', $request->role_id)->first();
-        $tenant->gateway = 0;
-        $tenant->sensor = 0;
-        $tenant->email_sent = 0;
-        $tenant->email_total = 0;
-        $tenant->sms_sent = 0;
-        $tenant->sms_total = 0;
-        if($plan){
-            $tenant->email_total = $plan->sms;
-            $tenant->sms_total = $plan->email;
-            $tenant->gateway = $plan->gateway;
-            $tenant->sensor = $plan->sensor;
-        }
-        $tenant->save();
 
         return $redirect->with([
             'message'    => __('voyager::generic.successfully_updated')." {$dataType->getTranslatedAttribute('display_name_singular')}",

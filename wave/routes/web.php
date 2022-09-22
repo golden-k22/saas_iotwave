@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::post('notification/read/{id}', '\Wave\Http\Controllers\NotificationController@delete')->name('wave.notification.read');
 
     /********** Checkout/Billing Routes ***********/
-    Route::post('cancel', '\App\Http\Controllers\Tenancy\SubscriptionController@cancel')->name('wave.cancel');
+    Route::post('cancel', '\App\Http\Controllers\Tenancy\SubscriptionController@cancelSubscription')->name('wave.cancel');
     Route::view('checkout/welcome', 'theme::welcome');
 
     Route::post('subscribe', '\App\Http\Controllers\Tenancy\SubscriptionController@subscribe')->name('wave.subscribe');

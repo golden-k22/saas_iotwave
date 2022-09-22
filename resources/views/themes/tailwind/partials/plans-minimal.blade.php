@@ -82,13 +82,13 @@
             <div class="row">
                 <div class="col">
                     <div class="pt-2 text-sm font-bold text-gray-500">
-                        Price: <span class="ml-2 font-mono text-green-500">$1000</span>
+                        Price: <span class="ml-2 font-mono text-green-500">${{ config("wave.paddle.sms_product_price") }}</span>
                     </div>
                     <div class="pt-2 text-sm font-bold text-gray-500">
-                        Email: <span class="ml-2 font-mono text-green-500">2000</span>
+                        Email: <span class="ml-2 font-mono text-green-500">{{ config("wave.paddle.sms_product_email_count") }}</span>
                     </div>
                     <div class="pt-2 text-sm font-bold text-gray-500">
-                        SMS: <span class="ml-2 font-mono text-green-500">2000</span>
+                        SMS: <span class="ml-2 font-mono text-green-500">{{ config("wave.paddle.sms_product_sms_count") }}</span>
                     </div>
                 </div>
                 <div class="col relative mt-3">

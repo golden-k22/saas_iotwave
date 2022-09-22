@@ -164,6 +164,10 @@ class MqttClient extends Component {
     getLastNotifications(limitNo) {
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms/records?limit=" + limitNo,
             data => {
+                if(data.isAxiosError){
+                    return;
+                }
+
                 if (data.length > 0 && this.state.notifications.length > 0 && (data[0].created_at !== this.state.notifications[0].created_at)) {
                     if (data[0].alarm_item <= 1) {
                         this.playAudio(this.urgentAudio);
@@ -193,13 +197,12 @@ class MqttClient extends Component {
     }
 
     changeTitle(count) {
-        if (count !== 0) {
+        if (typeof count !== 'undefined' && count !== 0) {
             document.title = '(' + count + ') ' + this.title;
         }else {
             document.title = this.title;
         }
     }
-
 
     readNotification() {
         window.location.href = '/' + this.props.tenant + '/alarm/record';
@@ -209,6 +212,9 @@ class MqttClient extends Component {
 export default MqttClient;
 
 if (document.getElementById('notification-list')) {
-    let tenant = document.documentURI.split("/")[3];
+    let tenant = document.getElementById("notification-list").dataset.tenant;
+    if (!tenant){
+        tenant = document.getElementById("notification-list").dataset.user;
+    }
     ReactDOM.render(<MqttClient tenant={tenant}/>, document.getElementById('notification-list'));
 }

@@ -22,15 +22,17 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
         // Respond appropriately to this request.
         switch($alert_name) {
-            case 'subscription_payment_failed':
             case 'subscription_cancelled':
                 $this->cancelSubscription($subscription_id);
-                return response()->json(['status' => 1]);
+                return response('Your subscription plan has been cancelled successfully.', 200);
             case 'payment_succeeded':
-                // $this->smsCheckout($request);
-                return response()->json(['status' => 1]);
+                return response('Thanks for purchasing it', 200);
+            case 'subscription_updated':
+                return response('Your subscription plan has been updated successfully.', 200);
+            case 'subscription_payment_succeeded':
+                return response('Thanks to choose the subscription plan', 200);
             default:
-                return response()->json(['status' => 1]);
+                return response('Sorry, there is a problem to process the payment.', 400);
         }
     }
 
@@ -53,8 +55,8 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         $tenant->gateway = 0;
         $tenant->sensor = 0;
         if ($plan) {
-            $tenant->email_total = $plan->sms;
-            $tenant->sms_total = $plan->email;
+            $tenant->email_total = $plan->email;
+            $tenant->sms_total = $plan->sms;
             $tenant->gateway = $plan->gateway;
             $tenant->sensor = $plan->sensor;
         }
@@ -66,6 +68,7 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         $subscription->status = 'cancelled';
         $subscription->save();
         $user = User::find( $subscription->user_id );
+        $old_plan = Plan::where('role_id', $user->role_id)->first();
         $cancelledRole = Role::where('name', '=', 'cancelled')->first();
         $user->role_id = $cancelledRole->id;
         $user->save();
@@ -75,16 +78,17 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         // add role
         $plan = Plan::where('role_id', $user->role_id)->first();
         $tenant->email_sent = 0;
-        $tenant->email_total = 0;
         $tenant->sms_sent = 0;
-        $tenant->sms_total = 0;
         $tenant->gateway = 0;
         $tenant->sensor = 0;
-        if($plan){
-            $tenant->email_total = $plan->sms;
-            $tenant->sms_total = $plan->email;
+        if($plan && $old_plan){
+            $tenant->email_total = $tenant->email_total - $old_plan->email + $plan->email;
+            $tenant->sms_total = $tenant->sms_total - $old_plan->sms + $plan->sms;
             $tenant->gateway = $plan->gateway;
             $tenant->sensor = $plan->sensor;
+        } else {
+            $tenant->email_total = 0;
+            $tenant->sms_total = 0;
         }
         $tenant->save();
     }
@@ -195,8 +199,8 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
 
                     // update tenant
                     $tenant = Tenant::find($user->username);
-                    $tenant->email_total = $tenant->email_total + 2000;
-                    $tenant->sms_total = $tenant->email_total + 2000;
+                    $tenant->email_total = $tenant->email_total + config("wave.paddle.sms_product_email_count");
+                    $tenant->sms_total = $tenant->sms_total + config("wave.paddle.sms_product_sms_count");
                     $status = 1;
                 } else {
                     $message = 'Error locating that product id. Please contact us if you think this is incorrect.';
@@ -231,6 +235,9 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                 'prorate' => true
             ]);
 
+            // old plan
+            $old_plan = Plan::where('role_id', auth()->user()->role_id)->first();
+
             // Next, update the user role associated with the updated plan
             auth()->user()->role_id = $plan->role_id;
             auth()->user()->save();
@@ -239,14 +246,10 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
             $tenant = Tenant::find(auth()->user()->username);
             // add role
             $tenant->email_sent = 0;
-            $tenant->email_total = 0;
             $tenant->sms_sent = 0;
-            $tenant->sms_total = 0;
-            $tenant->gateway = 0;
-            $tenant->sensor = 0;
-            if($plan){
-                $tenant->email_total = $plan->sms;
-                $tenant->sms_total = $plan->email;
+            if($plan && $old_plan){
+                $tenant->email_total = $tenant->email_total - $old_plan->email + $plan->email;
+                $tenant->sms_total = $tenant->sms_total - $old_plan->sms + $plan->sms;
                 $tenant->gateway = $plan->gateway;
                 $tenant->sensor = $plan->sensor;
             }
@@ -259,14 +262,10 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
         }
 
         return back()->with(['message' => 'Sorry, there was an issue updating your plan.', 'message_type' => 'danger']);
-
-
     }
 
     public function invoices(User $user){
-
         $invoices = [];
-
         if(isset($user->subscription->subscription_id)){
             $response = Http::post($this->paddle_vendors_url . '/2.0/subscription/payments', [
                 'vendor_id' => $this->vendor_id,
@@ -274,7 +273,6 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                 'subscription_id' => $user->subscription->subscription_id,
                 'is_paid' => 1
             ]);
-
             $invoices = json_decode($response->body());
         }
 
