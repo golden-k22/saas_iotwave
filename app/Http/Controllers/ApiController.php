@@ -89,7 +89,7 @@ class ApiController extends Controller
         // not set notification type
         if(!isset($request->type)){
             return response()->json([
-                'message' => 'Invalid notification type'
+                'message' => 'Invalid notification type: not found type request'
             ], 400);
         }
         // found tenant
@@ -100,7 +100,7 @@ class ApiController extends Controller
                 return response()->json([], 200);
             } else {
                 return response()->json([
-                    'message' => 'Invalid notification type'
+                    'message' => 'Invalid notification type: '.$request->type
                 ], 400);
             }
         } else {
