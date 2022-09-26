@@ -85,27 +85,27 @@ class ApiController extends Controller
      * @return JsonResponse
      */
     public function updateNoficationSentCount(Request $request){
-        $tenant = Tenant::find($request->tenant);
+        $tenant = Tenant::find($request->query('tenant'));
         // not set notification type
-        if(!isset($request->type)){
+        if($request->query('type') == null){
             return response()->json([
-                'message' => 'Invalid notification type: not found type request - '.$request
+                'message' => 'Invalid notification type: '.$request->query('type')
             ], 400);
         }
         // found tenant
         if ($tenant){
-            if ($request->type == 0 || $request->type == 1){
-                $request->type == 0 ? $tenant->email_sent = $tenant->email_sent + 1 : $tenant->sms_sent = $tenant->sms_sent + 1;
+            if ($request->query('type') == 0 || $request->query('type') == 1){
+                $request->query('type') == 0 ? $tenant->email_sent = $tenant->email_sent + 1 : $tenant->sms_sent = $tenant->sms_sent + 1;
                 $tenant->save();
                 return response()->json([], 200);
             } else {
                 return response()->json([
-                    'message' => 'Invalid notification type: '.$request->type
+                    'message' => 'Invalid notification type: '.$request->query('type')
                 ], 400);
             }
         } else {
             return response()->json([
-                'message' => 'Not found tenant with name of '.$request->tenant
+                'message' => 'Not found tenant with name of '.$request->query('tenant')
             ], 400);
         }
     }

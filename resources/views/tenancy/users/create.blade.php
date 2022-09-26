@@ -13,7 +13,7 @@
     </div>
 
     @if ($errors->any())
-        <div class="alert alert-danger">
+        <div class="m-5 alert alert-danger">
             <strong>Whoops!</strong> There were some problems with your input.<br><br>
             <ul>
                 @foreach ($errors->all() as $error)
@@ -43,28 +43,28 @@
                 <div>
                     <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Full Name</label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="name" type="text" name="name" placeholder="Full Name"  required class="w-full form-input">
+                        <input id="name" type="text" name="name" placeholder="Full Name"  required class="w-full form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"/>
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Email Address</label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="email" type="text" name="email" placeholder="Email Address"  required class="w-full form-input">
+                        <input id="email" type="email" name="email" placeholder="Email Address"  required class="w-full form-control @error('email') is-invalid @enderror" value="{{ old('email') }}"/>
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <label for="phone" class="block text-sm font-medium leading-5 text-gray-700">Phone Number</label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="phone" type="text" name="phone" placeholder="Phone number"  required class="w-full form-input">
+                        <input id="phone" type="text" name="phone" placeholder="Phone number"  required class="w-full form-control @error('phone') is-invalid @enderror" value="{{ old('phone') }}">
                     </div>
                 </div>
 
                 <div class="mt-4">
                     <label for="email" class="block text-sm font-medium leading-5 text-gray-700">Username</label>
                     <div class="mt-1 rounded-md shadow-sm">
-                        <input id="username" type="text" name="username" placeholder="Username"  required class="w-full form-input">
+                        <input id="username" type="text" name="username" placeholder="Username"  required class="w-full form-control @error('username') is-invalid @enderror" value="{{ old('username') }}">
                     </div>
                 </div>
 
