@@ -4,13 +4,13 @@
         @php
             $subscription = new \App\Http\Controllers\Tenancy\SubscriptionController();
             $subscriptionInvoices = $subscription->invoices( auth()->user() );
-            //$productInvoices = $subscription->productInvoices(config('wave.paddle.sms_product_id'));
+            $productInvoices = $subscription->productInvoices(config('wave.paddle.sms_product_id'));
         @endphp
 
 
 
-        @if((isset($subscriptionInvoices->success) && $subscriptionInvoices->success == true) /*||
-                (isset($productInvoices->success) && $productInvoices->success == true)*/)
+        @if((isset($subscriptionInvoices->success) && $subscriptionInvoices->success == true) ||
+                (isset($productInvoices->success) && $productInvoices->success == true))
 
             <table class="min-w-full overflow-hidden divide-y divide-gray-200 rounded-lg">
                 <thead>
@@ -43,7 +43,7 @@
 
                         </tr>
                     @endforeach
-                    {{--@foreach($productInvoices->response as $productInvoice)
+                    @foreach($productInvoices->response as $productInvoice)
                         @if($productInvoice->status == "completed")
                             <tr class="@if($loop->index%2 == 0){{ 'bg-gray-50' }}@else{{ 'bg-gray-100' }}@endif">
                                 <td class="px-6 py-4 text-sm font-medium leading-5 text-gray-900 whitespace-no-wrap">
@@ -59,7 +59,7 @@
                                 </td>
                             </tr>
                         @endif
-                    @endforeach--}}
+                    @endforeach
                 </tbody>
             </table>
 
