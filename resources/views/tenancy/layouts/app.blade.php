@@ -45,6 +45,9 @@
     <!-- Styles -->
     <link href="{{ asset('themes/' . $theme->folder . '/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet">
+
+    @yield('css')
+
     <link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
 
 </head>
