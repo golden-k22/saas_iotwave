@@ -71,11 +71,11 @@
                                                 </div>
                                             </td>
                                             <td class="font-medium">
-                                                <p class="text-sm">{{isset(auth()->user()->subscription->updated_at)? \Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->toDateTimeLocalString(): ''}}</p>
+                                                <p class="text-sm">{{isset(auth()->user()->subscription->updated_at)? \Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->toDateString(): ''}}</p>
                                             </td>
                                             <td class="pr-6">
                                                 <p class="mb-1 text-xs text-indigo-500 font-medium">
-                                                    {{isset(auth()->user()->subscription->updated_at)? 'Expires in 20 Days('.\Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->addMonth(1)->toDateTimeLocalString().')': ''}}</p>
+                                                    {{isset(auth()->user()->subscription->updated_at)? 'Expires in 20 Days('.\Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->addMonth(1)->toDateString().')': ''}}</p>
                                                 <div class="flex">
                                                     <a class="ml-auto" href="#">
                                                     </a>
@@ -465,7 +465,7 @@
                         <tbody>
                         @foreach($sms_utilization as $utilization)
                         <tr class="text-xs bg-gray-50">
-                            <td class="tpy-5 px-6 font-medium">{{\Carbon\Carbon::createFromTimeString($utilization->created_at)->toDateTimeLocalString()}}</td>
+                            <td class="tpy-5 px-6 font-medium">{{\Carbon\Carbon::createFromTimeString($utilization->created_at)->toDateString()}}</td>
                             <td class="flex tpy-5 px-6">
                                 <div>
                                     <p class="font-medium">{{$utilization->type}}</p>
@@ -489,7 +489,7 @@
                                 <option value="1">50</option>
                                 <option value="1">100</option>
                             </select></div>
-                        <p class="text-xs text-gray-400 pt-2">of 1200</p>
+                        <p class="text-xs text-gray-400 pt-2">of {{count($sms_utilization)}}</p>
                     </div>
                     <div class="w-full lg:w-auto tpx-4 flex items-center justify-center">
                         <a class="inline-flex mr-3 items-center justify-center w-8 h-8 text-xs text-gray-500 border border-gray-300 bg-white hover:bg-indigo-50 rounded"
