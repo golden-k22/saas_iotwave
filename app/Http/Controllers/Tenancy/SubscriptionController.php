@@ -256,6 +256,10 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
             $tenant->save();
 
             if($response->successful()){
+                $subscription = PaddleSubscription::where('subscription_id', auth()->user()->subscription->subscription_id)->first();
+                $subscription->status = 'active';
+                $subscription->save();
+
                 return back()->with(['message' => 'Successfully switched to the ' . $plan->name . ' plan.', 'message_type' => 'success']);
             }
 

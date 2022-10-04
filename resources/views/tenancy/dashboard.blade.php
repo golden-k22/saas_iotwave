@@ -58,7 +58,7 @@
                                             </td>
                                             <td class="pr-6">
                                                 <div class="flex">
-                                                    <span class="inline-block py-1 px-2 ml-2 rounded-full text-xs text-white bg-indigo-500">{{isset(auth()->user()->subscription->status)? auth()->user()->subscription->status: ''}}</span>
+                                                    <span class="inline-block py-1 px-2 ml-2 rounded-full text-xs text-white bg-indigo-500">{{isset(auth()->user()->subscription->status)? auth()->user()->subscription->status: 'Trial'}}</span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -67,16 +67,15 @@
                                                 <div class="flex tpx-4 py-3">
                                                     <div>
                                                         <p class="text-sm text-gray-500 font-medium">Bill Date</p>
-
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="font-medium">
-                                                <p class="text-sm">{{isset(auth()->user()->subscription->updated_at)? auth()->user()->subscription->updated_at: ''}}</p>
+                                                <p class="text-sm">{{isset(auth()->user()->subscription->updated_at)? \Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->toDateTimeLocalString(): ''}}</p>
                                             </td>
                                             <td class="pr-6">
-                                                <p class="mb-1 text-xs text-indigo-500 font-medium">Expires in 20 Days
-                                                    ({{isset(auth()->user()->subscription->updated_at)? \Carbon\Carbon::createFromTimestamp(auth()->user()->subscription->updated_at)->addMonth(1)->toDateTimeString(): ''}})</p>
+                                                <p class="mb-1 text-xs text-indigo-500 font-medium">
+                                                    {{isset(auth()->user()->subscription->updated_at)? 'Expires in 20 Days('.\Carbon\Carbon::createFromTimeString(auth()->user()->subscription->updated_at)->addMonth(1)->toDateTimeLocalString().')': ''}}</p>
                                                 <div class="flex">
                                                     <a class="ml-auto" href="#">
                                                     </a>
@@ -119,7 +118,7 @@
                                             <p class="text-sm font-medium">Emails</p>
                                         </div>
                                         <div class="w-1/2 tpx-4">
-                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->email_sent/$tenant->email_total * 100}}% ({{$tenant->email_total}} credits)</p>
+                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{round($tenant->email_sent/$tenant->email_total * 100, 2)}}% ({{$tenant->email_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
                                                     <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->email_sent/$tenant->email_total * 100}}%'"></div>
@@ -140,7 +139,7 @@
                                             <p class="text-sm font-medium">SMSes</p>
                                         </div>
                                         <div class="w-1/2 tpx-4">
-                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->sms_sent/$tenant->sms_total * 100}}% ({{$tenant->sms_total}} credits)</p>
+                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{round($tenant->sms_sent/$tenant->sms_total * 100, 2)}}% ({{$tenant->sms_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
                                                     <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->sms_sent/$tenant->sms_total * 100}}%'"></div>
@@ -464,30 +463,20 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($sms_utilization as $utilization)
                         <tr class="text-xs bg-gray-50">
-                            <td class="tpy-5 px-6 font-medium">09/04/2021</td>
+                            <td class="tpy-5 px-6 font-medium">{{\Carbon\Carbon::createFromTimeString($utilization->created_at)->toDateTimeLocalString()}}</td>
                             <td class="flex tpy-5 px-6">
                                 <div>
-                                    <p class="font-medium">Email</p>
+                                    <p class="font-medium">{{$utilization->type}}</p>
                                 </div>
                             </td>
-                            <td class="font-medium">mousultom@protonmail.com</td>
-                            <td class="font-medium">Critical(Device SN: 72210503)! Temperature is Low setting value:
-                                30.0 current value: 28.8
+                            <td class="font-medium">{{$utilization->to_address}}</td>
+                            <td class="font-medium">{{$utilization->content}}
                             </td>
                         </tr>
-                        <tr class="text-xs">
-                            <td class="tpy-5 px-6 font-medium">08/04/2021</td>
-                            <td class="flex px-6 tpy-5">
-                                <div>
-                                    <p class="font-medium">Email</p>
-                                </div>
-                            </td>
-                            <td class="font-medium">mousultom@protonmail.com</td>
-                            <td class="font-medium">Critical(Device SN: 72210503)! Temperature is Low setting value:
-                                30.0 current value: 28.8
-                            </td>
-                        </tr><!----><!----></tbody>
+                        @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <div class="flex flex-wrap -mx-4 items-center justify-between">
