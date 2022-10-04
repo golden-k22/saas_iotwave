@@ -6,14 +6,14 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function AddEditModal(props) {
     const matchType = props.isEdit ? props.typeOptions.filter(item => item.value == props.selectedDevice.type)[0] : undefined;
-    const matchGroup = props.isEdit ? props.groupOptions.filter(item => item.value == props.selectedDevice.group)[0] : undefined;
+    const matchGroup = props.isEdit ? props.groupOptions.filter(item => item.value == props.selectedDevice.group_no)[0] : undefined;
 
     const [selectedFacility, setSelectedFacility] = useState(!props.isEdit ? null : {
         value: props.selectedDevice.type,
         label: matchType === undefined ? "Not Available" : matchType.label
     });
     const [selectedGroup, setSelectedGroup] = useState(!props.isEdit ? null : {
-        value: props.selectedDevice.group,
+        value: props.selectedDevice.group_no,
         label: matchGroup === undefined ? "Not Available" : matchGroup.label
     });
     const [deviceName, setDeviceName] = useState(!props.isEdit ? "" : props.selectedDevice.name);

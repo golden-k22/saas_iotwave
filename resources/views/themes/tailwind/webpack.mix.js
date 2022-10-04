@@ -1,5 +1,5 @@
-let mix = require('laravel-mix');
-const glob = require('glob-all');
+var mix = require('laravel-mix');
+var glob = require('glob-all');
 
 require('laravel-mix-tailwind');
 require('laravel-mix-purgecss');

@@ -53,8 +53,8 @@ export const ReportListTable = (props) => {
 
     const TableRow = (props) => {
         const {id, url, } = props;
-        const from=convertUTCToLocalString(props.from);
-        const to=convertUTCToLocalString(props.to);
+        const from=convertUTCToLocalString(props.date_from);
+        const to=convertUTCToLocalString(props.date_to);
         const created_at=convertUTCToLocalString(props.created_at);
         return (
             <tr className={"vertical-middle"}>

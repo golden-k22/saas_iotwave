@@ -7,7 +7,7 @@ import {convertUTCToLocalString} from "../../DateParser";
 
 function DetailModal(props) {
     const matchType = props.typeOptions.filter(item => item.value == props.selectedDevice.type)[0];
-    const matchGroup = props.groupOptions.filter(item => item.value == props.selectedDevice.group)[0];
+    const matchGroup = props.groupOptions.filter(item => item.value == props.selectedDevice.group_no)[0];
     let createTime = convertUTCToLocalString(props.selectedDevice.created_at);
     let expireTime = convertUTCToLocalString(props.selectedDevice.expire_at);
     return (
