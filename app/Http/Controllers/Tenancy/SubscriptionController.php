@@ -150,7 +150,7 @@ class SubscriptionController extends \Wave\Http\Controllers\SubscriptionControll
                         $this->addAssociatedRoleToUser($plan, $user, $tenant);
                     }
 
-                    $subscription = PaddleSubscription::create([
+                    PaddleSubscription::create([
                         'subscription_id' => $order->subscription_id,
                         'plan_id' => $order->product_id,
                         'user_id' => $user->id,

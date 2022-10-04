@@ -54,11 +54,11 @@
                                                 </div>
                                             </td>
                                             <td class="font-medium">
-                                                <p class="text-sm">Plan Name</p>
+                                                <p class="text-sm">{{ auth()->user()->role->display_name }}</p>
                                             </td>
                                             <td class="pr-6">
                                                 <div class="flex">
-                                                    <span class="inline-block py-1 px-2 ml-2 rounded-full text-xs text-white bg-indigo-500">Active</span>
+                                                    <span class="inline-block py-1 px-2 ml-2 rounded-full text-xs text-white bg-indigo-500">{{isset(auth()->user()->subscription->status)? auth()->user()->subscription->status: ''}}</span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -72,14 +72,12 @@
                                                 </div>
                                             </td>
                                             <td class="font-medium">
-                                                <p class="text-sm">20 September, 2022</p>
-
+                                                <p class="text-sm">{{isset(auth()->user()->subscription->updated_at)? auth()->user()->subscription->updated_at: ''}}</p>
                                             </td>
                                             <td class="pr-6">
                                                 <p class="mb-1 text-xs text-indigo-500 font-medium">Expires in 20 Days
-                                                    (30/10/2022)</p>
+                                                    ({{isset(auth()->user()->subscription->updated_at)? \Carbon\Carbon::createFromTimestamp(auth()->user()->subscription->updated_at)->addMonth(1)->toDateTimeString(): ''}})</p>
                                                 <div class="flex">
-
                                                     <a class="ml-auto" href="#">
                                                     </a>
                                                 </div>
@@ -90,12 +88,14 @@
                                     <div class="text-center tpy-5">
                                         <a class="inline-flex items-center text-xs text-indigo-500 hover:text-blue-600 font-medium"
                                            href="{{ route('tenancy.settings', ['section'=>'invoices', tenant('id')]) }}">
-                                        <span class="mr-1">
-                                            <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor"
-                         stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path
-                                stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-                                d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"
-                                fill="none"></path></svg></span>
+                                            <span class="mr-1">
+                                                <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor"
+                                                    stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path
+                                                    stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                                                    d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2"
+                                                    fill="none"></path>
+                                                </svg>
+                                            </span>
                                             <span>View Bill</span>
                                         </a>
                                     </div>
@@ -119,10 +119,10 @@
                                             <p class="text-sm font-medium">Emails</p>
                                         </div>
                                         <div class="w-1/2 tpx-4">
-                                            <p class="mb-1 text-xs text-indigo-500 font-medium">90% (900 credits)</p>
+                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->email_sent/$tenant->email_total * 100}}% ({{$tenant->email_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
-                                                    <div class="absolute top-0 left-0 h-full w-10/12 bg-indigo-500 rounded-full"></div>
+                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->email_sent/$tenant->email_total * 100}}%'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,10 +140,10 @@
                                             <p class="text-sm font-medium">SMSes</p>
                                         </div>
                                         <div class="w-1/2 tpx-4">
-                                            <p class="mb-1 text-xs text-indigo-500 font-medium">82% (820 credits)</p>
+                                            <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->sms_sent/$tenant->sms_total * 100}}% ({{$tenant->sms_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
-                                                    <div class="absolute top-0 left-0 h-full w-9/12 bg-indigo-500 rounded-full"></div>
+                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->sms_sent/$tenant->sms_total * 100}}%'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,13 +202,13 @@
                                             </button>
                                         </div>
                                         <div class="flex items-center mb-3">
-                                            <span class="text-4xl font-bold">3</span>
+                                            <span class="text-4xl font-bold">{{$gateway_added}}</span>
                                             <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">100% active</span>
                                         </div>
-                                        <div class="relative w-full h-1 mb-2 bg-gray-50 rounded">
-                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded w-full"></div>
+                                        <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
+                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: '{{$gateway_added/$tenant->gateway*100}}%'"></div>
                                         </div>
-                                        <p class="text-xs text-gray-200">All slots occupied. Total 3 slots.</p>
+                                        <p class="text-xs text-gray-200">{{$tenant->gateway - $gateway_added == 0? 'All slots occupied.': $tenant->gateway - $gateway_added.' slots available.'}} Total {{$tenant->gateway}} slots.</p>
                                     </div>
                                 </div>
 
@@ -225,13 +225,13 @@
                                             </button>
                                         </div>
                                         <div class="flex items-center mb-3">
-                                            <span class="text-4xl font-bold">80</span>
+                                            <span class="text-4xl font-bold">{{$sensor_added}}</span>
                                             <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">100% active</span>
                                         </div>
-                                        <div class="relative w-full h-1 mb-2 bg-gray-100 rounded">
-                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded w-4/5"></div>
+                                        <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
+                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: '{{$sensor_added/$tenant->sensor*100}}%'"></div>
                                         </div>
-                                        <p class="text-xs text-gray-200">20 slots available. Total 100 slots.</p>
+                                        <p class="text-xs text-gray-200">{{$tenant->sensor - $sensor_added == 0? 'All slots occupied.': $tenant->sensor - $sensor_added.' slots available.'}}  Total {{$tenant->sensor}} slots.</p>
                                     </div>
 
                                 </div>
