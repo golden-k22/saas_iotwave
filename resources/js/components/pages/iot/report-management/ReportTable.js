@@ -46,9 +46,9 @@ export const ReportTable = (props) => {
     }
 
     const TableRow = (props) => {
-        const {name, sn, type, group, created_at, expire_at} = props;
+        const {name, sn, type, group_no, created_at, expire_at} = props;
         const matchType = props.typeOptions.filter(item => item.value == type)[0];
-        const matchGroup = props.groupOptions.filter(item => item.value == group)[0];
+        const matchGroup = props.groupOptions.filter(item => item.value == group_no)[0];
         let createTime = convertUTCToLocalString(created_at);
         let expireTime = convertUTCToLocalString(expire_at);
         return (

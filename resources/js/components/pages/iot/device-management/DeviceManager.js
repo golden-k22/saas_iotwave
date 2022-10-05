@@ -42,7 +42,9 @@ const DeviceManager = (props) => {
     const [typeOptions, setTypeOptions] = useState([]);
 
     const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedGroupOption, setSelectedGroupOption] = useState(null);
     const [searchKey, setSearchKey] = useState("");
+    const [searchName, setSearchName] = useState("");
     const [isLoaded, setLoaded] = useState(false);
     const [deviceList, setDeviceList] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
@@ -100,14 +102,6 @@ const DeviceManager = (props) => {
             });
     }, []);
 
-    // function onChange(){
-    //     console.log("clicked");
-    // }
-    //
-    // function onSearchClicked(searchTxt) {
-    //     console.log("search clicked.", searchTxt)
-    // }
-
 
     function searchkeyChanged(event) {
         let text = event.target.value;
@@ -116,30 +110,32 @@ const DeviceManager = (props) => {
         }
     }
 
-    function searchDevice() {
-        if (selectedOption == null) {
-            dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
-                data => {
-                    setDeviceList(data);
-                    setLoaded(true);
-                });
+    function searchNameChanged(event) {
+        let text = event.target.value;
+        if (text !== null) {
+            setSearchName(event.target.value);
         }
-        else {
-            if (selectedOption.value==null){
-                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
-                    data => {
-                        setDeviceList(data);
-                        setLoaded(true);
-                    });
-            } else {
-                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey,
-                    data => {
-                        setDeviceList(data);
-                        setLoaded(true);
-                    });
-            }
+    }
 
+    function searchDevice() {
+        let selectedOptionString = '';
+        let selectedGroupOptionString = '';
+        if(selectedOption && selectedOption.value){
+            selectedOptionString = "&type=" + selectedOption.value;
         }
+        if(selectedGroupOption && selectedGroupOption.value){
+            selectedGroupOptionString = "&group=" + selectedGroupOption.value
+        }
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey + "&device_name=" + searchName + selectedGroupOptionString + selectedOptionString,
+            data => {
+                setDeviceList(data);
+                setLoaded(true);
+            });
+
+        dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/devices/counts",
+            count => {
+                setTotalDevices(count.count);
+            });
     }
 
     function onPagenationChange(page_number) {
@@ -193,6 +189,103 @@ const DeviceManager = (props) => {
 
     function closeDetailModal() {
         setDetailModalIsOpen(false);
+    }
+
+    function checkCSV(csvData){
+        if(csvData.length === 0){
+            return false;
+        }
+        return !!(csvData[0].Name && csvData[0].Serial && csvData[0].Facility && csvData[0].Group && csvData[0].Password && csvData[0].Remark && csvData[0].Interval);
+    }
+
+    function addMultipleDevices(e) {
+        let file = e.target.files[0];
+        if (file && file.type === 'text/csv') {
+            let reader = new FileReader();
+            reader.readAsText(file, "UTF-8");
+            reader.onload = function (evt) {
+                let jsonData = csvToJson(evt.target.result);
+                if(!checkCSV(jsonData)){
+                    toastRef.current.show({sticky: true, severity: 'error', summary: 'Invalid CSV file', detail: "The format of the CSV file is not valid.", life: 3000});
+                    return;
+                }
+                let request_data = {
+                    name: '',
+                    serialNo: '',
+                    typeOfFacility: '',
+                    group: '',
+                    devicePassword: '',
+                    dataInterval: '',
+                    remark: '',
+                };
+                let payload = [];
+                for(let i = 0; i < jsonData.length; i++){
+                    request_data.name = jsonData[i].Name;
+                    request_data.serialNo = jsonData[i].Serial;
+                    let facility = typeOptions.find(item=>item.label === jsonData[i].Facility);
+                    if(facility){
+                        request_data.typeOfFacility = facility.value;
+                    } else {
+                        continue;
+                    }
+                    let group = groupOptions.find(item=>item.label === jsonData[i].Group);
+                    if(group){
+                        request_data.group = group.value;
+                    } else {
+                        continue;
+                    }
+                    request_data.devicePassword = jsonData[i].Password;
+                    request_data.dataInterval = jsonData[i].Interval;
+                    request_data.remark = jsonData[i].Remark;
+                    payload.push(request_data);
+                }
+                var toaster = toastRef.current;
+                dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/devices/multiple",
+                    data => {
+                        if(data.isAxiosError){
+                            toaster.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                            return;
+                        }
+
+                        if(data.length === 0){
+                            searchDevice();
+                            toaster.show({sticky: true, severity: 'success', summary: 'Success', detail: 'You have successfully added multiple devices.', life: 3000});
+                        }
+                        else {
+                            toaster.show({sticky: true, severity: 'error', summary: 'Failed ' + data.length + ' items', detail: data[0].message, life: 3000});
+                        }
+                    }, payload);
+            }
+            reader.onerror = function (evt) {
+                toastRef.current.show({sticky: true, severity: 'error', summary: 'Error in reading file', detail: 'It seems that there is an issue in the file.', life: 3000});
+            }
+        } else {
+            toastRef.current.show({sticky: true, severity: 'error', summary: 'Invalid file format', detail: 'The file that you chose is not csv format.', life: 3000});
+        }
+    }
+
+    function csvToJson(csv) {
+        let lines = csv.split("\n");
+
+        let result = [];
+
+        // NOTE: If your columns contain commas in their values, you'll need
+        // to deal with those before doing the next step
+        // (you might convert them to &&& or something, then covert them back later)
+        // jsfiddle showing the issue https://jsfiddle.net/
+        let headers = lines[0].split(",");
+
+        for (let i = 1; i < lines.length; i++) {
+            let obj = {};
+            let currentline = lines[i].split(",");
+
+            for (let j = 0; j < headers.length; j++) {
+                obj[headers[j]] = currentline[j];
+            }
+
+            result.push(obj);
+        }
+        return result; // JSON
     }
 
 
@@ -280,11 +373,36 @@ const DeviceManager = (props) => {
         <div className="device-manage-container">
             <Toast ref={toastRef} position="bottom-right"/>
             <Row className='top-section'>
-                <span className="section-title mb-row">Device Management</span>
+                <Col md={6} className="section-title mb-row">Device Management</Col>
+                <Col md={6}>
+                    <div className={"w-100 text-right"}>
+                        {props.admin? <Button className={"btn-success d-flex align-items-center float-right"}
+                                              onClick={() => openModal(false)}><FontAwesomeIcon
+                            icon={faPlus} className={"me-1"}/> Add</Button> : ""}
+                    </div>
+                    <div className={"w-100 text-right"}>
+                        <input type="file" id="selectedFile" className="d-none" onChange={addMultipleDevices}/>
+                        <Button className={"btn-primary d-flex align-items-center float-right me-2"}
+                                onClick={() => {
+                                    document.getElementById('selectedFile').click();
+                                }}>
+                            <span className="inline-block mr-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 className="h-3 text-white w-4" viewBox="0 0 16 16">
+                                <path
+    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                <path
+    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                              </svg>
+                            </span>
+                            Import CSV
+                        </Button>
+                    </div>
+                </Col>
             </Row>
             <Row className="mb-3">
-                <Col md={5} className={"d-flex align-items-center"}>
-                    <span className={"h6 me-2"}>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>
                             Type of facility
                         </span>
                     <Select
@@ -294,20 +412,29 @@ const DeviceManager = (props) => {
                         options={typeOptions}
                     />
                 </Col>
-                <Col md={4} className={"d-flex align-items-center"}>
-                    <span className={"h6 me-2"}>Key</span>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>
+                            Group
+                        </span>
+                    <Select
+                        className="facility-type-value w-100"
+                        defaultValue={selectedGroupOption}
+                        onChange={setSelectedGroupOption}
+                        options={groupOptions}
+                    />
+                </Col>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>Name</span>
+                    <FormControl value={searchName} type="text" placeholder="Device Name"
+                                 className="key-input-value me-2" onChange={searchNameChanged}/>
+                </Col>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>Key</span>
                     <FormControl value={searchKey} type="text" placeholder="IMEI"
                                  className="key-input-value me-2" onChange={searchkeyChanged}/>
                     <Button className={"btn-primary d-flex align-items-center"}
                             onClick={() => searchDevice()}><FontAwesomeIcon
                         icon={faSearch} className={"me-1"}/> Search</Button>
-                </Col>
-                <Col md={3}>
-                    <div className={"w-100 text-right"}>
-                        {props.admin? <Button className={"btn-success d-flex align-items-center float-right"}
-                                              onClick={() => openModal(false)}><FontAwesomeIcon
-                            icon={faPlus} className={"me-1"}/> Add</Button> : ""}
-                    </div>
                 </Col>
             </Row>
             <div className={"w-100"}>

@@ -17,7 +17,7 @@ class User extends \Wave\User
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'username', 'phone', 'password', 'verification_code', 'verified', 'trial_ends_at', 'mailable', 'messagable'
+        'name', 'email', 'username', 'phone', 'password', 'verification_code', 'verified', 'trial_ends_at', 'mailable', 'messagable', 'last_log_in'
     ];
 
     protected $dates = [

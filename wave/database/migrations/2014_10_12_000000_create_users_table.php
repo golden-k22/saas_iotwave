@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('tenant_id')->nullable();
             $table->boolean('mailable')->default(false);
             $table->boolean('messagable')->default(false);
+            $table->timestamp('last_log_in')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

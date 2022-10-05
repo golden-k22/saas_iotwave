@@ -39,6 +39,7 @@ const GatewayManager = (props) => {
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [searchKey, setSearchKey] = useState("");
+    const [searchName, setSearchName] = useState("");
     const [isLoaded, setLoaded] = useState(false);
     const [deviceList, setDeviceList] = useState([]);
     const [isEdit, setIsEdit] = useState(false);
@@ -80,9 +81,16 @@ const GatewayManager = (props) => {
         }
     }
 
+    function searchNameChanged(event) {
+        let text = event.target.value;
+        if (text !== null) {
+            setSearchName(event.target.value);
+        }
+    }
+
     function searchDevice() {
         if (selectedOption == null) {
-            dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
+            dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey + "&device_name=" + searchName,
                 data => {
                     setDeviceList(data);
                     setLoaded(true);
@@ -90,13 +98,13 @@ const GatewayManager = (props) => {
         }
         else {
             if (selectedOption.value == null) {
-                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&key=" + searchKey + "&device_name=" + searchName,
                     data => {
                         setDeviceList(data);
                         setLoaded(true);
                     });
             } else {
-                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey,
+                dataSource.GetRequest("/iot-service/v1/" + props.tenant + "/gateways?page_number=" + pageNumber + "&page_size=" + pageSize + "&type=" + selectedOption.value + "&key=" + searchKey + "&device_name=" + searchName,
                     data => {
                         setDeviceList(data);
                         setLoaded(true);
@@ -241,8 +249,8 @@ const GatewayManager = (props) => {
                 <span className="section-title mb-row">Gateway Management</span>
             </Row>
             <Row className="mb-3">
-                <Col md={5} className={"d-flex align-items-center"}>
-                    <span className={"h6 me-2"}>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>
                             Type of facility
                         </span>
                     <Select
@@ -252,15 +260,20 @@ const GatewayManager = (props) => {
                         options={typeOptions}
                     />
                 </Col>
+                <Col md={3} className={"d-flex align-items-center"}>
+                    <span className={"h6 me-2 mb-0"}>Name</span>
+                    <FormControl value={searchName} type="text" placeholder="Device Name"
+                                 className="key-input-value me-2" onChange={searchNameChanged}/>
+                </Col>
                 <Col md={4} className={"d-flex align-items-center"}>
-                        <span className={"h6 me-2"}>Key</span>
+                        <span className={"h6 me-2 mb-0"}>Key</span>
                         <FormControl value={searchKey} type="text" placeholder="IMEI"
                                      className="key-input-value me-2" onChange={searchkeyChanged}/>
                         <Button className={"btn-primary d-flex align-items-center"}
                                 onClick={() => searchDevice()}><FontAwesomeIcon
                             icon={faSearch} className={"me-1"}/> Search</Button>
                 </Col>
-                <Col md={3}>
+                <Col md={2}>
                     <div className={"w-100 text-right"}>
                         {props.admin? <Button className={"btn-success d-flex align-items-center float-right"}
                                               onClick={() => openModal(false)}><FontAwesomeIcon

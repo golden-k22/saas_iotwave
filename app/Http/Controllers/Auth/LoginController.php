@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class LoginController extends \Wave\Http\Controllers\Auth\LoginController
 {
@@ -15,6 +17,10 @@ class LoginController extends \Wave\Http\Controllers\Auth\LoginController
             $this->guard()->logout();
             return redirect()->back()->with(['message' => 'Please verify your email before logging into your account.', 'message_type' => 'warning']);
         }
+
+        $updated = User::find($user->id);
+        $updated->last_log_in = Date::now();
+        $updated->save();
     }
 
     /**

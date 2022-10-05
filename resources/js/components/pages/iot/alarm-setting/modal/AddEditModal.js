@@ -16,9 +16,14 @@ import {
 
 function AddEditModal(props) {
     const matchType = props.isEdit ? props.deviceOptions.filter(item => item.value == props.selectedAlarm.device_sn)[0] : undefined;
+    const matchGroup = props.isEdit ? props.groupOptions.filter(item => item.value == props.selectedAlarm.group_no)[0] : undefined;
     const [selectedDevice, setSelectedDevice] = useState(!props.isEdit ? null : {
         value: props.selectedAlarm.device_sn,
         label: matchType === undefined ? "Not Available" : matchType.label
+    });
+    const [selectedGroup, setSelectedGroup] = useState(!props.isEdit ? null : {
+        value: props.selectedAlarm.group_no,
+        label: matchGroup === undefined ? "Not Available" : matchGroup.label
     });
 
     const alarmTemp = {
@@ -27,6 +32,7 @@ function AddEditModal(props) {
         createdAt: !props.isEdit ? "" : props.selectedAlarm.created_at,
         name: !props.isEdit ? "" : props.selectedAlarm.name,
         device_sn: !props.isEdit ? "" : props.selectedAlarm.device_sn,
+        group: !props.isEdit ? "" : props.selectedAlarm.group_no,
         alarm_type: !props.isEdit ? "" : props.selectedAlarm.alarm_type,
         low_warning: !props.isEdit ? null : props.selectedAlarm.low_warning,
         high_warning: !props.isEdit ? null : props.selectedAlarm.high_warning,
@@ -37,6 +43,7 @@ function AddEditModal(props) {
         time_from: !props.isEdit ? "09:00:00" : convertUTCToLocalHourString(props.selectedAlarm.time_from),
         time_to: !props.isEdit ? "21:00:00" : convertUTCToLocalHourString(props.selectedAlarm.time_to)
     };
+    const [type, setType] = useState(alarmTemp.group? 1: 0);
     const [alarmSetting, setAlarmSetting] = useState(alarmTemp);
     const [dateRange, setDateRange] = useState(props.isEdit ? [new Date(alarmSetting.date_from), new Date(alarmSetting.date_to)] :
         [new Date(makeDateOnly(new Date()) + " 00:00:00"), new Date(makeDateOnly(getDateTo(2))+" 23:59:00")]);
@@ -77,12 +84,14 @@ function AddEditModal(props) {
     const [isError, setError] = useState(false);
 
     function updateAlarm() {
-        if (selectedDevice == null || selectedDevice.value == null) {
+        if (type === 0 && (selectedDevice == null || selectedDevice.value == null)) {
             setError(true);
         } else if (alarmSetting.name === "") {
             setError(true);
+        } if (type === 1 && (selectedGroup == null || selectedGroup.value == null)) {
+            setError(true);
         } else {
-            props.onSubmit(!props.isEdit ? null : props.selectedAlarm.id, selectedDevice, dateRange, alarmSetting);
+            props.onSubmit(!props.isEdit ? null : props.selectedAlarm.id, selectedDevice, dateRange, alarmSetting, selectedGroup);
         }
     }
 
@@ -116,23 +125,68 @@ function AddEditModal(props) {
                     </Col>
                     <Col xs={1} md={1} lg={1} xl={1}/>
                 </Row>
+                <Row className={"mb-row d-flex"}>
+                    <Col xs={1} md={1} lg={1} xl={1}/>
+                    <Col xs={4} md={4} lg={4} xl={4}>
+                        <label className="facility-type-title">Type</label>
+                    </Col>
+                    <Col xs={6} md={6} lg={6} xl={6} className={"d-flex"}>
+                        <div className="form-check me-2">
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked={type === 0}
+                                   onChange={(e)=>{
+                                        if(e.target.checked){
+                                            setType(0);
+                                        }
+                                    }}
+                            />
+                                <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                    Device
+                                </label>
+                        </div>
+                        <div className="form-check">
+                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked={type === 1}
+                                   onChange={(e)=>{
+                                       if(e.target.checked){
+                                           setType(1);
+                                       }
+                                   }}
+                            />
+                                <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                    Group
+                                </label>
+                        </div>
+                    </Col>
+                </Row>
                 <Row className="mb-row">
                     <Col xs={1} md={1} lg={1} xl={1}/>
                     <Col xs={4} md={4} lg={4} xl={4}>
-                        <label className="facility-type-title">Object</label>
+                        {type === 0? <label className="facility-type-title">Device</label> : <label className="facility-type-title">Group</label>}
                     </Col>
-                    <Col xs={6} md={6} lg={6} xl={6}>
-                        <Select
-                            className="facility-type-value grey-border"
-                            defaultValue={selectedDevice}
-                            onChange={setSelectedDevice}
-                            options={props.deviceOptions}
-                        />
-                        {
-                            isError && (selectedDevice == null || selectedDevice.value == null) ?
-                                <span style={{color: "red"}}>Please select the Device.</span> : null
-                        }
-                    </Col>
+                    {
+                        type === 0? (<Col xs={6} md={6} lg={6} xl={6}>
+                            <Select
+                                className="facility-type-value grey-border"
+                                defaultValue={selectedDevice}
+                                onChange={setSelectedDevice}
+                                options={props.deviceOptions}
+                            />
+                            {
+                                isError && type === 0 && (selectedDevice == null || selectedDevice.value == null) ?
+                                    <span style={{color: "red"}}>Please select the Device.</span> : null
+                            }
+                        </Col>): (<Col xs={6} md={6} lg={6} xl={6}>
+                            <Select
+                                className="facility-type-value grey-border"
+                                defaultValue={selectedGroup}
+                                onChange={setSelectedGroup}
+                                options={props.groupOptions}
+                            />
+                            {
+                                isError && type === 1 && (selectedGroup == null || selectedGroup.value == null) ?
+                                    <span style={{color: "red"}}>Please select the group.</span> : null
+                            }
+                        </Col>)
+                    }
                     <Col xs={1} md={1} lg={1} xl={1}/>
                 </Row>
                 <Row className="mb-row">

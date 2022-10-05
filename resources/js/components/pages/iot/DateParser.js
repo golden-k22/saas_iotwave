@@ -129,18 +129,21 @@ export const convertHoursToUTCString = (timeStr) => {
 };
 
 export const convertUTCToLocalHourString = (timeStr) => {
-    let createTime = new Date();
-    let diffMins = createTime.getTimezoneOffset();
-    let time = timeStr.split(':');
-    let hrs = parseInt(time[0]);
-    let mins = parseInt(time[1]);
-    let originMins = hrs * 60 + mins;
+    if(timeStr){
+        let createTime = new Date();
+        let diffMins = createTime.getTimezoneOffset();
+        let time = timeStr.split(':');
+        let hrs = parseInt(time[0]);
+        let mins = parseInt(time[1]);
+        let originMins = hrs * 60 + mins;
 
-    let tempMins = originMins - diffMins;
-    let resultHrs = parseInt(tempMins / 60);
-    resultHrs = resultHrs >= 24 ? "0" + (resultHrs - 24) : "0" + resultHrs;
-    let resultMins = "0" + tempMins % 60;
-    let formattedTime = resultHrs.substr(-2) + ':' + resultMins.substr(-2) + ":00";
-    // noinspection JSAnnotator
-    return formattedTime;
+        let tempMins = originMins - diffMins;
+        let resultHrs = parseInt(tempMins / 60);
+        resultHrs = resultHrs >= 24 ? "0" + (resultHrs - 24) : "0" + resultHrs;
+        let resultMins = "0" + tempMins % 60;
+        let formattedTime = resultHrs.substr(-2) + ':' + resultMins.substr(-2) + ":00";
+        // noinspection JSAnnotator
+        return formattedTime;
+    }
+    return  '';
 };

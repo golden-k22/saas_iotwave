@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Col, Row} from '@themesberg/react-bootstrap';
+import {Button, Col, FormControl, Row} from '@themesberg/react-bootstrap';
 import mqtt from "mqtt"
 import RealtimeCard from "./realtime-card/RealtimeCard";
 import HistoryDashboard from "../history/HistoryDashboard";
@@ -9,6 +9,9 @@ import "../../../scss/volt/components/monthPickerStyle.css";
 import '../../../scss/management-table-style.scss';
 import '../../../scss/volt.scss';
 import {ReportListTable} from "../report-management/ReportListTable";
+import Select from "react-select";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faSearch} from "@fortawesome/free-solid-svg-icons";
 
 class RealtimeManager extends Component {
     constructor(props) {
@@ -21,7 +24,12 @@ class RealtimeManager extends Component {
                 id: 0,
                 sn: 0,
             },
-            reportGenerated: true
+            reportGenerated: true,
+            groupOptions: [],
+            deviceName: '',
+            typeOptions: [],
+            selectedGroupOption: null,
+            selectedTypeOption: null
         };
         this.client = null;
         this.viewHistoryBtnClicked = this.viewHistoryBtnClicked.bind(this);
@@ -30,7 +38,6 @@ class RealtimeManager extends Component {
         this.dataSource = new RestDataSource(process.env.MIX_IOT_APP_URL, (err) => console.log("Server connection failed."));
     }
 
-
     render() {
         return (
             <div className="w-100">
@@ -38,11 +45,11 @@ class RealtimeManager extends Component {
                 {this.state.viewHistory ?
                     <>
                         <HistoryDashboard
-                            tenant = {this.props.tenant}
-                                        title={`History of Device ${this.state.selectedDevice.sn}`}
-                                          device={this.state.selectedDevice} dataSource={this.dataSource}
-                                          setReportGenerated={this.setReportGenerated}
-                                          backCallback={this.backToCardView}/>
+                            tenant={this.props.tenant}
+                            title={`History of Device ${this.state.selectedDevice.sn}`}
+                            device={this.state.selectedDevice} dataSource={this.dataSource}
+                            setReportGenerated={this.setReportGenerated}
+                            backCallback={this.backToCardView}/>
                         <ReportListTable dataSource={this.dataSource} device={this.state.selectedDevice}
                                          reportGenerated={this.state.reportGenerated}
                                          setReportGenerated={this.setReportGenerated}/>
@@ -51,13 +58,60 @@ class RealtimeManager extends Component {
                         <div className='top-section'>
                             <span className="section-title">Realtime Monitoring</span>
                         </div>
+                        <Row className="mb-3">
+                            <Col md={4} className={"d-flex align-items-center"}>
+                                <span className={"h6 me-2 mb-0"}>
+                                        Type of facility
+                                </span>
+                                <Select
+                                    className="facility-type-value w-50"
+                                    defaultValue={this.state.selectedTypeOption}
+                                    onChange={(e)=>{
+                                        this.setState({
+                                            selectedTypeOption: e
+                                        })
+                                    }}
+                                    options={this.state.typeOptions}
+                                />
+                            </Col>
+                            <Col md={4} className={"d-flex align-items-center"}>
+                                <span className={"h6 me-2 mb-0"}>
+                                    Group
+                                </span>
+                                <Select
+                                    className="facility-type-value w-50"
+                                    defaultValue={this.state.selectedGroupOption}
+                                    onChange={(e)=>{
+                                        this.setState({
+                                            selectedGroupOption: e
+                                        })
+                                    }}
+                                    options={this.state.groupOptions}
+                                />
+                            </Col>
+                            <Col md={4} className={"d-flex align-items-center"}>
+                                <span className={"h6 me-2 mb-0"}>
+                                    Device
+                                </span>
+                                <FormControl value={this.state.deviceName} type="text" placeholder="Device Name"
+                                             className="key-input-value me-2"
+                                             onChange={(e)=>{
+                                                 this.setState({
+                                                     deviceName: e.target.value
+                                                 })
+                                             }}/>
+                                <Button className={"btn-primary d-flex align-items-center"}
+                                        onClick={() => this.searchDevice()}><FontAwesomeIcon
+                                    icon={faSearch} className={"me-1"}/> Search</Button>
+                            </Col>
+                        </Row>
                         <Row>
                             {this.state.messages.map((message, index) =>
                                 <Col key={index} xs={12} sm={12} md={6} lg={4} className="mb-4">
                                     <RealtimeCard
                                         message={message}
-                                                  alarm={this.state.alarms[index]}
-                                                  viewHistoryCallback={this.viewHistoryBtnClicked}/>
+                                        alarm={this.state.alarms[index]}
+                                        viewHistoryCallback={this.viewHistoryBtnClicked}/>
                                 </Col>
                             )}
                         </Row>
@@ -68,6 +122,9 @@ class RealtimeManager extends Component {
         )
     }
 
+    searchDevice(){
+
+    }
 
     setReportGenerated(isGenerated) {
         this.setState({reportGenerated: isGenerated});
@@ -92,6 +149,40 @@ class RealtimeManager extends Component {
     }
 
     componentDidMount() {
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
+            data => {
+                this.setState({messages: data});
+                this.subscribeDevices();
+                this.setAlarms();
+            });
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/groups",
+            groups => {
+                let newOption = [{value:null, label: "No Select"}];
+                groups.map(group => {
+                    newOption.push(
+                        {
+                            value: group.id, label: group.name
+                        }
+                    )
+                })
+                this.setState({
+                    groupOptions: newOption
+                });
+            });
+        this.dataSource.GetRequest("/iot-service/v1/devices/types",
+            types => {
+                let newOption = [{value:null, label: "No Select"}];
+                types.map(type => {
+                    newOption.push(
+                        {
+                            value: type.id, label: type.name
+                        }
+                    )
+                })
+                this.setState({
+                    typeOptions: newOption
+                });
+            });
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
             data => {
                 this.setState({messages: data});
@@ -140,12 +231,13 @@ class RealtimeManager extends Component {
         this.setState({alarms: alarmList});
     }
 
-    getLatestStatus(){
+    getLatestStatus() {
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
             data => {
                 this.setState({messages: data});
             });
     }
+
     subscribeDevices() {
         let clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
         let host = process.env.MIX_IOT_MQTT_SERVER_URL;
@@ -195,7 +287,6 @@ class RealtimeManager extends Component {
             }
         )
     }
-
 }
 
 
@@ -205,8 +296,9 @@ if (document.getElementById('realtime-card-dashboard')) {
     let admin = false;
     let tenant = document.documentURI.split("/")[3];
     let user = document.getElementById("realtime-card-dashboard").getAttribute("data-user");
-    if(user === tenant){
+    if (user === tenant) {
         admin = true;
     }
-    ReactDOM.render(<RealtimeManager tenant={tenant} admin={admin}/>, document.getElementById('realtime-card-dashboard'));
+    ReactDOM.render(<RealtimeManager tenant={tenant}
+                                     admin={admin}/>, document.getElementById('realtime-card-dashboard'));
 }

@@ -59,6 +59,7 @@ export const AlarmSettingTable = (props) => {
             time_from,
             time_to,
             repeat,
+            group_no,
             created_at,
             offline_time
         } = properties;
@@ -69,6 +70,7 @@ export const AlarmSettingTable = (props) => {
         const OFFLINE_TIME = properties.type === 3 ? "Offline Time" : "";
         const UNIT = properties.type === 0 ? "ºC" : properties.type === 1 ? "%" : properties.type === 2 ? "V" : properties.type === 3 ? "min" : "";
         const matchDevice = properties.deviceOptions.filter(item => item.value == device_sn)[0];
+        const matchGroup = properties.groupOptions.filter(item => item.value == group_no)[0];
         const dateFrom = makeStartDateTimeFromUTCDate(date_from);
         const dateTo = makeEndDateTimeFromUTCDate(date_to);
         const createTime = convertUTCToLocalString(created_at);
@@ -88,7 +90,12 @@ export const AlarmSettingTable = (props) => {
                 </td>
                 <td className="col-1 text-center">
                   <span className="fw-normal">
-                      {matchDevice === undefined ? "Not Available" : matchDevice.label}
+                      {matchDevice? matchDevice.label : "Not Available"}
+                  </span>
+                </td>
+                <td className="col-1 text-center">
+                  <span className="fw-normal">
+                      {matchGroup ? matchGroup.label : "Not Available"}
                   </span>
                 </td>
 
@@ -127,7 +134,7 @@ export const AlarmSettingTable = (props) => {
                         <span className="fw-normal">{timeFrom} ~ {timeTo}</span>
                     </div>
                 </td>
-                <td className="col-2 text-center">
+                <td className="col-1 text-center">
                   <span className={`fw-normal`}>
                     {createTime}
                   </span>
@@ -155,7 +162,8 @@ export const AlarmSettingTable = (props) => {
                     <tr>
                         <th className="border-bottom text-center bold-font">#</th>
                         <th className="border-bottom text-center bold-font">Name</th>
-                        <th className="border-bottom text-center bold-font">Object</th>
+                        <th className="border-bottom text-center bold-font">Device</th>
+                        <th className="border-bottom text-center bold-font">Group</th>
                         <th className="border-bottom text-center bold-font">Event</th>
                         <th className="border-bottom text-center bold-font">Effective Time</th>
                         <th className="border-bottom text-center bold-font">Create Time</th>
@@ -166,6 +174,7 @@ export const AlarmSettingTable = (props) => {
                     {transactions.map((t, index) => <TableRow key={`transaction-${t.id}`}  {...t} index={index}
                                                               type={props.type}
                                                               deviceOptions={props.deviceOptions}
+                                                              groupOptions={props.groupOptions}
                                                               onEditClick={props.onEditClick}
                                                               onRemoveClick={props.onRemoveClick}
                     />)}
