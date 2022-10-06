@@ -142,7 +142,7 @@
                                             <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->sms_total == 0? 0 :round($tenant->sms_sent/$tenant->sms_total * 100, 2)}}% ({{$tenant->sms_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
-                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->sms_total == 0? 0 :$tenant->sms_sent/$tenant->sms_total * 100}}%'"></div>
+                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->sms_total == 0? 0 : $tenant->sms_sent/$tenant->sms_total * 100}}%'"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
                                         </div>
                                         <div class="flex items-center mb-3">
                                             <span class="text-4xl font-bold">{{$sensor_added}}</span>
-                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{round(($sensor_added - $inactive_sensors)/$sensor_added*100, 2)}}% active</span>
+                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{$sensor_added == 0? 0 : round(($sensor_added - $inactive_sensors)/$sensor_added*100, 2)}}% active</span>
                                         </div>
                                         <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
                                             <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: '{{$tenant->sensor == 0? 0 :$sensor_added/$tenant->sensor*100}}%'"></div>
@@ -434,10 +434,10 @@
                     <table class="table-auto w-full pt-3" id="alert-log-table">
                         <thead>
                         <tr class="text-xs text-gray-500 text-left">
-                            <th class="ps-4 pb-3 font-medium">Date Sent</th>
+                            <th class="ps-4 pb-3 font-medium" >Date Sent</th>
                             <th class="pb-3 font-medium ps-4">Type</th>
                             <th class="pb-3 font-medium">To</th>
-                            <th class="pb-3 font-medium">Message</th>
+                            <th class="pb-3 font-medium w-50">Message</th>
                         </tr>
                         </thead>
                         <tbody id="alert-log-table-body">
@@ -468,13 +468,11 @@
                         csvData += '\n' + element.created_at + ',' + element.type + ',' + element.to_address + ',' + element.content.replaceAll("\n", " ");
                         tableData += '<tr class="text-xs bg-gray-50">\
                                             <td class="tpy-5 px-6 font-medium">'+ element.created_at +'</td>\
-                                            <td class="flex tpy-5 px-6">\
-                                                <div>\
-                                                    <p class="font-medium">'+ element.type +'</p>\
-                                                </div>\
+                                            <td class="flex tpy-5 px-6 text-uppercase">\
+                                                    '+ element.type +'\
                                             </td>\
-                                            <td class="font-medium">'+ element.to_address +'</td>\
-                                            <td class="font-medium">'+ element.content +'\
+                                            <td class="font-medium px-2">'+ element.to_address +'</td>\
+                                            <td class="font-medium px-2">'+ element.content +'\
                                             </td>\
                                         </tr>';
                     });

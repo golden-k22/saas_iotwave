@@ -388,14 +388,17 @@ const AlarmSettingManager = (props) => {
                 </Col>
                 <Col md={3}>
                     <div className={"w-100 text-right"}>
-                        {props.admin ? <Button className={"btn-success d-flex align-items-center float-right"}
-                                               onClick={() => openModal(false)}><FontAwesomeIcon
-                            icon={faPlus} className={"me-1"}/> Add</Button> : ""}
-                        <input type="file" id="selectedFile" className="d-none" onChange={addMultipleDevices}/>
-                        <Button className={"btn-primary d-flex align-items-center float-right me-2"}
-                                onClick={() => {
-                                    document.getElementById('selectedFile').click();
-                                }}>
+                        {props.admin ?
+                            (
+                                <>
+                                    <Button className={"btn-success d-flex align-items-center float-right"}
+                                            onClick={() => openModal(false)}><FontAwesomeIcon
+                                        icon={faPlus} className={"me-1"}/> Add</Button>
+                                    <input type="file" id="selectedFile" className="d-none" onChange={addMultipleDevices}/>
+                                    <Button className={"btn-primary d-flex align-items-center float-right me-2"}
+                                            onClick={() => {
+                                                document.getElementById('selectedFile').click();
+                                            }}>
                             <span className="inline-block mr-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  className="h-3 text-white w-4" viewBox="0 0 16 16">
@@ -405,8 +408,10 @@ const AlarmSettingManager = (props) => {
                                     d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
                               </svg>
                             </span>
-                            Import CSV
-                        </Button>
+                                        Import CSV
+                                    </Button>
+                                </>
+                            ) : ""}
                     </div>
                 </Col>
             </Row>
