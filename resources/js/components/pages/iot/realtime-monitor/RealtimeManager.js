@@ -101,11 +101,11 @@ class RealtimeManager extends Component {
                                                  })
                                              }}/>
                                 <Button className={"btn-primary d-flex align-items-center"}
-                                        onClick={() => this.searchDevice()}><FontAwesomeIcon
+                                        onClick={() => this.searchDevices()}><FontAwesomeIcon
                                     icon={faSearch} className={"me-1"}/> Search</Button>
                             </Col>
                         </Row>
-                        <Row>
+                        <Row className={"mt-4"}>
                             {this.state.messages.map((message, index) =>
                                 <Col key={index} xs={12} sm={12} md={6} lg={4} className="mb-4">
                                     <RealtimeCard
@@ -149,12 +149,7 @@ class RealtimeManager extends Component {
     }
 
     componentDidMount() {
-        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
-            data => {
-                this.setState({messages: data});
-                this.subscribeDevices();
-                this.setAlarms();
-            });
+        this.searchDevices();
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/groups",
             groups => {
                 let newOption = [{value:null, label: "No Select"}];
@@ -183,7 +178,12 @@ class RealtimeManager extends Component {
                     typeOptions: newOption
                 });
             });
-        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
+    }
+
+    searchDevices() {
+        let type = this.state.selectedTypeOption && this.state.selectedTypeOption.value? '&type='+this.state.selectedTypeOption.value: '';
+        let group = this.state.selectedGroupOption && this.state.selectedGroupOption.value? '&group='+this.state.selectedGroupOption.value: '';
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest?device_name=" + this.state.deviceName + type + group,
             data => {
                 this.setState({messages: data});
                 this.subscribeDevices();
@@ -232,7 +232,9 @@ class RealtimeManager extends Component {
     }
 
     getLatestStatus() {
-        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest",
+        let type = this.state.selectedTypeOption && this.state.selectedTypeOption.value? '&type='+this.state.selectedTypeOption.value: '';
+        let group = this.state.selectedGroupOption && this.state.selectedGroupOption.value? '&group='+this.state.selectedGroupOption.value: '';
+        this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest?device_name=" + this.state.deviceName + type + group,
             data => {
                 this.setState({messages: data});
             });

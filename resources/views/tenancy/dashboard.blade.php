@@ -121,7 +121,7 @@
                                             <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->email_total == 0? 0 :round($tenant->email_sent/$tenant->email_total * 100, 2)}}% ({{$tenant->email_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
-                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->email_total == 0? 0 :$tenant->email_sent/$tenant->email_total * 100}}%'"></div>
+                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: {{$tenant->email_total == 0? 0 :$tenant->email_sent/$tenant->email_total * 100}}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@
                                             <p class="mb-1 text-xs text-indigo-500 font-medium">{{$tenant->sms_total == 0? 0 :round($tenant->sms_sent/$tenant->sms_total * 100, 2)}}% ({{$tenant->sms_total}} credits)</p>
                                             <div class="flex">
                                                 <div class="relative h-1 w-48 bg-indigo-50 rounded-full">
-                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: '{{$tenant->sms_total == 0? 0 : $tenant->sms_sent/$tenant->sms_total * 100}}%'"></div>
+                                                    <div class="absolute top-0 left-0 h-full bg-indigo-500 rounded-full" style="width: {{$tenant->sms_total == 0? 0 : $tenant->sms_sent/$tenant->sms_total * 100}}%"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -205,7 +205,7 @@
                                             <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">100% active</span>
                                         </div>
                                         <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
-                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: '{{$tenant->gateway == 0? 0 :$gateway_added/$tenant->gateway*100}}%'"></div>
+                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: {{$tenant->gateway == 0? 0 :$gateway_added/$tenant->gateway*100}}%"></div>
                                         </div>
                                         <p class="text-xs text-gray-200">{{$tenant->gateway - $gateway_added == 0? 'All slots occupied.': $tenant->gateway - $gateway_added.' slots available.'}} Total {{$tenant->gateway}} slots.</p>
                                     </div>
@@ -228,7 +228,7 @@
                                             <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{$sensor_added == 0? 0 : round(($sensor_added - $inactive_sensors)/$sensor_added*100, 2)}}% active</span>
                                         </div>
                                         <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
-                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: '{{$tenant->sensor == 0? 0 :$sensor_added/$tenant->sensor*100}}%'"></div>
+                                            <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: {{$tenant->sensor == 0? 0 :$sensor_added/$tenant->sensor*100}}%"></div>
                                         </div>
                                         <p class="text-xs text-gray-200">{{$tenant->sensor - $sensor_added == 0? 'All slots occupied.': $tenant->sensor - $sensor_added.' slots available.'}}  Total {{$tenant->sensor}} slots.</p>
                                     </div>
