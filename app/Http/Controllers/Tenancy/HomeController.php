@@ -22,7 +22,7 @@ class HomeController extends Controller
         $gateway_added = 0;
         $sensor_added = 0;
         $sms_utilization = [];
-        $inactive_sensors = 0;
+        $inactive=["sensors"=>0, "gateways"=>0];
         $temperature_status = ["critical"=>0, "warning"=>0];
         $humidity_status = ["critical"=>0, "warning"=>0];
         $voltage_status = ["critical"=>0, "warning"=>0];
@@ -45,7 +45,8 @@ class HomeController extends Controller
             $sms_utilization = json_decode($sms_utilization_response->body());
         }
         if($inactive_sensors_response->successful()){
-            $inactive_sensors = json_decode($inactive_sensors_response->body())->count;
+            $inactive["sensors"] = json_decode($inactive_sensors_response->body())->devices;
+            $inactive["gateways"] = json_decode($inactive_sensors_response->body())->gateways;
         }
         if($temperature_status_response->successful()){
             $temperature_status['critical'] = json_decode($temperature_status_response->body())->critical;
@@ -65,7 +66,7 @@ class HomeController extends Controller
             ->with("gateway_added", $gateway_added)
             ->with("sensor_added", $sensor_added)
             ->with("sms_utilization", $sms_utilization)
-            ->with("inactive_sensors", $inactive_sensors)
+            ->with("inactive", $inactive)
             ->with("temperature_status", $temperature_status)
             ->with("humidity_status", $humidity_status)
             ->with("voltage_status", $voltage_status);

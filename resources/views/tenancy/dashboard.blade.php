@@ -8,7 +8,7 @@
                 <div>
                     <p class="text-sm text-gray-500 font-medium">
                         <span>Last login:</span>
-                        <span class="text-indigo-500">{{isset(auth()->user()->last_log_in)? \Carbon\Carbon::createFromTimeString(auth()->user()->last_log_in)->format('d, F, Y h:m:s'): ''}}</span>
+                        <span class="text-indigo-500" id="last_log_in">{{isset(auth()->user()->last_log_in)? \Carbon\Carbon::createFromTimeString(auth()->user()->last_log_in)->format('d, F, Y h:m:s'): ''}}</span>
                     </p>
                 </div>
             </div>
@@ -192,17 +192,17 @@
                                     <div class="p-6 mb-4 bg-white shadow rounded">
                                         <div class="flex mb-3 items-center justify-between">
                                             <h3 class="text-gray-500">Gateways</h3>
-                                            <button class="focus:outline-none">
+                                            <a class="focus:outline-none" href="{{route('tenancy.basic.gateway', tenant('id'))}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" class="h-4 w-4 text-gray-200"
                                                      viewbox="0 0 16 16">
                                                     <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"></path>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="flex items-center mb-3">
                                             <span class="text-4xl font-bold">{{$gateway_added}}</span>
-                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">100% active</span>
+                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{$gateway_added == 0? 0 : round(($gateway_added - $inactive["gateways"])/$gateway_added*100, 2)}}% active</span>
                                         </div>
                                         <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
                                             <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: {{$tenant->gateway == 0? 0 :$gateway_added/$tenant->gateway*100}}%"></div>
@@ -215,17 +215,17 @@
                                     <div class="p-6 bg-white shadow rounded">
                                         <div class="flex mb-3 items-center justify-between">
                                             <h3 class="text-gray-500">Temperature Sensors</h3>
-                                            <button class="focus:outline-none">
+                                            <a class="focus:outline-none" href="{{route('tenancy.basic.device', tenant('id'))}}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" class="h-4 w-4 text-gray-200"
                                                      viewbox="0 0 16 16">
                                                     <path d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z"></path>
                                                 </svg>
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="flex items-center mb-3">
                                             <span class="text-4xl font-bold">{{$sensor_added}}</span>
-                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{$sensor_added == 0? 0 : round(($sensor_added - $inactive_sensors)/$sensor_added*100, 2)}}% active</span>
+                                            <span class="inline-block ml-2 py-1 px-2 bg-green-500 text-white text-xs rounded-full">{{$sensor_added == 0? 0 : round(($sensor_added - $inactive["sensors"])/$sensor_added*100, 2)}}% active</span>
                                         </div>
                                         <div class="relative w-full h-1 mb-2 bg-gray-300 rounded">
                                             <div class="absolute top-0 left-0 h-full bg-purple-500 rounded" style="width: {{$tenant->sensor == 0? 0 :$sensor_added/$tenant->sensor*100}}%"></div>
@@ -258,22 +258,22 @@
                                                 <span class="text-xs text-gray-500">Normal</span>
                                             </div>
                                             <div class="ml-auto">
-                                                <span class="text-xs">{{$sensor_added - $temperature_status['critical'] - $temperature_status['warning']}}</span>
+                                                <span class="text-xs"> {{$sensor_added - $temperature_status['critical'] - $temperature_status['warning']}}</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center mb-3">
                                             <div class="flex items-center">
                                                 <span class="mr-2">
-                                                <svg class="text-orange-400" width="16" height="16" viewbox="0 0 16 16" fill="none"
-                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
-                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
-                                                                  fill="currentColor"></path><path
-                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
-                                fill="currentColor"></path></svg></span>
+                                                    <svg class="text-orange-400" width="16" height="16" viewbox="0 0 16 16" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
+                                                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
+                                                                                                  fill="rgba(250, 175, 126)"></path><path
+                                                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
+                                                                fill="rgba(248, 149, 83"></path></svg></span>
                                                 <span class="text-xs text-gray-500">Warning</span>
                                             </div>
                                             <div class="ml-auto">
-                                                <span class="text-xs">{{$temperature_status['warning']}}</span>
+                                                <span class="text-xs"> {{$temperature_status['warning']}}</span>
                                             </div>
                                         </div>
                                         <div class="flex items-center">
@@ -315,11 +315,11 @@
                                             <div class="flex items-center">
                                                 <span class="mr-2">
                                                     <svg class="text-orange-400" width="16" height="16" viewbox="0 0 16 16" fill="none"
-                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
-                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
-                                                                  fill="currentColor"></path><path
-                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
-                                fill="currentColor"></path></svg></span>
+                                                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
+                                                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
+                                                                                                  fill="rgba(250, 175, 126)"></path><path
+                                                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
+                                                                fill="rgba(248, 149, 83"></path></svg></span>
                                                 <span class="text-xs text-gray-500">Warning</span>
                                             </div>
                                             <div class="ml-auto">
@@ -364,12 +364,12 @@
                                         <div class="flex items-center mb-3">
                                             <div class="flex items-center">
                                                 <span class="mr-2">
-                                                    <svg class="text-lightGray-500" width="16" height="16" viewbox="0 0 16 16" fill="none"
-                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
-                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
-                                                                  fill="currentColor"></path><path
-                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
-                                fill="currentColor"></path></svg></span>
+                                                    <svg class="text-orange-400" width="16" height="16" viewbox="0 0 16 16" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg"><path opacity="0.4"
+                                                                                                  d="M8 16C12.4183 16 16 12.4183 16 8H8V16Z"
+                                                                                                  fill="rgba(250, 175, 126)"></path><path
+                                                                d="M0 8C0 12.4183 3.58172 16 8 16V0C3.58172 0 0 3.58172 0 8Z"
+                                                                fill="rgba(248, 149, 83"></path></svg></span>
                                                 <span class="text-xs text-gray-500">Low</span>
                                             </div>
                                             <div class="ml-auto">
@@ -453,6 +453,23 @@
     <script src="{{ asset('vendor/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/datatable/datatables.min.js') }}"></script>
     <script>
+        function convertUTCToLocalString(dateStr) {
+            let createTime = new Date(dateStr);
+            let diff = createTime.getTimezoneOffset() * 60 * 1000;
+            let timestamp = createTime.getTime() - diff;
+            let date = new Date(timestamp);
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            // Hours part from the timestamp
+            let hours = "0" + date.getHours();
+            // Minutes part from the timestamp
+            let minutes = "0" + date.getMinutes();
+            // Will display time in 10:30:23 format
+            let formattedTime = year + '-' + month + '-' + day + ' ' + hours.substr(-2) + ':' + minutes.substr(-2);
+            return formattedTime;
+        }
+
         var csvData = '';
         var tableData = '';
 
@@ -510,7 +527,11 @@
             $("#to-date").val(end);
 
             fetchLogData();
+
+            var lastLogIn = new Date(convertUTCToLocalString('{{auth()->user()->last_log_in}}'));
+            $("#last_log_in").html(lastLogIn.toLocaleString());
         });
+
     </script>
 @stop
 
