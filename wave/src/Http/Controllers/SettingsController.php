@@ -58,13 +58,7 @@ class SettingsController extends Controller
 	    			KeyValue::create(['type' => $request->{$type}, 'keyvalue_id' => $authed_user->id, 'keyvalue_type' => 'users', 'key' => $key, 'value' => $value]);
 	    		}
 	    	}
-    	}else {
-                if(!is_null($authed_user->keyValue($key))){
-                    $keyValue = KeyValue::where('keyvalue_id', '=', $authed_user->id)->where('keyvalue_type', '=', 'users')->where('key', '=', $key)->first();
-                    $keyValue->delete();
-                }
-            }
-        }
+    	}
 
     	return back()->with(['message' => 'Successfully updated user profile', 'message_type' => 'success']);
     }
