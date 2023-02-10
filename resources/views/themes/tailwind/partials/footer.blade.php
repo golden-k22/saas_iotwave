@@ -46,9 +46,9 @@
 						<!-- footer links section: help center, developer api, Status, Sitemap -->
 					
                         <li>
-                            <a href="#_" class="relative inline-block text-black group">
+                            <a href="blog" class="relative inline-block text-black group">
                                 <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-1"></span>
-                                <span>News Blog</span>
+                                <span>News Updates</span>
                             </a>
                         </li>
                     </ul>
