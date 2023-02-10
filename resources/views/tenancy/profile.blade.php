@@ -14,8 +14,15 @@
 		</div>
 
 		<div class="flex flex-col w-full p-10 overflow-hidden bg-white border rounded-lg lg:w-2/3 border-gray-150 lg:flex-2">
-			<p class="text-lg text-gray-600">Your application info about {{ $user->name }} here</p>
-		    <p class="mt-5 text-lg text-gray-600">You can edit this template inside of <code class="px-2 py-1 font-mono text-base font-medium text-gray-600 bg-indigo-100 rounded-md">resources/views/{{ theme_folder('/profile.blade.php') }}</code></p>
+			<p class="text-lg text-gray-600">{{ $user->name }}, this is your profile page.</p>
+		    <p class="mt-5 text-lg text-gray-600">Profle landing page is <code class="px-2 py-1 font-mono text-base font-medium text-gray-600 bg-indigo-100 rounded-md">in development, coming soon.</code></p>
+			<div class="flex flex-col items-center h-full pt-6 lg:flex-row">
+				<div class="flex w-full mb-16 lg:w-1/2 lg:mb-0">
+					<div class="relative invisible transition-none duration-1000 delay-100 transform translate-x-12 opacity-0" data-replace='{ "transition-none": "transition-all", "invisible": "visible", "translate-x-12": "translate-y-0", "opacity-0": "opacity-100" }'>
+					<img src="{{ Voyager::image(setting('site.coming_soon')) }}" class="w-full max-w-3xl sm:w-auto">
+					</div>
+				</div>
+			</div>
 		</div>
 
 	</div>
