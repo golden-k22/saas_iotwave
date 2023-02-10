@@ -3,7 +3,7 @@
 <footer class="@if(Request::is('/')){{ 'bg-white' }}@else{{ 'bg-gray-50' }}@endif">
     <div class="px-8 pt-16 mx-auto lg:px-12 xl:px-16 max-w-7xl">
         <div class="flex flex-wrap items-start justify-between pb-20">
-            <a href="#_" class="flex items-center w-auto text-lg font-bold md:w-1/6">
+            <a href="{{ route('wave.home') }}" class="flex items-center w-auto text-lg font-bold md:w-1/6">
                 @if(Voyager::image(theme('footer_logo')))
                     <img class="h-10" src="{{ Voyager::image(theme('footer_logo')) }}" alt="Company name">
                 @else
@@ -21,19 +21,19 @@
             <ul class="flex flex-wrap space-x-5 text-xs">
                 <li class="mb-6 text-center flex-full lg:flex-none lg:mb-0">&copy; {{ date('Y') }} {{ setting('site.title', 'Laravel Wave') }}. All rights reserved.</li>
                 <li class="lg:ml-6">
-                    <a href="blog/corporate/privacy-policy" class="relative inline-block text-black group">
+                    <a href="{{ route('wave.home') }}/blog/corporate/privacy-policy" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Privacy Policy</span>
                     </a>
                 </li>
                 <li class="ml-auto mr-auto text-center lg:ml-6 lg:mr-0">
-                    <a href="blog/corporate/disclaimers" class="relative inline-block text-black group">
+                    <a href="{{ route('wave.home') }}/blog/corporate/disclaimers" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Disclaimers</span>
                     </a>
                 </li>
                 <li class="lg:ml-6">
-                    <a href="blog/corporate/terms-and-conditions" class="relative inline-block text-black group">
+                    <a href="{{ route('wave.home') }}/blog/corporate/terms-and-conditions" class="relative inline-block text-black group">
                         <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-0"></span>
                         <span>Terms and Conditions</span>
                     </a>
