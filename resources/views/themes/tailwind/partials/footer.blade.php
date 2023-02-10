@@ -18,7 +18,7 @@
                     <h3 class="font-semibold text-black">Product</h3>
                     <ul class="mt-6 space-y-4 text-sm">
                         <li>
-                            <a href="#_" class="relative inline-block text-black group">
+                            <a href="{{ route('wave.home') }}/#_" class="relative inline-block text-black group">
                                 <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-1"></span>
                                 <span>Features</span>
                             </a>
@@ -33,7 +33,7 @@
 						<!-- footer links section: our story, company, work with us -->
 					
                         <li>
-                            <a href="#_" class="relative inline-block text-black group">
+                            <a href="{{ route('wave.home') }}/#_" class="relative inline-block text-black group">
                                 <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-1"></span>
                                 <span>Our Team</span>
                             </a>
@@ -59,7 +59,7 @@
 						<!-- footer links section: Advertising, Press, Partners -->
 					
                         <li>
-                            <a href="#_" class="relative inline-block text-black group">
+                            <a href="{{ route('wave.home') }}/#_" class="relative inline-block text-black group">
                                 <span class="absolute bottom-0 w-full transition duration-150 ease-out transform -translate-y-1 border-b border-black opacity-0 group-hover:opacity-100 group-hover:translate-y-1"></span>
                                 <span>Email</span>
                             </a>
