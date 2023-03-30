@@ -28,7 +28,7 @@
                     <p class="text-base font-medium leading-6 text-center text-gray-500">
                         Existing customer?
                         <a href="{{ route('login') }}" class="transition duration-150 ease-in-out text-wave-600 hover:text-wave-500">
-                            Sign in here
+                            Sign in here.
                         </a>
                     </p>
                 </div>
