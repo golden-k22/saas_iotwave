@@ -52,7 +52,6 @@
                             <div class="mb-6">
                                 <button type="submit" class="w-full px-3 py-3 text-white bg-blue-500 rounded-md focus:bg-blue-600 focus:outline-none">Login</button>
                             </div>
-                            <p class="text-sm text-center text-gray-400">Don&#x27;t have an account yet? <a href="{{ url()->route('register') }}" class="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500">Sign up</a>.</p>
                         </form>
                     </div>
                 </div>

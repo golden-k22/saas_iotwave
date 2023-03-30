@@ -25,15 +25,10 @@
             </div>
             <div class="px-8 py-6 space-y-6">
                 <div class="space-y-6">
-                    <span class="flex w-full rounded-md shadow-sm">
-                        <a href="{{ route('register') }}" class="flex items-center justify-center w-full px-4 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out border border-transparent rounded-md bg-wave-600 hover:bg-wave-500 focus:outline-none focus:border-wave-700 focus:shadow-outline-wave active:bg-wave-700">
-                            Sign up
-                        </a>
-                    </span>
                     <p class="text-base font-medium leading-6 text-center text-gray-500">
                         Existing customer?
                         <a href="{{ route('login') }}" class="transition duration-150 ease-in-out text-wave-600 hover:text-wave-500">
-                            Sign in
+                            Sign in here
                         </a>
                     </p>
                 </div>
