@@ -7,12 +7,6 @@
             <h2 class="mt-6 text-3xl font-extrabold leading-9 text-center text-gray-900 lg:text-5xl">
                 Sign in Below
             </h2>
-            <p class="mt-4 text-sm leading-5 text-center text-gray-600 max-w">
-                or, you can
-                <a href="{{ route('register') }}" class="font-medium transition duration-150 ease-in-out text-wave-600 hover:text-wave-500 focus:outline-none focus:underline">
-                    signup here
-                </a>
-            </p>
         </div>
 
         <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
