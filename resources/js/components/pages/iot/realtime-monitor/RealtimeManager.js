@@ -23,6 +23,7 @@ class RealtimeManager extends Component {
             selectedDevice: {
                 id: 0,
                 sn: 0,
+				name:'',
             },
             reportGenerated: true,
             groupOptions: [],
@@ -46,7 +47,7 @@ class RealtimeManager extends Component {
                     <>
                         <HistoryDashboard
                             tenant={this.props.tenant}
-                            title={`History of Device ${this.state.selectedDevice.sn}`}
+                            title={`History of Device ${this.state.selectedDevice.name}`}
                             device={this.state.selectedDevice} dataSource={this.dataSource}
                             setReportGenerated={this.setReportGenerated}
                             backCallback={this.backToCardView}/>
@@ -130,8 +131,8 @@ class RealtimeManager extends Component {
         this.setState({reportGenerated: isGenerated});
     }
 
-    viewHistoryBtnClicked(deviceId, sn) {
-        this.setState({selectedDevice: {...this.state.selectedDevice, id: deviceId, sn: sn}},
+    viewHistoryBtnClicked(deviceId, sn, name) {
+        this.setState({selectedDevice: {...this.state.selectedDevice, id: deviceId, sn: sn, name: name}},
             () => {
                 this.setState({viewHistory: true})
             });

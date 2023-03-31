@@ -8,8 +8,8 @@ import {convertUTCToLocalString} from "../../DateParser";
 const RealtimeCard = (props) => {
         // const history = useHistory();
 
-        function handleClick(id, sn) {
-            props.viewHistoryCallback(id, sn);
+        function handleClick(id, sn, name) {
+            props.viewHistoryCallback(id, sn, name);
             // history.push("/admin/devices/history/" + id);
         }
 
@@ -95,7 +95,7 @@ const RealtimeCard = (props) => {
                     </div>
                 </CardBody>
                 <CardFooter>
-                    <div onClick={() => handleClick(props.message.device_id, props.message.device_sn)}
+                    <div onClick={() => handleClick(props.message.device_id, props.message.device_sn, props.message.name)}
                          className=" col-md-12 col-xs-12 col-lg-12 col-xl-12 history-link">VIEW HISTORY
                     </div>
                 </CardFooter>
