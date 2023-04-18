@@ -20,6 +20,7 @@
         "laravel/helpers": "^1.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "livewire/livewire": "^2.4",
         "spatie/laravel-ray": "^1.17",
         "stancl/tenancy": "^3.5",
