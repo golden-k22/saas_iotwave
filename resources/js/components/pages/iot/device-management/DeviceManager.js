@@ -243,9 +243,15 @@ const DeviceManager = (props) => {
                 dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/devices/multiple",
                     data => {
                         if(data.isAxiosError){
-                            toaster.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                            if(data.response.data=="Cannot add a new device with the same Serial Number!"){
+                                toastRef.current.show({sticky: true, severity: 'warn', summary: 'Same IMEI is already in use.', detail: data.response.data, life: 5000});
+                            }else{
+                                toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data, life: 5000});
+                            }
+                            closeModal()
                             return;
                         }
+
 
                         if(data.length === 0){
                             searchDevice();
@@ -302,7 +308,11 @@ const DeviceManager = (props) => {
         dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/devices",
             data => {
                 if(data.isAxiosError){
-                    toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                    if(data.response.data=="Cannot add a new device with the same Serial Number!"){
+                        toastRef.current.show({sticky: true, severity: 'warn', summary: 'Same IMEI is already in use.', detail: data.response.data, life: 5000});
+                    }else{
+                        toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data, life: 5000});
+                    }
                     closeModal()
                     return;
                 }

@@ -174,11 +174,15 @@ const GatewayManager = (props) => {
         dataSource.PostRequest("/iot-service/v1/" + props.tenant + "/gateways",
             data => {
                 if(data.isAxiosError){
-                    toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data.message, life: 5000});
+                    if(data.response.data=="Same IMEI is already in use. please Select difference Device or IMEI"){
+                        toastRef.current.show({sticky: true, severity: 'warn', summary: 'Same IMEI is already in use.', detail: data.response.data, life: 5000});
+                    }else{
+                        toastRef.current.show({sticky: true, severity: 'warn', summary: 'Upgrade Subscription Plan', detail: data.response.data, life: 5000});
+                    }
                     closeModal()
                     return;
                 }
-
+                
                 let updatedList = [...deviceList];
                 let isExist = updatedList.filter((gateway) => {
                     return gateway.imei == data.imei;
