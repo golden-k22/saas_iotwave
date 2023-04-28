@@ -194,42 +194,55 @@ class RealtimeManager extends Component {
 
     setAlarms() {
         let alarmList = [];
-        this.state.messages.map(msg => {
-            this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms?device_sn=" + msg.device_sn,
-                data => {
-                    let alarm_temp = {
-                        wlt: null,
-                        wht: null,
-                        lt: null,
-                        ht: null,
-                        wlh: null,
-                        whh: null,
-                        lh: null,
-                        hh: null,
-                        lv: null,
-                        oft: null
-                    };
-                    data.map(item => {
-                        if (item.alarm_type === 0) {
-                            alarm_temp.wlt = item.low_warning;
-                            alarm_temp.wht = item.high_warning;
-                            alarm_temp.lt = item.low_threshold;
-                            alarm_temp.ht = item.high_threshold;
-                        } else if (item.alarm_type === 1) {
-                            alarm_temp.wlh = item.low_warning;
-                            alarm_temp.whh = item.high_warning;
-                            alarm_temp.lh = item.low_threshold;
-                            alarm_temp.hh = item.high_threshold;
-                        } else if (item.alarm_type === 2) {
-                            alarm_temp.lv = item.low_threshold;
-                        } else if (item.alarm_type === 3) {
-                            alarm_temp.oft = item.offline_time;
-                        }
+        let getPromise=new Promise(function(resolve, reject){
+            this.state.messages.map(msg => {
+                this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms?device_sn=" + msg.device_sn,
+                    data => {
+                        let alarm_temp = {
+                            wlt: null,
+                            wht: null,
+                            lt: null,
+                            ht: null,
+                            wlh: null,
+                            whh: null,
+                            lh: null,
+                            hh: null,
+                            lv: null,
+                            oft: null
+                        };
+                        data.map(item => {
+                            if (item.alarm_type === 0) {
+                                alarm_temp.wlt = item.low_warning;
+                                alarm_temp.wht = item.high_warning;
+                                alarm_temp.lt = item.low_threshold;
+                                alarm_temp.ht = item.high_threshold;
+                            } else if (item.alarm_type === 1) {
+                                alarm_temp.wlh = item.low_warning;
+                                alarm_temp.whh = item.high_warning;
+                                alarm_temp.lh = item.low_threshold;
+                                alarm_temp.hh = item.high_threshold;
+                            } else if (item.alarm_type === 2) {
+                                alarm_temp.lv = item.low_threshold;
+                            } else if (item.alarm_type === 3) {
+                                alarm_temp.oft = item.offline_time;
+                            }
+                        });
+                        alarmList.push(alarm_temp);
                     });
-                    alarmList.push(alarm_temp);
-                });
+            });
+            resolve(alarmList);
+            reject([]);
         });
-        this.setState({alarms: alarmList});
+        
+        getPromise.then(
+            function(value){
+                this.setState({alarms: alarmList});
+            },
+            function(error){
+                this.setState({alarms: error});
+            }
+        )
+        
     }
 
     getLatestStatus() {
