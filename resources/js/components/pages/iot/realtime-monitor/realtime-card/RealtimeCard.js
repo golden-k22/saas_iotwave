@@ -27,7 +27,6 @@ const RealtimeCard = (props) => {
                 oft: null
             };
 
-        console.log("props", props.alarm);
         function isWarning() {
             let warning = false;
             if ((wlt !== null && props.message.temperature < wlt)
