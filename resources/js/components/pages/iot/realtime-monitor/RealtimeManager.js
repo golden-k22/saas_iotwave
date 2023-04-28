@@ -184,6 +184,7 @@ class RealtimeManager extends Component {
     searchDevices() {
         let type = this.state.selectedTypeOption && this.state.selectedTypeOption.value? '&type='+this.state.selectedTypeOption.value: '';
         let group = this.state.selectedGroupOption && this.state.selectedGroupOption.value? '&group='+this.state.selectedGroupOption.value: '';
+        console.log("Search devices", type);
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest?device_name=" + this.state.deviceName + type + group,
             data => {
                 this.setState({messages: data});
