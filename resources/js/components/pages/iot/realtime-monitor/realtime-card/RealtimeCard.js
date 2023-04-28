@@ -15,6 +15,7 @@ const RealtimeCard = (props) => {
 
         const {wlt, wht, lt, ht, wlh, whh, lh, hh, lv, oft} = props.alarm !== undefined ? props.alarm :
             {
+                device_sn:null,
                 wlt: null,
                 wht: null,
                 lt: null,

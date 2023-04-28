@@ -111,7 +111,7 @@ class RealtimeManager extends Component {
                                 <Col key={index} xs={12} sm={12} md={6} lg={4} className="mb-4">
                                     <RealtimeCard
                                         message={message}
-                                        alarm={this.state.alarms[index]}
+                                        alarm={this.state.alarms.find(o => o.device_sn == message.device_sn)}
                                         viewHistoryCallback={this.viewHistoryBtnClicked}/>
                                 </Col>
                             )}
@@ -198,6 +198,7 @@ class RealtimeManager extends Component {
             this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/alarms?device_sn=" + msg.device_sn,
                 data => {
                     let alarm_temp = {
+                        device_sn:msg.device_sn,
                         wlt: null,
                         wht: null,
                         lt: null,
@@ -229,8 +230,7 @@ class RealtimeManager extends Component {
                     alarmList.push(alarm_temp);
                     if(alarmList.length==this.state.messages.length){
                         this.setState({alarms: alarmList});
-                    }
-                    
+                    }                    
                 });
         });
         // this.setState({alarms: alarmList});
