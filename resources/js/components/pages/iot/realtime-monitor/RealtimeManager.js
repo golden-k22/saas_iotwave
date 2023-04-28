@@ -231,15 +231,16 @@ class RealtimeManager extends Component {
                     });
             });
             resolve(alarmList);
-            reject([]);
+            reject("rejected");
         });
         
         getPromise.then(
             function(value){
+                console.log("Resolved", value);
                 this.setState({alarms: value});
             },
             function(error){
-                this.setState({alarms: error});
+                console.log("Rejected.");
             }
         )
         
