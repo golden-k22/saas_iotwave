@@ -236,7 +236,7 @@ class RealtimeManager extends Component {
         
         getPromise.then(
             function(value){
-                this.setState({alarms: alarmList});
+                this.setState({alarms: value});
             },
             function(error){
                 this.setState({alarms: error});
