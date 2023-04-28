@@ -231,7 +231,6 @@ class RealtimeManager extends Component {
                     });
             });
             resolve(alarmList);
-            reject("rejected");
         });
         
         getPromise.then(
