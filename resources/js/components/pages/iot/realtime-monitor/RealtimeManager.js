@@ -187,8 +187,8 @@ class RealtimeManager extends Component {
         this.dataSource.GetRequest("/iot-service/v1/" + this.props.tenant + "/status/latest?device_name=" + this.state.deviceName + type + group,
             data => {
                 this.setState({messages: data});
-                this.subscribeDevices();
                 this.setAlarms();
+                this.subscribeDevices();
             });
     }
 
