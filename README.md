@@ -38,31 +38,6 @@ We need to specify our Environment variables for our application. You will see a
 
 Then, open up the `.env` file and update your *DB_DATABASE*, *DB_USERNAME*, and *DB_PASSWORD* in the appropriate fields. You will also want to update the *APP_URL* to the URL of your application.
 
-```bash
-APP_NAME=Wave
-APP_ENV=local
-APP_KEY=base64:8dQ7xw/kM9EYMV4cUkzKgET8jF4P0M0TOmmqN05RN2w=
-APP_DEBUG=false
-APP_LOG_LEVEL=debug
-APP_URL=https://iotwave.tpitservice.com
-
-MIX_APP_URL=https://iotwave.tpitservice.com
-MIX_IOT_APP_URL=https://saas.iotim.tpitservice.com
-MIX_IOT_MQTT_SERVER_URL=wss://saas.mqtt.tpitservice.com:8083
-MIX_PROTOCOL_TYPE=wss
-APP_TIMEZONE='Asia/Singapore'
-
-DEFAULT_PASSWORD=password
-
-DB_CONNECTION=pgsql
-DB_HOST=private-app-82ccd341-8d5f-42fb-a861-ba64cd35858b-do-user-103446.b.db.ondigitalocean.com
-DB_PORT=25060
-DB_DATABASE=saastempdb
-DB_USERNAME=saas_iot360
-DB_PASSWORD=AVNS_a6KGm2X7OJlD6ntwROw
-```
-
-
 ### 3. Add Composer Dependencies
 
 Next, we will need to install all our composer dependencies by running the following command:
